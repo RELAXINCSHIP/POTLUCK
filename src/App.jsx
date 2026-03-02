@@ -805,79 +805,30 @@ export default function App() {
 
     return (
         <div style={{
-            minHeight: "100vh", background: "linear-gradient(135deg, #080612 0%, #110D26 50%, #0D0A1A 100%)",
-            display: "flex", alignItems: "flex-start", justifyContent: "center", padding: "40px 20px",
-            fontFamily: "'DM Sans', sans-serif",
+            width: "100%", maxWidth: "480px", margin: "0 auto", height: "100dvh",
+            background: "#0D0A1A", position: "relative", overflow: "hidden",
+            display: "flex", flexDirection: "column", fontFamily: "'DM Sans', sans-serif",
+            boxShadow: "0 0 50px rgba(0,0,0,0.5)",
         }}>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 32, margin: "auto" }}>
-                {/* Header */}
-                <div style={{ textAlign: "center" }}>
-                    <div style={{ fontSize: 13, letterSpacing: 4, color: "#9B6FFF", fontWeight: 700, marginBottom: 8, textTransform: "uppercase" }}>
-                        {user ? `Welcome, ${user.name}` : "Interactive UX Flow"}
-                    </div>
-                    <div style={{ fontSize: 36, fontFamily: "'Syne', sans-serif", fontWeight: 800, color: "#fff" }}>POTLUCK</div>
-                    <div style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", marginTop: 4 }}>Prize-Linked Savings · {user ? "Live" : "Mobile App"}</div>
-                </div>
+            {/* Particles */}
+            {particles.map(p => (
+                <div key={p.id} style={{
+                    position: "absolute", left: `${p.x}%`, top: -20, width: p.size, height: p.size,
+                    borderRadius: "50%", background: p.color, zIndex: 999,
+                    animation: `confetti-fall ${1.5 + Math.random()}s ${p.delay}s ease-in forwards`,
+                    pointerEvents: "none",
+                }} />
+            ))}
 
-                {/* Flow indicators */}
-                {user && (
-                    <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap", justifyContent: "center", maxWidth: 600 }}>
-                        {navScreens.map((s, i) => (
-                            <div key={s.id} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                                <button className="tab-btn" onClick={() => go(s.id)} style={{
-                                    padding: "6px 14px", borderRadius: 20, border: "none", cursor: "pointer", fontSize: 12, fontWeight: 600,
-                                    background: screen === s.id ? "linear-gradient(135deg, #7C3AED, #A855F7)" : "rgba(255,255,255,0.06)",
-                                    color: screen === s.id ? "#fff" : "rgba(255,255,255,0.5)",
-                                    boxShadow: screen === s.id ? "0 0 20px rgba(139,92,246,0.4)" : "none",
-                                }}>{s.label}</button>
-                                {i < navScreens.length - 1 && <div style={{ width: 12, height: 1, background: "rgba(255,255,255,0.15)" }} />}
-                            </div>
-                        ))}
-                    </div>
-                )}
-
-                {/* Phone */}
-                <div style={{
-                    width: 390, height: 844, background: "#0D0A1A", borderRadius: 44,
-                    overflow: "hidden", position: "relative",
-                    boxShadow: "0 0 0 10px #1a1528, 0 0 0 12px #2a2040, 0 40px 80px rgba(0,0,0,0.6), 0 0 60px rgba(139,92,246,0.15)",
-                    fontFamily: "'DM Sans', sans-serif",
-                    display: "flex", flexDirection: "column", flexShrink: 0,
-                }}>
-                    {/* Particles */}
-                    {particles.map(p => (
-                        <div key={p.id} style={{
-                            position: "absolute", left: `${p.x}%`, top: -20, width: p.size, height: p.size,
-                            borderRadius: "50%", background: p.color, zIndex: 999,
-                            animation: `confetti-fall ${1.5 + Math.random()}s ${p.delay}s ease-in forwards`,
-                            pointerEvents: "none",
-                        }} />
-                    ))}
-
-                    {/* Status bar */}
-                    {screen !== "splash" && (
-                        <div style={{
-                            height: 50, display: "flex", alignItems: "center",
-                            justifyContent: "space-between", padding: "0 24px",
-                            fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.6)", flexShrink: 0,
-                        }}>
-                            <span>9:41</span>
-                            <span style={{ fontFamily: "'Syne', sans-serif", fontSize: 15, color: "#9B6FFF", fontWeight: 800 }}>POTLUCK</span>
-                            <span>●●●</span>
-                        </div>
-                    )}
-
-                    {/* Screens */}
-                    {screen === "splash" && <SplashScreen />}
-                    {screen === "auth" && <AuthScreen onAuth={handleAuth} />}
-                    {screen === "deposit" && <DepositScreen go={go} onDeposit={refreshData} />}
-                    {screen === "home" && <HomeScreen go={go} startDraw={startDraw} user={user} draws={draws} streak={streak} />}
-                    {screen === "draw" && <DrawScreen drawPhase={drawPhase} go={go} spawnParticles={spawnParticles} draws={draws} winner={winner} />}
-                    {screen === "result" && <ResultScreen go={go} user={user} streak={streak} />}
-                    {screen === "community" && <CommunityScreen go={go} user={user} />}
-                    {screen === "profile" && <ProfileScreen go={go} user={user} streak={streak} onLogout={handleLogout} />}
-                </div>
-            </div>
+            {/* Screens */}
+            {screen === "splash" && <SplashScreen />}
+            {screen === "auth" && <AuthScreen onAuth={handleAuth} />}
+            {screen === "deposit" && <DepositScreen go={go} onDeposit={refreshData} />}
+            {screen === "home" && <HomeScreen go={go} startDraw={startDraw} user={user} draws={draws} streak={streak} />}
+            {screen === "draw" && <DrawScreen drawPhase={drawPhase} go={go} spawnParticles={spawnParticles} draws={draws} winner={winner} />}
+            {screen === "result" && <ResultScreen go={go} user={user} streak={streak} />}
+            {screen === "community" && <CommunityScreen go={go} user={user} />}
+            {screen === "profile" && <ProfileScreen go={go} user={user} streak={streak} onLogout={handleLogout} />}
         </div>
     );
 }
