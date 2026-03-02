@@ -17,7 +17,12 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // ─── Middleware ────────────────────────────────────────────────
-app.use(cors());
+app.use(cors({
+    origin: function (origin, callback) {
+        callback(null, true); // Reflect origin
+    },
+    credentials: true,
+}));
 app.use(express.json());
 
 // Request logger
@@ -56,9 +61,12 @@ app.use((err, req, res, next) => {
 });
 
 // ─── Start ────────────────────────────────────────────────────
-initDB().then(() => {
-    app.listen(PORT, () => {
-        console.log(`\n🎰 Potluck API running on http://localhost:${PORT}`);
-        console.log(`   Health check: http://localhost:${PORT}/api/health\n`);
+app.listen(PORT, () => {
+    console.log(`\n🎰 Potluck API running on port ${PORT}`);
+    console.log(`   Health check: /api/health\n`);
+
+    // Initialize DB after server starts so it doesn't block boot
+    initDB().catch(err => {
+        console.error('❌ Failed to initialize database during startup:', err);
     });
 });
