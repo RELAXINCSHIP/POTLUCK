@@ -91,7 +91,7 @@ export default function LandingPage({ onGoToApp }) {
                 <div className="container">
                     <div className="badge hero-badge fade-in">🎉 Prize-Linked Savings</div>
                     <h1 className="fade-in fade-in-delay-1">
-                        Save Money.<br />
+                        If you like to save money,<br />
                         <span className="gradient-text">It's Your Lucky Day.</span>
                     </h1>
                     <p className="hero-sub fade-in fade-in-delay-2">
