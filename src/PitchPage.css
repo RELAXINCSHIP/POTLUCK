@@ -1,0 +1,398 @@
+/* ─── Pitch Page Styles ───────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap');
+
+.pitch {
+    --bg: #0D0A1A;
+    --purple: #9B6FFF;
+    --gold: #FFD700;
+    --teal: #4ECDC4;
+    --red: #EF4444;
+    --orange: #F59E0B;
+
+    min-height: 100vh;
+    background: linear-gradient(160deg, #080612, #110D26, #0D0A1A);
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    color: #fff;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+.pitch * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.pitch .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 40px;
+}
+
+/* ─── Header ──── */
+
+.pitch .pitch-header {
+    text-align: center;
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pitch .pitch-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--purple);
+    margin-bottom: 8px;
+}
+
+.pitch .pitch-tagline {
+    font-size: 22px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 24px;
+}
+
+.pitch .pitch-headline {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.pitch .pitch-headline .highlight {
+    background: linear-gradient(135deg, var(--purple), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ─── Sections ──── */
+
+.pitch .pitch-section {
+    margin-bottom: 48px;
+}
+
+.pitch .pitch-section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 14px;
+}
+
+.pitch .pitch-section h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+
+.pitch .pitch-section p {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.75;
+    max-width: 700px;
+}
+
+/* ─── Stat Cards ──── */
+
+.pitch .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.pitch .stat-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 24px;
+    text-align: center;
+}
+
+.pitch .stat-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.pitch .stat-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ─── Flow ──── */
+
+.pitch .flow-steps {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+}
+
+.pitch .flow-step {
+    flex: 1;
+    min-width: 140px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 20px 16px;
+    text-align: center;
+}
+
+.pitch .flow-step .step-emoji {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.pitch .flow-step .step-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.pitch .flow-step .step-desc {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.pitch .flow-arrow {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+/* ─── Market ──── */
+
+.pitch .market-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 24px 0;
+}
+
+.pitch .market-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.pitch .market-bar-label {
+    width: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: right;
+}
+
+.pitch .market-bar-track {
+    flex: 1;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.pitch .market-bar-fill {
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 12px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* ─── Revenue Model ──── */
+
+.pitch .revenue-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.pitch .revenue-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.pitch .revenue-card h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.pitch .revenue-card p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.6;
+}
+
+/* ─── Traction ──── */
+
+.pitch .traction-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+}
+
+.pitch .traction-item {
+    text-align: center;
+    padding: 18px 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+}
+
+.pitch .traction-item .traction-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.pitch .traction-item .traction-label {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ─── Ask ──── */
+
+.pitch .ask-box {
+    background: linear-gradient(135deg, rgba(45, 27, 105, 0.4), rgba(26, 15, 58, 0.3));
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    border-radius: 24px;
+    padding: 36px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.pitch .ask-box h2 {
+    margin-bottom: 8px;
+}
+
+.pitch .ask-box .ask-amount {
+    font-family: 'Syne', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--gold);
+    margin: 16px 0;
+}
+
+.pitch .ask-box p {
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* ─── Footer ──── */
+
+.pitch .pitch-footer {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    text-align: center;
+}
+
+.pitch .pitch-footer p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.3);
+    margin: 0 auto;
+}
+
+.pitch .pitch-footer a {
+    color: var(--purple);
+    text-decoration: none;
+}
+
+.pitch .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--purple);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 32px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    transition: opacity 0.2s;
+}
+
+.pitch .back-link:hover {
+    opacity: 0.7;
+}
+
+/* ─── Responsive ──── */
+
+@media (max-width: 768px) {
+    .pitch .page {
+        padding: 40px 20px;
+    }
+
+    .pitch .stat-row {
+        grid-template-columns: 1fr;
+    }
+
+    .pitch .flow-steps {
+        flex-direction: column;
+    }
+
+    .pitch .flow-arrow {
+        transform: rotate(90deg);
+    }
+
+    .pitch .revenue-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pitch .traction-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media print {
+    .pitch {
+        background: #fff !important;
+        color: #111 !important;
+    }
+
+    .pitch .pitch-section p,
+    .pitch .stat-label,
+    .pitch .revenue-card p,
+    .pitch .traction-item .traction-label {
+        color: #555 !important;
+    }
+
+    .pitch .stat-card,
+    .pitch .flow-step,
+    .pitch .revenue-card,
+    .pitch .traction-item {
+        border-color: #ddd !important;
+        background: #f9f9f9 !important;
+    }
+
+    .pitch .back-link {
+        display: none;
+    }
+}
