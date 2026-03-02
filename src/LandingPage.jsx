@@ -79,6 +79,7 @@ export default function LandingPage({ onGoToApp }) {
                         <li><a href="#how" onClick={(e) => { e.preventDefault(); scrollTo('how'); }}>How It Works</a></li>
                         <li><a href="#features" onClick={(e) => { e.preventDefault(); scrollTo('features'); }}>Features</a></li>
                         <li><a href="#faq" onClick={(e) => { e.preventDefault(); scrollTo('faq'); }}>FAQ</a></li>
+                        <li><a href="#/app" onClick={(e) => { e.preventDefault(); onGoToApp?.(); }} style={{ color: '#fff', fontWeight: 600 }}>Sign In</a></li>
                     </ul>
                     <button className="nav-cta" onClick={() => scrollTo('join')}>Join the Waitlist</button>
                 </div>
