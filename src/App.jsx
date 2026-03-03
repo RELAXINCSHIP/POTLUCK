@@ -1,17 +1,17 @@
 import { useState, useEffect, useRef } from "react";
-import {
-    getPlatformStats, getFeed, getLeaderboard, dailyCheckin, getMySyndicate,
-    getSimPhase, GROWTH_PHASES
-} from "./api";
+import * as api from "./api";
 import { publicClient, getWalletClient, CONTRACTS, ABIs } from "./web3/client";
 import { parseUnits, formatUnits } from "viem";
 
 // Savings Components
 import SavingsHome from "./savings/SavingsHome";
 import AssetDetails from "./savings/AssetDetails";
+import AssetsPage from "./savings/AssetsPage";
 import GoalDetails from "./savings/GoalDetails";
 import SettingsPage from "./savings/SettingsPage";
 import TransactionsPage from "./savings/TransactionsPage";
+
+import { getAccounts } from "./plaid/plaidApi";
 
 let globalCurrency = "USD";
 let globalRate = 1.0;
@@ -21,6 +21,13 @@ export const setGlobalCurrency = (code, rate) => {
     globalCurrency = code || "USD";
     globalRate = rate || 1.0;
 };
+
+const INITIAL_ASSETS = [
+    { id: 1, icon: "₿", name: "Cold Storage (10 BTC)", value: 850000.00, change: +0.0, bg_image: "https://images.unsplash.com/photo-1549488497-236b28292d8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", type: "crypto" },
+    { id: 2, icon: "✈️", name: "Travel Fund", value: 22375.00, change: +0.8, bg_image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", type: "savings" },
+    { id: 3, icon: "🛍️", name: "Luxury Card", value: 41109.30, change: -1.2, bg_image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", type: "credit" },
+    { id: 4, icon: "📈", name: "S&P 500 Index", value: 58487.40, change: +0.0, bg_image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", type: "stock" },
+];
 
 export const formatCurrency = (n) => {
     const val = Number(n) * globalRate;
@@ -137,9 +144,9 @@ const inputStyle = {
 /* =============================================
    NOTIFICATION BELL (top-right corner)
 ============================================= */
-function NotifBell({ count = 3 }) {
+function NotifBell({ count = 3, onClick }) {
     return (
-        <div style={{
+        <div onClick={onClick} style={{
             position: "relative", width: 40, height: 40, borderRadius: "50%",
             background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)",
             display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer",
@@ -156,6 +163,15 @@ function NotifBell({ count = 3 }) {
                     border: "2px solid #080808", color: "#fff",
                 }}>{count}</div>
             )}
+        </div>
+    );
+}
+
+function GlobalHeader({ onNotifClick }) {
+    return (
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px 20px 8px", flexShrink: 0, zIndex: 10 }}>
+            <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 20, fontWeight: 800, color: "#FFD54F", letterSpacing: -0.5 }}>POTLUCK</div>
+            <NotifBell onClick={onNotifClick} />
         </div>
     );
 }
@@ -190,7 +206,7 @@ function BottomNav({ screen, go }) {
             )
         },
         {
-            id: "share", label: "Share", icon: (
+            id: "community", label: "Community", icon: (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="18" cy="5" r="3"></circle>
                     <circle cx="6" cy="12" r="3"></circle>
@@ -217,7 +233,7 @@ function BottomNav({ screen, go }) {
             padding: "8px 8px 28px", borderTop: "1px solid rgba(255,255,255,0.06)", flexShrink: 0,
         }}>
             {tabs.map(t => {
-                const active = screen === t.id || (t.id === "share" && screen === "community");
+                const active = screen === t.id;
                 return (
                     <button key={t.id} className="tab-btn" onClick={() => go(t.id)} style={{
                         flex: 1, background: "none", border: "none", padding: "6px 0",
@@ -243,7 +259,7 @@ function BottomNav({ screen, go }) {
 /* =============================================
    HOME SCREEN (Live Data)
 ============================================= */
-function HomeScreen({ go, startDraw, user, draws, streak }) {
+function HomeScreen({ go, startDraw, user, draws, streak, onNotifClick }) {
     const grandDraw = draws?.find(d => d.type === "grand") || {};
     const miniDraw = draws?.find(d => d.type === "mini") || {};
     const [countdown, setCountdown] = useState(grandDraw.countdown_seconds || 0);
@@ -256,11 +272,6 @@ function HomeScreen({ go, startDraw, user, draws, streak }) {
 
     return (
         <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "auto" }}>
-            {/* Top Bar with Notif Bell */}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px 20px 8px", flexShrink: 0 }}>
-                <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 20, fontWeight: 800, color: "#FFD54F", letterSpacing: -0.5 }}>POTLUCK</div>
-                <NotifBell />
-            </div>
             {/* Ticker */}
             <div style={{ background: "rgba(255,213,79,0.1)", padding: "8px 0", overflow: "hidden", borderBottom: "1px solid rgba(255,213,79,0.2)", flexShrink: 0 }}>
                 <div style={{ animation: "ticker 12s linear infinite", whiteSpace: "nowrap", fontSize: 12, color: "#FFD54F", fontWeight: 600 }}>
@@ -763,14 +774,7 @@ function CommunityScreen({ go, user }) {
 
     return (
         <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "auto" }}>
-            <div style={{ padding: "16px 20px 0", flex: 1, overflow: "auto" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-                    <div>
-                        <div style={{ fontSize: 24, fontFamily: "'Syne', sans-serif", fontWeight: 800, color: "#fff", marginBottom: 4 }}>Share & Refer</div>
-                        <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)" }}>Together in the pot</div>
-                    </div>
-                    <NotifBell />
-                </div>
+            <div style={{ padding: "8px 20px 0", flex: 1, overflow: "auto" }}>
 
                 {/* Daily check-in */}
                 <button className="btn-glow" onClick={handleCheckin} disabled={checkedIn} style={{
@@ -1079,14 +1083,14 @@ function ProfileScreen({ go, user, streak, onLogout, currency, setCurrency }) {
                                 <select value={localStorage.getItem('potluck_sim_phase') || '0'} onChange={(e) => {
                                     const p = e.target.value;
                                     localStorage.setItem('potluck_sim_phase', p);
-                                    alert(`Simulation Phase set to: ${GROWTH_PHASES[p].label}. Reloading dashboard immediately...`);
+                                    alert(`Simulation Phase set to: ${api.GROWTH_PHASES[p].label}. Reloading dashboard immediately...`);
                                     window.location.reload();
                                 }} style={{
                                     width: '100%', padding: '12px', borderRadius: 10, background: 'rgba(255,213,79,0.1)',
                                     border: '1px solid rgba(255,213,79,0.3)', color: '#FFD54F', fontSize: 13,
                                     outline: 'none', appearance: 'none', fontWeight: 600
                                 }}>
-                                    {Object.entries(GROWTH_PHASES).map(([key, val]) => (
+                                    {Object.entries(api.GROWTH_PHASES).map(([key, val]) => (
                                         <option key={key} value={key} style={{ background: '#111', color: '#fff' }}>
                                             {val.label} {val.members ? `(${val.members.toLocaleString()} users)` : ''}
                                         </option>
@@ -1098,7 +1102,7 @@ function ProfileScreen({ go, user, streak, onLogout, currency, setCurrency }) {
 
                     {[
                         { icon: "⬆️", label: "Add More to the Pot", sub: "More deposits = more entries", action: () => go("deposit") },
-                        { icon: "🔗", label: "Refer a Friend", sub: "+50 entries per referral" },
+                        { icon: "🔗", label: "Refer a Friend", sub: "+50 entries per referral", action: () => go("community") },
                         { icon: "🛡️", label: "System Admin", sub: "Platform Management", action: () => window.location.hash = "#/admin" },
                     ].map((a, i) => (
                         <div key={i} className="feed-item" onClick={a.action} style={{
@@ -1315,15 +1319,7 @@ function RewardsScreen({ go, user, streak }) {
 
     return (
         <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "auto" }}>
-            <div style={{ padding: "20px 20px 0", flex: 1, overflow: "auto" }}>
-                {/* Header */}
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-                    <div>
-                        <div style={{ fontSize: 24, fontFamily: "'Syne', sans-serif", fontWeight: 800, color: "#fff" }}>Rewards</div>
-                        <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginTop: 2 }}>Premium member benefits</div>
-                    </div>
-                    <NotifBell />
-                </div>
+            <div style={{ padding: "8px 20px 0", flex: 1, overflow: "auto" }}>
 
                 {/* Membership Card */}
                 <div style={{
@@ -1589,6 +1585,7 @@ export default function App() {
     const [winner, setWinner] = useState(null);
     const [particles, setParticles] = useState([]);
     const [step, setStep] = useState("");
+    const [showNotifs, setShowNotifs] = useState(false);
 
     // Global Currency State
     const [currency, setCurrency] = useState("USD");
@@ -1599,6 +1596,87 @@ export default function App() {
             if (data.rates) setExchangeRates(data.rates);
         }).catch(() => { });
     }, []);
+
+    // Asset & Market Data State
+    const [assets, setAssets] = useState(INITIAL_ASSETS);
+    const [marketData, setMarketData] = useState(null);
+    const [plaidBalance, setPlaidBalance] = useState(0);
+    const [plaidAccounts, setPlaidAccounts] = useState([]);
+    const [loadingAssets, setLoadingAssets] = useState(true);
+
+    const refreshAssets = async () => {
+        try {
+            setLoadingAssets(true);
+            // 1. Fetch Supabase custom assets
+            const dbAssets = await api.getAssets().catch(() => []);
+            setAssets(dbAssets.length > 0 ? dbAssets : INITIAL_ASSETS);
+
+            // 2. Fetch Plaid linked account balances
+            const plaidData = await getAccounts('potluck-user-1').catch(() => ({ accounts: [] }));
+            if (plaidData.accounts) {
+                setPlaidAccounts(plaidData.accounts);
+                let pBal = 0;
+                plaidData.accounts.forEach(acct => {
+                    if (['depository', 'investment', 'brokerage'].includes(acct.type)) {
+                        pBal += acct.balance_current || 0;
+                    }
+                    else if (['credit', 'loan'].includes(acct.type)) {
+                        pBal -= acct.balance_current || 0;
+                    }
+                });
+                setPlaidBalance(pBal);
+            }
+
+            // 3. Fetch live market data
+            const cryptoRes = await fetch('/api/market/crypto').catch(() => null);
+            const cryptoData = cryptoRes?.ok ? await cryptoRes.json() : null;
+            const stockRes = await fetch('/api/market/stocks').catch(() => null);
+            const stockData = stockRes?.ok ? await stockRes.json() : null;
+            setMarketData({ crypto: cryptoData, stocks: stockData });
+
+        } catch (err) {
+            console.warn("Failed to refresh global assets", err);
+        } finally {
+            setLoadingAssets(false);
+        }
+    };
+
+    useEffect(() => {
+        if (user) refreshAssets();
+    }, [user]);
+
+    // Derived: Merged List of all holdings
+    const mergedAssets = [
+        ...assets.map(a => {
+            let val = a.value;
+            let chg = a.change;
+            if (a.id === 1 && marketData?.crypto?.bitcoin) {
+                val = marketData.crypto.bitcoin.usd * 10;
+                chg = Number(marketData.crypto.bitcoin.usd_24h_change?.toFixed(2) || 0);
+            }
+            if (a.id === 4 && marketData?.stocks?.SPY) {
+                val = marketData.stocks.SPY.price * 100;
+                chg = Number(marketData.stocks.SPY.percent_change?.toFixed(2) || 0);
+            }
+            return { ...a, value: val, change: chg, category: a.type || 'other' };
+        }),
+        ...plaidAccounts.map(pa => {
+            let cat = 'cash';
+            if (pa.type === 'credit' || pa.type === 'loan') cat = 'credit';
+            if (pa.type === 'investment' || pa.type === 'brokerage') cat = 'stock';
+
+            return {
+                id: `plaid-${pa.account_id}`,
+                name: pa.official_name || pa.name,
+                value: pa.balance_current,
+                icon: pa.type === 'credit' ? '💳' : '🏦',
+                category: cat,
+                type: pa.type,
+                bg_image: '',
+                change: 0
+            };
+        })
+    ];
 
     useEffect(() => {
         setGlobalCurrency(currency, exchangeRates[currency] || 1.0);
@@ -1766,8 +1844,48 @@ export default function App() {
             {/* Screens */}
             {screen === "splash" && <SplashScreen />}
             {screen === "auth" && <AuthScreen onAuth={handleAuth} />}
+
+            {!["splash", "auth"].includes(screen) && (
+                <GlobalHeader onNotifClick={() => setShowNotifs(true)} />
+            )}
+
             {screen === "deposit" && <DepositScreen go={go} onDeposit={refreshData} />}
             {screen === "home" && <HomeScreen go={go} startDraw={startDraw} user={user} draws={draws} streak={streak} />}
+
+            {/* Notifications Panel */}
+            {showNotifs && (
+                <div style={{
+                    position: "absolute", inset: 0, zIndex: 1000,
+                    background: "rgba(0,0,0,0.8)", backdropFilter: "blur(10px)",
+                    display: "flex", flexDirection: "column",
+                    animation: "fade-in 0.3s ease-out",
+                }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "40px 20px 20px" }}>
+                        <h2 style={{ fontSize: 24, fontWeight: 800, color: "#fff", margin: 0, fontFamily: "'Syne', sans-serif" }}>Notifications</h2>
+                        <button onClick={() => setShowNotifs(false)} style={{ background: "rgba(255,255,255,0.1)", border: "none", color: "#fff", padding: "8px 16px", borderRadius: 12, fontWeight: 700, cursor: "pointer" }}>Close</button>
+                    </div>
+                    <div style={{ flex: 1, overflow: "auto", padding: "0 20px" }}>
+                        {[
+                            { title: "Weekly Draw Soon!", desc: "The $125k Weekly Draw happens in 4 hours. Good luck!", icon: "🎒", time: "4h remaining" },
+                            { title: "Deposit Confirmed", desc: "Your $50 deposit was successful. +5 tickets added!", icon: "🏦", time: "2 days ago" },
+                            { title: "Referral Bonus", desc: "Kenny joined using your link! +50 entries received.", icon: "🤝", time: "1 week ago" },
+                        ].map((n, i) => (
+                            <div key={i} style={{
+                                padding: 16, borderRadius: 16, background: "rgba(255,255,255,0.05)",
+                                border: "1px solid rgba(255,255,255,0.08)", marginBottom: 12,
+                                display: "flex", gap: 14,
+                            }}>
+                                <div style={{ fontSize: 24 }}>{n.icon}</div>
+                                <div>
+                                    <div style={{ fontSize: 14, fontWeight: 700, color: "#fff" }}>{n.title}</div>
+                                    <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", marginTop: 2 }}>{n.desc}</div>
+                                    <div style={{ fontSize: 10, color: "#FFD54F", fontWeight: 700, marginTop: 8, textTransform: "uppercase" }}>{n.time}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
             {screen === "draw" && <DrawScreen drawPhase={drawPhase} go={go} spawnParticles={spawnParticles} draws={draws} winner={winner} />}
 
             {/* Money module screens */}
@@ -1790,8 +1908,9 @@ export default function App() {
                 ];
 
                 let content = null;
-                if (savingsScreen === "home") content = <SavingsHome onNavigate={handleNav} />;
-                else if (savingsScreen === "asset") content = <AssetDetails onNavigate={handleNav} asset={activeAsset} />;
+                if (savingsScreen === "home") content = <SavingsHome onNavigate={handleNav} assets={mergedAssets} plaidBalance={plaidBalance} loading={loadingAssets} onRefresh={refreshAssets} />;
+                else if (savingsScreen === "asset_list") content = <AssetsPage onNavigate={handleNav} assets={mergedAssets} onRefresh={refreshAssets} />;
+                else if (savingsScreen === "asset") content = <AssetDetails onNavigate={() => setSavingsScreen('asset_list')} asset={activeAsset} />;
                 else if (savingsScreen === "goal") content = <GoalDetails onNavigate={handleNav} />;
                 else if (savingsScreen === "settings") content = <SettingsPage onNavigate={handleNav} />;
                 else if (savingsScreen === "transactions") content = <TransactionsPage onNavigate={handleNav} />;
@@ -1809,7 +1928,10 @@ export default function App() {
                             {subTabs.map(t => {
                                 const active = savingsScreen === t.id || (t.id === "home" && savingsScreen === "goal");
                                 return (
-                                    <button key={t.id} onClick={() => setSavingsScreen(t.id)} style={{
+                                    <button key={t.id} onClick={() => {
+                                        if (t.id === 'asset') setSavingsScreen('asset_list');
+                                        else setSavingsScreen(t.id);
+                                    }} style={{
                                         flex: 1, background: "none", border: "none",
                                         padding: "12px 0 10px", cursor: "pointer",
                                         fontSize: 12, fontWeight: 600, letterSpacing: 0.3,

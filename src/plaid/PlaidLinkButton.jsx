@@ -7,7 +7,9 @@ const PlaidLinkButton = ({ userId, onSuccess, onExit, style }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    // Fetch link token when component mounts or userId changes
+    const [retryKey, setRetryKey] = useState(0);
+
+    // Fetch link token when component mounts, userId changes, or retry is triggered
     useEffect(() => {
         let cancelled = false;
         const fetchToken = async () => {
@@ -18,17 +20,18 @@ const PlaidLinkButton = ({ userId, onSuccess, onExit, style }) => {
                 if (!cancelled) setLinkToken(data.link_token);
             } catch (err) {
                 if (!cancelled) setError(err.message);
+                console.error("Plaid link token fetch failed:", err);
             } finally {
                 if (!cancelled) setLoading(false);
             }
         };
         fetchToken();
         return () => { cancelled = true; };
-    }, [userId]);
+    }, [userId, retryKey]);
 
     const handleSuccess = useCallback(async (publicToken, metadata) => {
         try {
-            await exchangePublicToken(publicToken, userId);
+            await exchangePublicToken(publicToken, userId, metadata.institution?.name);
             onSuccess?.(metadata);
         } catch (err) {
             console.error('Token exchange failed:', err);
@@ -50,7 +53,7 @@ const PlaidLinkButton = ({ userId, onSuccess, onExit, style }) => {
     if (error) {
         return (
             <button
-                onClick={() => window.location.reload()}
+                onClick={() => setRetryKey(k => k + 1)}
                 style={{
                     width: '100%', padding: '14px', borderRadius: 14,
                     background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.3)',

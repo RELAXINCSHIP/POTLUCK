@@ -1,34 +1,34 @@
-import { plaidClient, getTokens } from '../_lib/plaid.js';
+import { plaidClient } from '../_lib/plaid.js';
+import { getSupabase } from '../_lib/supabase.js';
 import { CountryCode } from 'plaid';
 
 export default async function handler(req, res) {
     if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
 
-    try {
-        const key = req.query.user_id || 'default';
-        const items = getTokens(key);
+    const supabase = getSupabase(req);
 
-        if (!items || items.length === 0) {
+    try {
+        const userId = req.query.user_id || 'potluck-user-1';
+
+        // Fetch tokens from Supabase
+        const { data: linkedItems, error: dbError } = await supabase
+            .from('linked_accounts')
+            .select('plaid_access_token, institution_name')
+            .eq('user_id', userId);
+
+        if (dbError) throw dbError;
+
+        if (!linkedItems || linkedItems.length === 0) {
             return res.status(200).json({ accounts: [], linked: false });
         }
 
         const allAccounts = [];
-        for (const item of items) {
+        for (const item of linkedItems) {
             const response = await plaidClient.accountsGet({
-                access_token: item.access_token,
+                access_token: item.plaid_access_token,
             });
 
-            // Get institution info
-            let institutionName = 'Bank';
-            try {
-                if (response.data.item?.institution_id) {
-                    const instRes = await plaidClient.institutionsGetById({
-                        institution_id: response.data.item.institution_id,
-                        country_codes: [CountryCode.Us],
-                    });
-                    institutionName = instRes.data.institution.name;
-                }
-            } catch { /* ignore institution lookup failures */ }
+            const institutionName = item.institution_name || 'Bank';
 
             for (const acct of response.data.accounts) {
                 allAccounts.push({

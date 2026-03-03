@@ -1,13 +1,23 @@
-import { plaidClient, getTokens } from '../_lib/plaid.js';
+import { plaidClient } from '../_lib/plaid.js';
+import { getSupabase } from '../_lib/supabase.js';
 
 export default async function handler(req, res) {
     if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
 
-    try {
-        const key = req.query.user_id || 'default';
-        const items = getTokens(key);
+    const supabase = getSupabase(req);
 
-        if (!items || items.length === 0) {
+    try {
+        const userId = req.query.user_id || 'potluck-user-1';
+
+        // Fetch tokens from Supabase
+        const { data: linkedItems, error: dbError } = await supabase
+            .from('linked_accounts')
+            .select('plaid_access_token')
+            .eq('user_id', userId);
+
+        if (dbError) throw dbError;
+
+        if (!linkedItems || linkedItems.length === 0) {
             return res.status(200).json({ transactions: [], linked: false });
         }
 
@@ -16,9 +26,9 @@ export default async function handler(req, res) {
         const startDate = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
 
         const allTransactions = [];
-        for (const item of items) {
+        for (const item of linkedItems) {
             const response = await plaidClient.transactionsGet({
-                access_token: item.access_token,
+                access_token: item.plaid_access_token,
                 start_date: req.query.start_date || startDate,
                 end_date: req.query.end_date || endDate,
                 options: { count: 100, offset: 0 },

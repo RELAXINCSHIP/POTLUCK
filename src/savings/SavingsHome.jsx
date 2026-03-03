@@ -14,19 +14,8 @@ const INITIAL_TXS = [
     { id: 5, icon: "🍽️", title: "Restaurant", subtitle: "Nobu Malibu", amount: -342.00, time: "3d ago" },
 ];
 
-const INITIAL_ASSETS = [
-    { id: 1, icon: "₿", name: "Cold Storage (10 BTC)", value: 850000.00, change: +0.0, bg_image: "https://images.unsplash.com/photo-1549488497-236b28292d8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" },
-    { id: 2, icon: "✈️", name: "Travel Fund", value: 22375.00, change: +0.8, bg_image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" },
-    { id: 3, icon: "🛍️", name: "Luxury Card", value: 41109.30, change: -1.2, bg_image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" },
-    { id: 4, icon: "📈", name: "S&P 500 Index", value: 58487.40, change: +0.0, bg_image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" },
-];
-
-const SavingsHome = ({ onNavigate }) => {
+const SavingsHome = ({ onNavigate, assets = [], plaidBalance = 0, loading = false }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [assets, setAssets] = useState(INITIAL_ASSETS);
-    const [marketData, setMarketData] = useState(null);
-    const [plaidBalance, setPlaidBalance] = useState(0);
-    const [loading, setLoading] = useState(true);
     const [txs] = useState(INITIAL_TXS); // Transactions still mock for now
 
     // Dedicated fund states
@@ -36,89 +25,13 @@ const SavingsHome = ({ onNavigate }) => {
     const [showTransfer, setShowTransfer] = useState(false);
     const [transferAmount, setTransferAmount] = useState('');
     const [transferTarget, setTransferTarget] = useState('');
-    const [plaidRefreshKey, setPlaidRefreshKey] = useState(0);
 
-    // Fetch live market data
-    useEffect(() => {
-        const fetchMarketData = async () => {
-            try {
-                const cryptoRes = await fetch('/api/market/crypto').catch(() => null);
-                const cryptoData = cryptoRes?.ok ? await cryptoRes.json() : null;
-
-                const stockRes = await fetch('/api/market/stocks').catch(() => null);
-                const stockData = stockRes?.ok ? await stockRes.json() : null;
-
-                setMarketData({ crypto: cryptoData, stocks: stockData });
-            } catch (err) {
-                console.warn("Failed to fetch live market data", err);
-            }
-        };
-        fetchMarketData();
-    }, []);
-
-    useEffect(() => {
-        let cancelled = false;
-        const loadData = async () => {
-            try {
-                setLoading(true);
-                // 1. Fetch Supabase custom assets
-                const dbAssets = await getAssets();
-                if (!cancelled) setAssets(dbAssets.length > 0 ? dbAssets : INITIAL_ASSETS);
-
-                // 2. Fetch Plaid linked account balances
-                const plaidData = await getAccounts('potluck-user-1').catch(() => ({ accounts: [] }));
-                if (!cancelled && plaidData.accounts) {
-                    let pBal = 0;
-                    plaidData.accounts.forEach(acct => {
-                        // Depository/Investment = increase net worth
-                        if (['depository', 'investment', 'brokerage'].includes(acct.type)) {
-                            pBal += acct.balance_current || 0;
-                        }
-                        // Credit/Loan = decrease net worth
-                        else if (['credit', 'loan'].includes(acct.type)) {
-                            pBal -= acct.balance_current || 0;
-                        }
-                    });
-                    setPlaidBalance(pBal);
-                }
-            } catch (err) {
-                console.error("Error loading Money Dashboard:", err);
-            } finally {
-                if (!cancelled) setLoading(false);
-            }
-        };
-        loadData();
-        return () => { cancelled = true; };
-    }, [plaidRefreshKey]);
-
-    // Calculate dynamic Net Worth
-    // Merge assets with live market data for display
-    const displayAssets = assets.map(a => {
-        if (a.id === 1 && marketData?.crypto?.bitcoin) {
-            return {
-                ...a,
-                value: marketData.crypto.bitcoin.usd * 10, // 10 BTC
-                change: Number(marketData.crypto.bitcoin.usd_24h_change?.toFixed(2) || 0)
-            };
-        }
-        if (a.id === 4 && marketData?.stocks?.SPY) {
-            return {
-                ...a,
-                value: marketData.stocks.SPY.price * 100, // 100 Shares
-                change: Number(marketData.stocks.SPY.percent_change?.toFixed(2) || 0)
-            };
-        }
-        return a;
-    });
-
-    const totalBalance = displayAssets.reduce((s, a) => s + (a.value || 0), 0) + plaidBalance + goalSaved - cardBalance;
+    const totalBalance = assets.reduce((s, a) => s + (a.value || 0), 0) + plaidBalance + goalSaved - cardBalance;
 
     const handleTransfer = () => {
         const amt = parseFloat(transferAmount);
         if (!amt || amt <= 0 || !transferTarget) return;
-        setAssets(prev => prev.map(a =>
-            a.name === transferTarget ? { ...a, value: Number(a.value) + amt } : a
-        ));
+        // In a real app, this would hit the API
         setTransferAmount('');
         setTransferTarget('');
         setShowTransfer(false);
@@ -218,7 +131,7 @@ const SavingsHome = ({ onNavigate }) => {
                         </div>
                     ) : (
                         <div style={{ display: 'flex', gap: 12, overflowX: 'auto', paddingBottom: 8, scrollbarWidth: 'none' }}>
-                            {displayAssets.map(asset => (
+                            {assets.slice(0, 5).map(asset => (
                                 <div key={asset.id} onClick={() => onNavigate('asset', asset)} style={{
                                     minWidth: 150, borderRadius: 16, overflow: 'hidden', cursor: 'pointer',
                                     background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%), ${asset.bg_image ? `url(${asset.bg_image})` : '#222'} center/cover`,
@@ -256,9 +169,9 @@ const SavingsHome = ({ onNavigate }) => {
                     </div>
                     <PlaidLinkButton
                         userId="potluck-user-1"
-                        onSuccess={() => setPlaidRefreshKey(k => k + 1)}
+                        onSuccess={() => onRefresh && onRefresh()}
                     />
-                    <LinkedAccounts userId="potluck-user-1" refreshKey={plaidRefreshKey} />
+                    <LinkedAccounts userId="potluck-user-1" />
                 </section>
 
                 {/* Travel Fund (Savings Goal) */}
@@ -367,7 +280,7 @@ const SavingsHome = ({ onNavigate }) => {
             <AssetModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                onAssetAdded={(newAsset) => setAssets(prev => [...prev, newAsset])}
+                onAssetAdded={(newAsset) => onRefresh && onRefresh()}
             />
         </div>
     );
