@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://tjdbkcadycpxxsisaeyo.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqZGJrY2FkeWNweHhzaXNhZXlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI0OTI4MTUsImV4cCI6MjA4ODA2ODgxNX0.S8jnhFCN_-b04tGwksqM9jjyFUg_klhFrP8c0hsOqfA';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://tjdbkcadycpxxsisaeyo.supabase.co';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqZGJrY2FkeWNweHhzaXNhZXlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI0OTI4MTUsImV4cCI6MjA4ODA2ODgxNX0.S8jnhFCN_-b04tGwksqM9jjyFUg_klhFrP8c0hsOqfA';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
@@ -115,9 +115,47 @@ export async function getDrawResult(drawId) {
 }
 
 export async function executeDraw(drawId) {
-    // Client-side simulation of a draw (for MVP UX flow)
+    // 1. Fetch the draw details
+    const { data: draw, error: drawErr } = await supabase.from('draws').select('*').eq('id', drawId).single();
+    if (drawErr || !draw) throw new Error("Draw not found");
+
+    // 2. Fetch all eligible members (those with entries)
+    const { data: members, error: memErr } = await supabase.from('profiles').select('id, name, city, total_entries').gt('total_entries', 0);
+    if (memErr) throw new Error("Could not fetch eligible members");
+
+    if (!members || members.length === 0) {
+        throw new Error("No eligible members with entries to pick a winner from.");
+    }
+
+    // 3. Weighted random selection
+    const totalWeight = members.reduce((sum, m) => sum + (m.total_entries || 0), 0);
+    let random = Math.random() * totalWeight;
+    let winner = members[0];
+
+    for (const m of members) {
+        random -= m.total_entries;
+        if (random <= 0) {
+            winner = m;
+            break;
+        }
+    }
+
+    // 4. Update the draw in Supabase
+    const { error: updateErr } = await supabase.from('draws').update({
+        status: 'completed',
+        winner_user_id: winner.id,
+        winning_amount: draw.prize_pool,
+        completed_at: new Date().toISOString()
+    }).eq('id', drawId);
+
+    if (updateErr) throw new Error("Failed to record winner: " + updateErr.message);
+
     return {
-        winner: { name: "Sarah Mock", city: "Supabase Town", amount: 150000 }
+        winner: {
+            name: winner.name,
+            city: winner.city,
+            amount: draw.prize_pool
+        }
     };
 }
 
@@ -228,5 +266,12 @@ export async function getAdminWaitlist(secret) {
         console.warn("Waitlist table missing or error:", error);
         return [];
     }
+    return data || [];
+}
+
+export async function getAdminUsers(secret) {
+    if (secret !== 'potluck-admin-2026') throw new Error("Invalid Admin Secret");
+    const { data, error } = await supabase.from('profiles').select('*').order('created_at', { ascending: false });
+    if (error) throw new Error(error.message);
     return data || [];
 }

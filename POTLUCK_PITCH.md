@@ -55,10 +55,10 @@ savings              prizes               monthly            prizes
 
 | Revenue Stream | Description |
 |----------------|-------------|
-| **💹 Yield Spread** | Keep a portion of the interest generated on deposits |
-| **⭐ Premium Tiers** | Potluck Gold / Platinum with higher multipliers & exclusive draws |
-| **🤝 Partner Prizes** | Brands sponsor prize pools in exchange for exposure |
-| **📊 Financial Products** | Cross-sell savings products, credit cards, insurance |
+| **💹 Yield Spread** | Transparent, low-fee spread on non-prize-linked yield |
+| **⭐ Premium Tiers** | **Potluck Gold / Platinum**: Metal cards, lifestyle benefits, 24/7 concierge |
+| **🤝 Rewards Hub** | Lifestyle perks (Lounge access, Travel) & Partner prizes |
+| **📊 Smart Yield** | Cross-sell "forward-thinking" products (On-chain yield, Crypto-native savings) |
 
 ---
 

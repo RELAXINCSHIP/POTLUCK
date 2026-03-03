@@ -9,22 +9,23 @@ const formatTime = (s) => {
   const m = Math.floor((s % 3600) / 60);
   const sec = s % 60;
   if (d > 0) return `${d}d ${h}h ${m}m`;
-  return `${h.toString().padStart(2,"0")}:${m.toString().padStart(2,"0")}:${sec.toString().padStart(2,"0")}`;
+  return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`;
 };
 
 const WINNER = { name: "Sarah M.", city: "Austin, TX", amount: 47200, avatar: "🎉" };
 
 const FEED = [
-  { id:1, type:"win", text:"Maria K. from Chicago just won the Mini Draw!", time:"2m ago", emoji:"🏆" },
-  { id:2, type:"near", text:"You were #3,412 out of 84,201 — your best yet!", time:"5m ago", emoji:"⚡" },
-  { id:3, type:"pot", text:"The Grand Pot just crossed $2.4M", time:"12m ago", emoji:"💰" },
-  { id:4, type:"streak", text:"James T. hit a 20-draw streak — 3x entries unlocked!", time:"1h ago", emoji:"🔥" },
-  { id:5, type:"join", text:"1,204 new members joined today", time:"2h ago", emoji:"👥" },
+  { id: 1, type: "win", text: "Maria K. from Chicago just won the Mini Draw!", time: "2m ago", emoji: "🏆" },
+  { id: 2, type: "near", text: "You were #3,412 out of 84,201 — your best yet!", time: "5m ago", emoji: "⚡" },
+  { id: 3, type: "pot", text: "The Grand Pot just crossed $2.4M", time: "12m ago", emoji: "💰" },
+  { id: 4, type: "streak", text: "James T. hit a 20-draw streak — 3x entries unlocked!", time: "1h ago", emoji: "🔥" },
+  { id: 5, type: "join", text: "1,204 new members joined today", time: "2h ago", emoji: "👥" },
 ];
 
 export default function App() {
   const [screen, setScreen] = useState("splash");
   const [deposit, setDeposit] = useState(200);
+  const [tier, setTier] = useState("Gold"); // Default to Gold to show off the premium feel
   const [drawActive, setDrawActive] = useState(false);
   const [drawPhase, setDrawPhase] = useState(0);
   const [countdown, setCountdown] = useState(7 * 86400 + 3 * 3600 + 22 * 60 + 14);
@@ -60,10 +61,10 @@ export default function App() {
   };
 
   const spawnParticles = () => {
-    const pts = Array.from({length: 60}, (_, i) => ({
-      id: i, x: Math.random()*100, delay: Math.random()*1.5,
-      color: ["#FFD700","#9B6FFF","#FF6B9D","#4ECDC4","#FF8C42"][i%5],
-      size: 6 + Math.random()*8
+    const pts = Array.from({ length: 60 }, (_, i) => ({
+      id: i, x: Math.random() * 100, delay: Math.random() * 1.5,
+      color: ["#FFD700", "#9B6FFF", "#FF6B9D", "#4ECDC4", "#FF8C42"][i % 5],
+      size: 6 + Math.random() * 8
     }));
     setParticles(pts);
     setTimeout(() => setParticles([]), 4000);
@@ -132,14 +133,15 @@ export default function App() {
         {/* Flow indicators */}
         <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap", justifyContent: "center", maxWidth: 600 }}>
           {[
-            {id:"splash",label:"Splash"},
-            {id:"onboard1",label:"Onboard"},
-            {id:"deposit",label:"Deposit"},
-            {id:"home",label:"Home"},
-            {id:"draw",label:"Draw"},
-            {id:"result",label:"Win!"},
-            {id:"community",label:"Social"},
-            {id:"profile",label:"Profile"},
+            { id: "splash", label: "Splash" },
+            { id: "onboard1", label: "Onboard" },
+            { id: "deposit", label: "Deposit" },
+            { id: "home", label: "Home" },
+            { id: "draw", label: "Draw" },
+            { id: "result", label: "Win!" },
+            { id: "benefits", label: "Rewards" },
+            { id: "community", label: "Social" },
+            { id: "profile", label: "Profile" },
           ].map((s, i) => (
             <div key={s.id} style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <button
@@ -152,7 +154,7 @@ export default function App() {
                   boxShadow: screen === s.id ? "0 0 20px rgba(139,92,246,0.4)" : "none",
                 }}
               >{s.label}</button>
-              {i < 7 && <div style={{ width: 12, height: 1, background: "rgba(255,255,255,0.15)" }} />}
+              {i < 8 && <div style={{ width: 12, height: 1, background: "rgba(255,255,255,0.15)" }} />}
             </div>
           ))}
         </div>
@@ -201,7 +203,7 @@ export default function App() {
               <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 42, fontWeight: 800, color: "#fff", letterSpacing: -1 }}>POTLUCK</div>
               <div style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", marginTop: 8 }}>Your money. Your lucky day.</div>
               <div style={{ marginTop: 40, display: "flex", gap: 6 }}>
-                {[0,1,2].map(i => (
+                {[0, 1, 2].map(i => (
                   <div key={i} style={{
                     width: 6, height: 6, borderRadius: "50%",
                     background: i === 0 ? "#9B6FFF" : "rgba(255,255,255,0.2)",
@@ -221,7 +223,7 @@ export default function App() {
               }}>
                 <div style={{ fontSize: 64, marginBottom: 16, animation: "float 3s ease-in-out infinite" }}>🏦</div>
                 <div style={{ fontSize: 22, fontFamily: "'Syne', sans-serif", fontWeight: 800, color: "#fff", textAlign: "center", marginBottom: 12 }}>
-                  Safe money.<br/>Lucky you.
+                  Safe money.<br />Lucky you.
                 </div>
                 <div style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", textAlign: "center", lineHeight: 1.6 }}>
                   Deposit funds into an FDIC-insured account. Withdraw anytime. But your interest goes into a prize pool — and someone wins big every 90 days.
@@ -231,7 +233,7 @@ export default function App() {
                 <div style={{ position: "absolute", bottom: 16, left: 16, background: "rgba(78,205,196,0.15)", border: "1px solid rgba(78,205,196,0.3)", borderRadius: 20, padding: "4px 10px", fontSize: 11, color: "#4ECDC4", fontWeight: 700 }}>Withdraw anytime</div>
               </div>
               <div style={{ display: "flex", gap: 8, justifyContent: "center", marginBottom: 20 }}>
-                {[0,1,2].map(i => <div key={i} style={{ width: i===0?24:8, height: 8, borderRadius: 4, background: i===0?"#9B6FFF":"rgba(255,255,255,0.15)" }} />)}
+                {[0, 1, 2].map(i => <div key={i} style={{ width: i === 0 ? 24 : 8, height: 8, borderRadius: 4, background: i === 0 ? "#9B6FFF" : "rgba(255,255,255,0.15)" }} />)}
               </div>
               <button className="btn-glow" onClick={() => go("onboard2")} style={{
                 padding: "18px", borderRadius: 18, border: "none", cursor: "pointer",
@@ -252,7 +254,7 @@ export default function App() {
               }}>
                 <div style={{ fontSize: 64, marginBottom: 16, animation: "float 3s ease-in-out infinite" }}>🔥</div>
                 <div style={{ fontSize: 22, fontFamily: "'Syne', sans-serif", fontWeight: 800, color: "#fff", textAlign: "center", marginBottom: 12 }}>
-                  The longer you stay,<br/>the luckier you get.
+                  The longer you stay,<br />the luckier you get.
                 </div>
                 <div style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", textAlign: "center", lineHeight: 1.6, marginBottom: 20 }}>
                   Every draw you don't win builds your streak — and multiplies your entries for next time.
@@ -275,7 +277,7 @@ export default function App() {
                 ))}
               </div>
               <div style={{ display: "flex", gap: 8, justifyContent: "center", marginBottom: 20 }}>
-                {[0,1,2].map(i => <div key={i} style={{ width: i===1?24:8, height: 8, borderRadius: 4, background: i===1?"#9B6FFF":"rgba(255,255,255,0.15)" }} />)}
+                {[0, 1, 2].map(i => <div key={i} style={{ width: i === 1 ? 24 : 8, height: 8, borderRadius: 4, background: i === 1 ? "#9B6FFF" : "rgba(255,255,255,0.15)" }} />)}
               </div>
               <button className="btn-glow" onClick={() => go("deposit")} style={{
                 padding: "18px", borderRadius: 18, border: "none", cursor: "pointer",
@@ -323,7 +325,7 @@ export default function App() {
               <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 16, padding: 16, marginBottom: 20 }}>
                 {[
                   { label: "Your entries this draw", value: `${Math.floor(deposit / 10).toLocaleString()} tickets` },
-                  { label: "Your odds (approx.)", value: `1 in ${Math.floor(84201 / (deposit/10)).toLocaleString()}` },
+                  { label: "Your odds (approx.)", value: `1 in ${Math.floor(84201 / (deposit / 10)).toLocaleString()}` },
                   { label: "Current pot", value: "$2,412,800" },
                 ].map((r, i) => (
                   <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "6px 0", borderBottom: i < 2 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
@@ -374,6 +376,24 @@ export default function App() {
                   </div>
                 </div>
 
+                {/* Premium Tier Status */}
+                <div style={{
+                  background: "linear-gradient(135deg, #C5A028, #F9D423)",
+                  borderRadius: 16, padding: "12px 16px", marginBottom: 16,
+                  display: "flex", justifyContent: "space-between", alignItems: "center",
+                  boxShadow: "0 10px 20px rgba(197,160,40,0.2)",
+                  border: "1px solid rgba(255,255,255,0.2)"
+                }} onClick={() => go("benefits")}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <div style={{ fontSize: 20 }}>⭐️</div>
+                    <div>
+                      <div style={{ fontSize: 10, fontWeight: 800, color: "rgba(0,0,0,0.5)", textTransform: "uppercase" }}>Current Tier</div>
+                      <div style={{ fontSize: 15, fontWeight: 800, color: "#2D1B69" }}>Potluck {tier} Member</div>
+                    </div>
+                  </div>
+                  <div style={{ background: "rgba(0,0,0,0.1)", padding: "4px 10px", borderRadius: 20, fontSize: 11, fontWeight: 700, color: "#2D1B69" }}>Lounge Access Active</div>
+                </div>
+
                 {/* Your stats */}
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 16 }}>
                   {[
@@ -399,7 +419,13 @@ export default function App() {
                     background: "linear-gradient(135deg, #7C3AED, #A855F7)",
                     color: "#fff", fontSize: 14, fontWeight: 700,
                     boxShadow: "0 4px 20px rgba(139,92,246,0.4)",
-                  }}>Watch Live Draw ▶</button>
+                  }}>Live Draw ▶</button>
+                  <button className="btn-glow" onClick={() => go("benefits")} style={{
+                    flex: 1, padding: "14px", borderRadius: 16, border: "none", cursor: "pointer",
+                    background: "linear-gradient(135deg, #C5A028, #E2B13C)",
+                    color: "#fff", fontSize: 14, fontWeight: 700,
+                    boxShadow: "0 4px 20px rgba(197,160,40,0.4)",
+                  }}>Rewards ✨</button>
                   <button className="btn-glow" onClick={() => go("community")} style={{
                     padding: "14px 16px", borderRadius: 16, border: "none", cursor: "pointer",
                     background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.6)", fontSize: 14,
@@ -431,7 +457,7 @@ export default function App() {
                 display: "flex", background: "rgba(13,10,26,0.95)", padding: "12px 20px 24px",
                 borderTop: "1px solid rgba(255,255,255,0.08)",
               }}>
-                {[{icon:"🏠",label:"Home",active:true},{icon:"👥",label:"Social",s:"community"},{icon:"🎰",label:"Draw",s:"draw"},{icon:"👤",label:"Profile",s:"profile"}].map((t,i) => (
+                {[{ icon: "🏠", label: "Home", active: true }, { icon: "👥", label: "Social", s: "community" }, { icon: "🎰", label: "Draw", s: "draw" }, { icon: "👤", label: "Profile", s: "profile" }].map((t, i) => (
                   <button key={i} className="tab-btn" onClick={() => t.s && go(t.s)} style={{
                     flex: 1, background: "none", border: "none", cursor: "pointer", padding: 8,
                     display: "flex", flexDirection: "column", alignItems: "center", gap: 4,
@@ -458,10 +484,10 @@ export default function App() {
                   <div style={{ fontSize: 28, fontFamily: "'Syne', sans-serif", fontWeight: 800, color: "#fff" }}>$2,412,800</div>
                   <div style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", marginTop: 8 }}>84,201 members · Drawing now</div>
                   <div style={{ marginTop: 24, display: "flex", gap: 6, justifyContent: "center" }}>
-                    {[0,1,2].map(i => (
+                    {[0, 1, 2].map(i => (
                       <div key={i} style={{
                         width: 8, height: 8, borderRadius: "50%", background: "#9B6FFF",
-                        animation: `pulse-ring 1s ${i*0.3}s ease-out infinite`,
+                        animation: `pulse-ring 1s ${i * 0.3}s ease-out infinite`,
                       }} />
                     ))}
                   </div>
@@ -510,66 +536,74 @@ export default function App() {
             </div>
           )}
 
-          {/* RESULT (near miss) */}
-          {screen === "result" && (
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "auto", padding: "24px 24px 40px" }}>
-              <div style={{ textAlign: "center", marginBottom: 24 }}>
-                <div style={{ fontSize: 56, marginBottom: 8, animation: "bounce-in 0.4s ease-out" }}>⚡</div>
-                <div style={{ fontSize: 24, fontFamily: "'Syne', sans-serif", fontWeight: 800, color: "#fff" }}>So close!</div>
-                <div style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", marginTop: 4 }}>You were #3,412 out of 84,201</div>
+          {/* BENEFITS / REWARDS HUB */}
+          {screen === "benefits" && (
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "auto", padding: "20px 24px 80px" }}>
+              <div style={{ marginBottom: 24 }}>
+                <div style={{ fontSize: 28, fontFamily: "'Syne', sans-serif", fontWeight: 800, color: "#fff" }}>Rewards & Perks</div>
+                <div style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", marginTop: 4 }}>Premium benefits for the forward-thinking.</div>
               </div>
 
-              {/* Near miss bar */}
-              <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 16, padding: 16, marginBottom: 16 }}>
-                <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "rgba(255,255,255,0.4)", marginBottom: 8 }}>
-                  <span>Your position</span><span>#3,412 / 84,201</span>
+              {/* Metal Card Preview */}
+              <div style={{
+                height: 200, width: "100%",
+                background: "linear-gradient(135deg, #333 0%, #111 100%)",
+                borderRadius: 20, padding: 24, marginBottom: 24,
+                position: "relative", overflow: "hidden",
+                boxShadow: "0 30px 60px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,255,255,0.1)",
+                border: "1px solid rgba(255,255,255,0.05)",
+                display: "flex", flexDirection: "column", justifyContent: "space-between"
+              }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <div style={{ fontSize: 24, fontWeight: 900, color: "#D4AF37", fontFamily: "'Syne', sans-serif" }}>POTLUCK</div>
+                  <div style={{ fontSize: 12, color: "rgba(255,255,255,0.3)", letterSpacing: 2 }}>GOLD MEMBER</div>
                 </div>
-                <div style={{ height: 8, background: "rgba(255,255,255,0.08)", borderRadius: 4, overflow: "hidden" }}>
-                  <div style={{ height: "100%", width: "4%", background: "linear-gradient(90deg, #9B6FFF, #EF4444)", borderRadius: 4 }} />
+                <div style={{ fontSize: 40 }}>💳</div>
+                <div>
+                  <div style={{ fontSize: 16, color: "#fff", fontWeight: 600, letterSpacing: 1 }}>ALEX RIVERA</div>
+                  <div style={{ fontSize: 10, color: "rgba(255,255,255,0.4)", marginTop: 4 }}>SINCE 2026</div>
                 </div>
-                <div style={{ fontSize: 11, color: "#9B6FFF", marginTop: 6, fontWeight: 600 }}>Top 4% — your best draw yet!</div>
+                {/* shimmer effect */}
+                <div style={{ position: "absolute", top: 0, left: "-100%", width: "200%", height: "100%", background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent)", animation: "shimmer 4s infinite" }} />
               </div>
 
-              {/* Rewards unlocked */}
-              <div style={{ background: "linear-gradient(135deg, #1a1035, #2D1B69)", borderRadius: 20, padding: 20, marginBottom: 16, border: "1px solid rgba(139,92,246,0.3)" }}>
-                <div style={{ fontSize: 13, color: "#A855F7", fontWeight: 700, marginBottom: 14, textTransform: "uppercase", letterSpacing: 1 }}>🎁 You Unlocked</div>
-                {[
-                  { icon: "🔥", label: "Streak extended", value: "Now at 8 draws!" },
-                  { icon: "🎫", label: "Bonus entries", value: "+200 for next draw" },
-                  { icon: "⬆️", label: "Multiplier progress", value: "2 draws to 2× entries" },
-                ].map((r, i) => (
-                  <div key={i} style={{
-                    display: "flex", alignItems: "center", gap: 12, padding: "10px 0",
-                    borderBottom: i < 2 ? "1px solid rgba(255,255,255,0.06)" : "none",
-                    animation: `slide-up 0.4s ${i * 0.1 + 0.2}s ease-out both`,
-                  }}>
-                    <span style={{ fontSize: 22 }}>{r.icon}</span>
-                    <div>
-                      <div style={{ fontSize: 13, color: "rgba(255,255,255,0.6)" }}>{r.label}</div>
-                      <div style={{ fontSize: 15, fontWeight: 700, color: "#fff" }}>{r.value}</div>
-                    </div>
+              {/* Lifestyle Benefits */}
+              <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.4)", marginBottom: 12, textTransform: "uppercase", letterSpacing: 1 }}>Lifestyle Perks</div>
+              {[
+                { icon: "✈️", title: "Travel Lounge", sub: "Priority access to 1,200+ airport lounges" },
+                { icon: "📱", title: "Concierge 24/7", sub: "Premium support for your financial future" },
+                { icon: "🏦", title: "Smart Yield+", sub: "0.2% boost on all non-prize savings" },
+                { icon: "🛡️", title: "FDIC+ Insurance", sub: "Extended protection up to $2M" },
+              ].map((b, i) => (
+                <div key={i} style={{
+                  display: "flex", gap: 16, alignItems: "center", padding: "16px",
+                  background: "rgba(255,255,255,0.03)", borderRadius: 16, marginBottom: 10,
+                  border: "1px solid rgba(255,255,255,0.05)"
+                }}>
+                  <div style={{ fontSize: 24 }}>{b.icon}</div>
+                  <div>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: "#fff" }}>{b.title}</div>
+                    <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>{b.sub}</div>
                   </div>
-                ))}
+                </div>
+              ))}
+
+              {/* Forward thinking section */}
+              <div style={{
+                marginTop: 20, padding: 20, borderRadius: 18,
+                background: "linear-gradient(135deg, rgba(155,111,255,0.1), rgba(78,205,196,0.1))",
+                border: "1px solid rgba(139,92,246,0.2)"
+              }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: "#9B6FFF", marginBottom: 8 }}>Forward-Thinking Future</div>
+                <div style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", lineHeight: 1.5 }}>
+                  Potluck uses on-chain yield generation to maximize your prizes without high fees. Our service is built for the next generation of wealth — mobile-first, decentralized, and transparent.
+                </div>
               </div>
 
-              {/* Next draw */}
-              <div style={{ background: "rgba(255,215,0,0.06)", borderRadius: 16, padding: 16, marginBottom: 20, border: "1px solid rgba(255,215,0,0.2)", textAlign: "center" }}>
-                <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", marginBottom: 4 }}>Next Grand Draw</div>
-                <div style={{ fontSize: 28, fontFamily: "'Syne', sans-serif", fontWeight: 800, color: "#FFD700" }}>90 days</div>
-                <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", marginTop: 4 }}>Your entries: 2,200 (streak bonus applied)</div>
-              </div>
-
-              <div style={{ display: "flex", gap: 10 }}>
-                <button className="btn-glow" onClick={() => go("home")} style={{
-                  flex: 1, padding: "16px", borderRadius: 16, border: "none", cursor: "pointer",
-                  background: "linear-gradient(135deg, #7C3AED, #A855F7)",
-                  color: "#fff", fontSize: 15, fontWeight: 700,
-                }}>Back to Home</button>
-                <button className="btn-glow" style={{
-                  padding: "16px", borderRadius: 16, border: "1px solid rgba(255,255,255,0.15)", cursor: "pointer",
-                  background: "transparent", color: "rgba(255,255,255,0.6)", fontSize: 14,
-                }}>Share ↗</button>
-              </div>
+              <button className="btn-glow" onClick={() => go("home")} style={{
+                marginTop: 24, padding: "18px", borderRadius: 18, border: "none", cursor: "pointer",
+                background: "rgba(255,255,255,0.06)", color: "#fff", fontSize: 16, fontWeight: 700,
+              }}>Back to Home</button>
             </div>
           )}
 
@@ -594,7 +628,7 @@ export default function App() {
                     <div style={{ background: "rgba(78,205,196,0.15)", padding: "4px 10px", borderRadius: 12, fontSize: 12, color: "#4ECDC4", fontWeight: 700 }}>5 members</div>
                   </div>
                   <div style={{ display: "flex", gap: -8, marginBottom: 12 }}>
-                    {["😀","🎯","🔥","⚡","🌟"].map((e, i) => (
+                    {["😀", "🎯", "🔥", "⚡", "🌟"].map((e, i) => (
                       <div key={i} style={{
                         width: 32, height: 32, borderRadius: "50%", fontSize: 16,
                         background: "rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center",
@@ -622,7 +656,7 @@ export default function App() {
                     background: u.you ? "rgba(139,92,246,0.12)" : "rgba(255,255,255,0.03)",
                     border: u.you ? "1px solid rgba(139,92,246,0.3)" : "1px solid transparent",
                   }}>
-                    <span style={{ fontSize: 18, width: 24 }}>{u.medal || `${i+1}`}</span>
+                    <span style={{ fontSize: 18, width: 24 }}>{u.medal || `${i + 1}`}</span>
                     <div style={{ flex: 1 }}>
                       <div style={{ fontSize: 14, fontWeight: 700, color: u.you ? "#A855F7" : "#fff" }}>{u.name}</div>
                       <div style={{ fontSize: 11, color: "rgba(255,255,255,0.35)" }}>🔥 {u.streak} draw streak</div>
@@ -652,7 +686,7 @@ export default function App() {
                 display: "flex", background: "rgba(13,10,26,0.95)", padding: "12px 20px 24px",
                 borderTop: "1px solid rgba(255,255,255,0.08)",
               }}>
-                {[{icon:"🏠",label:"Home",s:"home"},{icon:"👥",label:"Social",active:true},{icon:"🎰",label:"Draw",s:"draw"},{icon:"👤",label:"Profile",s:"profile"}].map((t,i) => (
+                {[{ icon: "🏠", label: "Home", s: "home" }, { icon: "👥", label: "Social", active: true }, { icon: "🎰", label: "Draw", s: "draw" }, { icon: "👤", label: "Profile", s: "profile" }].map((t, i) => (
                   <button key={i} className="tab-btn" onClick={() => t.s && go(t.s)} style={{
                     flex: 1, background: "none", border: "none", cursor: "pointer", padding: 8,
                     display: "flex", flexDirection: "column", alignItems: "center", gap: 4,
@@ -720,12 +754,23 @@ export default function App() {
               </div>
 
               {/* Actions */}
+              <div style={{ background: "rgba(212,175,55,0.05)", borderRadius: 16, padding: 16, marginBottom: 12, border: "1px solid rgba(212,175,55,0.2)" }}>
+                <div style={{ fontSize: 11, fontWeight: 800, color: "#D4AF37", textTransform: "uppercase", marginBottom: 8 }}>Transparent Fees</div>
+                <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "rgba(255,255,255,0.5)" }}>
+                  <span>Management Fee</span><span style={{ color: "#4ECDC4", fontWeight: 700 }}>0.00%</span>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "rgba(255,255,255,0.5)", marginTop: 4 }}>
+                  <span>Withdrawal Fee</span><span style={{ color: "#4ECDC4", fontWeight: 700 }}>Always Free</span>
+                </div>
+              </div>
+
               {[
                 { icon: "💸", label: "Withdraw Principal", sub: "$200 available instantly" },
                 { icon: "⬆️", label: "Increase Deposit", sub: "More deposits = more entries" },
+                { icon: "✨", label: "Membership Benefits", sub: "View your Gold Tier perks", s: "benefits" },
                 { icon: "🔗", label: "Refer a Friend", sub: "+50 entries per referral" },
               ].map((a, i) => (
-                <div key={i} style={{
+                <div key={i} onClick={() => a.s && go(a.s)} style={{
                   display: "flex", alignItems: "center", gap: 14, padding: "14px 16px",
                   background: "rgba(255,255,255,0.04)", borderRadius: 16, marginBottom: 10,
                   border: "1px solid rgba(255,255,255,0.06)", cursor: "pointer",

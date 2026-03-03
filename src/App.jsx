@@ -815,11 +815,12 @@ function ProfileScreen({ go, user, streak, onLogout }) {
                     </>
                 )}
 
-                {/* Actions */}
+// Actions
                 <div style={{ marginTop: 16 }}>
                     {[
                         { icon: "⬆️", label: "Add More to the Pot", sub: "More deposits = more entries", action: () => go("deposit") },
                         { icon: "🔗", label: "Refer a Friend", sub: "+50 entries per referral" },
+                        { icon: "🛡️", label: "System Admin", sub: "Platform Management", action: () => window.location.hash = "#/admin" },
                     ].map((a, i) => (
                         <div key={i} className="feed-item" onClick={a.action} style={{
                             display: "flex", alignItems: "center", gap: 14, padding: "14px 16px",

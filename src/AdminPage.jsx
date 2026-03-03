@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import * as api from './api';
 import './AdminPage.css';
 
@@ -7,73 +7,91 @@ export default function AdminPage({ onBack }) {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [stats, setStats] = useState(null);
     const [waitlist, setWaitlist] = useState([]);
+    const [users, setUsers] = useState([]);
+    const [view, setView] = useState('overview'); // 'overview', 'members', 'waitlist'
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [actionMessage, setActionMessage] = useState(null);
+    const [debugMode, setDebugMode] = useState(false);
+    const [lastRefresh, setLastRefresh] = useState(null);
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
+    const refreshData = useCallback(async (forcedSecret) => {
+        const s = forcedSecret || secret;
+        if (!s) return;
+
         setLoading(true);
         setError(null);
         try {
-            const data = await api.getAdminStats(secret);
-            setStats(data);
-            const wl = await api.getAdminWaitlist(secret);
-            setWaitlist(wl);
-            setIsAuthenticated(true);
+            console.log("Admin Syncing...");
+            const [statsData, waitlistData, usersData] = await Promise.all([
+                api.getAdminStats(s),
+                api.getAdminWaitlist(s),
+                api.getAdminUsers(s)
+            ]);
+            setStats(statsData);
+            setWaitlist(waitlistData);
+            setUsers(usersData);
+            setLastRefresh(new Date().toLocaleTimeString());
+            console.log("Admin Data Rehydrated:", { users: usersData.length });
+            return true;
         } catch (err) {
-            setError('Invalid Admin Secret');
+            console.error("Refresh failed:", err);
+            setError("Sync Failed: " + (err.message || "Unknown Error"));
+            return false;
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
-    };
+    }, [secret]);
 
-    const refreshData = async () => {
-        try {
-            const data = await api.getAdminStats(secret);
-            setStats(data);
-            const wl = await api.getAdminWaitlist(secret);
-            setWaitlist(wl);
-        } catch (err) {
-            console.error(err);
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        const success = await refreshData(secret);
+        if (success) {
+            setIsAuthenticated(true);
         }
     };
 
     const triggerDraw = async (drawId) => {
-        if (!window.confirm('Are you sure you want to execute this draw? This cannot be undone.')) return;
+        const draw = stats?.draws?.find(d => d.id === drawId);
+        const drawName = draw ? `${draw.type.toUpperCase()} ($${draw.prize_pool.toLocaleString()})` : "this draw";
+
+        if (!window.confirm(`Are you sure you want to execute ${drawName}? This will pick a winner from live profiles and close the draw.`)) return;
 
         setLoading(true);
         setActionMessage(null);
+        setError(null);
         try {
-            // Note: The executeDraw endpoint currently requires the user to be logged in 
-            // as any user with a bearer token. If not logged in, it will fail.
             const result = await api.executeDraw(drawId);
             setActionMessage(`✅ Success! Winner: ${result.winner.name} won $${result.winner.amount.toLocaleString()}`);
             await refreshData();
         } catch (err) {
-            setError(err.message || 'Failed to execute draw. Ensure you are logged into the main app first.');
+            setError(err.message || 'Failed to execute draw.');
+            setLoading(false);
         }
-        setLoading(false);
     };
 
     if (!isAuthenticated) {
         return (
             <div className="admin-login-container">
                 <div className="admin-login-box">
-                    <h2>🛡️ Admin Portal</h2>
+                    <div style={{ fontSize: '40px', marginBottom: '16px' }}>🔐</div>
+                    <h2>Potluck Admin</h2>
+                    <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '14px', marginBottom: '24px' }}>Access requires the platform master secret.</p>
                     <form onSubmit={handleLogin}>
                         <input
                             type="password"
-                            placeholder="Admin Secret"
+                            placeholder="••••••••••••"
                             value={secret}
                             onChange={(e) => setSecret(e.target.value)}
+                            className="admin-input-premium"
                             required
                         />
-                        {error && <div className="admin-error">{error}</div>}
-                        <button type="submit" disabled={loading}>
-                            {loading ? 'Authenticating...' : 'Enter'}
+                        {error && <div className="admin-error-box">{error}</div>}
+                        <button type="submit" className="admin-btn-premium" disabled={loading}>
+                            {loading ? 'Authenticating...' : 'Enter Dashboard'}
                         </button>
                     </form>
-                    <button className="admin-back" onClick={onBack}>← Back to Site</button>
+                    <button className="admin-back-link" onClick={onBack}>← Back to Site</button>
                 </div>
             </div>
         );
@@ -82,86 +100,170 @@ export default function AdminPage({ onBack }) {
     const formatCurrency = (n) => "$" + Number(n).toLocaleString();
 
     return (
-        <div className="admin-dashboard">
-            <header className="admin-header">
-                <div>
-                    <h1>Potluck OS V1</h1>
-                    <span className="admin-badge">Admin Privileges Active</span>
+        <div className="admin-dashboard-v3">
+            <header className="admin-nav">
+                <div className="nav-left">
+                    <div className="logo-pill" onClick={() => setView('overview')}>🍀 POTLUCK OS</div>
+                    <div className="nav-divider"></div>
+                    <div className="view-title">
+                        {view === 'overview' && 'System Overview'}
+                        {view === 'members' && 'Member Directory'}
+                        {view === 'waitlist' && 'Waitlist Details'}
+                    </div>
                 </div>
-                <div>
-                    {actionMessage && <span className="admin-success">{actionMessage}</span>}
-                    {error && <span className="admin-error">{error}</span>}
-                    <button onClick={refreshData} className="refresh-btn">🔄 Refresh</button>
-                    <button onClick={onBack} className="logout-btn">Exit</button>
+                <div className="nav-right">
+                    <div className="sync-status">Last Sync: {lastRefresh || 'Pending'}</div>
+                    <button onClick={() => refreshData()} className="icon-btn" title="Refresh Data">🔄</button>
+                    <button onClick={() => setDebugMode(!debugMode)} className="icon-btn" title="Debug Data">⚙️</button>
+                    <button onClick={onBack} className="exit-btn">Exit Portal</button>
                 </div>
             </header>
 
-            <main className="admin-main">
-                <section className="admin-metrics">
-                    <div className="metric-card">
-                        <h3>Total Value Locked (TVL)</h3>
-                        <div className="metric-value">{formatCurrency(stats?.tvl || 0)}</div>
+            <main className="admin-content">
+                {error && <div className="admin-banner-error">⚠️ {error}</div>}
+                {actionMessage && <div className="admin-banner-success">{actionMessage}</div>}
+
+                <section className="stat-cards-row">
+                    <div className={`stat-card-premium ${view === 'overview' ? 'active' : ''}`} onClick={() => setView('overview')}>
+                        <span className="sc-label">Total Deposits (TVL)</span>
+                        <span className="sc-value">{formatCurrency(stats?.tvl || 0)}</span>
+                        <div className="sc-bar" style={{ width: '100%', background: '#4ECDC4' }}></div>
                     </div>
-                    <div className="metric-card">
-                        <h3>Total Active Members</h3>
-                        <div className="metric-value">{stats?.users_count || 0}</div>
+                    <div className={`stat-card-premium ${view === 'members' ? 'active' : ''}`} onClick={() => setView('members')}>
+                        <span className="sc-label">Active Users</span>
+                        <span className="sc-value" style={{ color: '#FCD34D' }}>{stats?.users_count || 0}</span>
+                        <div className="sc-bar" style={{ width: Math.min(100, (stats?.users_count || 0) / 10) + '%', background: '#FCD34D' }}></div>
                     </div>
-                    <div className="metric-card">
-                        <h3>Waitlist Signups</h3>
-                        <div className="metric-value">{stats?.waitlist_count || 0}</div>
+                    <div className={`stat-card-premium ${view === 'waitlist' ? 'active' : ''}`} onClick={() => setView('waitlist')}>
+                        <span className="sc-label">Waitlist Signups</span>
+                        <span className="sc-value" style={{ color: '#A855F7' }}>{stats?.waitlist_count || 0}</span>
+                        <div className="sc-bar" style={{ width: Math.min(100, (stats?.waitlist_count || 0) / 10) + '%', background: '#A855F7' }}></div>
                     </div>
                 </section>
 
-                <div className="admin-grid">
-                    <section className="admin-panel">
-                        <h2>🎲 Draw Controls</h2>
-                        <div className="draws-list">
-                            {stats?.draws?.filter(d => d.status === 'upcoming').map(draw => (
-                                <div key={draw.id} className="draw-card">
-                                    <div className="draw-info">
-                                        <span className="draw-type">{draw.type.toUpperCase()} DRAW</span>
-                                        <div className="draw-pool">Pool: {formatCurrency(draw.prize_pool)}</div>
-                                        <div className="draw-date">Scheduled: {new Date(draw.scheduled_at).toLocaleDateString()}</div>
+                <div className="view-container">
+                    {view === 'overview' && (
+                        <div className="fade-in-section">
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
+                                <h2 className="view-header" style={{ margin: 0 }}>Upcoming Prize Draws</h2>
+                                <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.3)' }}>Real-time draw execution via smart contract triggers.</div>
+                            </div>
+                            <div className="draw-grid-premium">
+                                {stats?.draws?.filter(d => d.status === 'upcoming').map(draw => (
+                                    <div key={draw.id} className="draw-card-premium">
+                                        <div className="dc-header">
+                                            <span className="dc-tag">{draw.type.toUpperCase()}</span>
+                                            <span className="dc-id">#{draw.id.substring(0, 6)}</span>
+                                        </div>
+                                        <div className="dc-prize">{formatCurrency(draw.prize_pool)}</div>
+                                        <div className="dc-meta">
+                                            <div>📅 {new Date(draw.scheduled_at).toLocaleDateString()}</div>
+                                            <div>👥 {draw.member_count || 0} participants</div>
+                                        </div>
+                                        <button
+                                            className="dc-action-btn"
+                                            onClick={() => triggerDraw(draw.id)}
+                                            disabled={loading}
+                                        >
+                                            {loading ? 'Running...' : 'Execute Draw ⚡'}
+                                        </button>
                                     </div>
-                                    <button
-                                        className="trigger-btn"
-                                        onClick={() => triggerDraw(draw.id)}
-                                        disabled={loading}
-                                    >
-                                        Execute Now ⚡
-                                    </button>
-                                </div>
-                            ))}
-                            {stats?.draws?.filter(d => d.status === 'upcoming').length === 0 && (
-                                <div className="no-draws">No upcoming draws.</div>
-                            )}
+                                ))}
+                                {!stats?.draws?.filter(d => d.status === 'upcoming').length && (
+                                    <div className="empty-state-v3">No draws found in database.</div>
+                                )}
+                            </div>
                         </div>
-                    </section>
+                    )}
 
-                    <section className="admin-panel table-panel">
-                        <h2>📋 Waitlist ({waitlist.length})</h2>
-                        <div className="table-wrapper">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Email</th>
-                                        <th>Created At</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {waitlist.map(w => (
-                                        <tr key={w.id}>
-                                            <td>{w.id}</td>
-                                            <td>{w.email}</td>
-                                            <td>{new Date(w.created_at).toLocaleString()}</td>
+                    {view === 'members' && (
+                        <div className="fade-in-section">
+                            <h2 className="view-header">Member Directory</h2>
+                            <div className="premium-table-container">
+                                <table className="premium-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Member</th>
+                                            <th>Location</th>
+                                            <th>Balance</th>
+                                            <th>Tickets</th>
+                                            <th>Joined</th>
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        {users.length > 0 ? users.map(u => (
+                                            <tr key={u.id}>
+                                                <td>
+                                                    <div className="member-cell">
+                                                        <div className="m-avatar">{u.avatar_emoji || '👤'}</div>
+                                                        <div className="m-info">
+                                                            <div className="m-name">{u.name || 'Anonymous'}</div>
+                                                            <div className="m-email">{u.email}</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>{u.city || '—'}</td>
+                                                <td className="m-balance">{formatCurrency(u.balance || 0)}</td>
+                                                <td className="m-tickets">{u.total_entries || 0}</td>
+                                                <td className="m-date">{new Date(u.created_at).toLocaleDateString()}</td>
+                                            </tr>
+                                        )) : (
+                                            <tr><td colSpan="5" className="empty-table-v3">No active members found.</td></tr>
+                                        )}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    )}
+
+                    {view === 'waitlist' && (
+                        <div className="fade-in-section">
+                            <h2 className="view-header">Waitlist Data</h2>
+                            <div className="premium-table-container">
+                                <table className="premium-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Email</th>
+                                            <th>Referral</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {waitlist.length > 0 ? waitlist.map(w => (
+                                            <tr key={w.id}>
+                                                <td className="m-name">{w.email}</td>
+                                                <td>{w.referral_source || 'Organic'}</td>
+                                                <td className="m-date">{new Date(w.created_at).toLocaleString()}</td>
+                                            </tr>
+                                        )) : (
+                                            <tr><td colSpan="3" className="empty-table-v3">Waitlist is empty.</td></tr>
+                                        )}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    )}
+                </div>
+
+                {debugMode && (
+                    <section className="debug-panel">
+                        <h3>🔧 Debug Analytics</h3>
+                        <div className="debug-grid">
+                            <div className="debug-col">
+                                <h4>Users State ({users.length})</h4>
+                                <pre>{JSON.stringify(users.slice(0, 3), null, 2)}</pre>
+                            </div>
+                            <div className="debug-col">
+                                <h4>Waitlist State ({waitlist.length})</h4>
+                                <pre>{JSON.stringify(waitlist.slice(0, 3), null, 2)}</pre>
+                            </div>
+                            <div className="debug-col">
+                                <h4>Stats State</h4>
+                                <pre>{JSON.stringify(stats, null, 2)}</pre>
+                            </div>
                         </div>
                     </section>
-                </div>
+                )}
             </main>
         </div>
     );
