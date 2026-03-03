@@ -97,14 +97,51 @@ export async function getBalance() {
 }
 
 // ─── Draws ────────────────────────────────────────────────────
+export const GROWTH_PHASES = {
+    0: { label: "Actual (Live)", members: null, pool: null }, // Uses real DB or baseline
+    1: { label: "Phase 1: Seed", members: 312, pool: 9400 },
+    2: { label: "Phase 2: Launch", members: 4250, pool: 125000 },
+    3: { label: "Phase 3: Viral", members: 54000, pool: 1620000 },
+    4: { label: "Phase 4: Scale", members: 250000, pool: 7500000 },
+    5: { label: "Phase 5: Mass", members: 1200000, pool: 36000000 }
+};
+
+export function getSimPhase() {
+    try {
+        const phase = localStorage.getItem('potluck_sim_phase');
+        if (phase && GROWTH_PHASES[phase]) {
+            return GROWTH_PHASES[phase];
+        }
+    } catch { }
+    return GROWTH_PHASES[0]; // Default actual
+}
+
 export async function getCurrentDraws() {
     const { data, error } = await supabase.from('draws').select('*').eq('status', 'upcoming').order('scheduled_at', { ascending: true });
     if (error) return [];
 
-    return data.map(d => ({
-        ...d,
-        countdown_seconds: Math.floor((new Date(d.scheduled_at).getTime() - Date.now()) / 1000)
-    }));
+    const sim = getSimPhase();
+
+    return data.map(d => {
+        let pool = d.prize_pool;
+        let members = d.member_count;
+
+        // Override if simulating
+        if (sim.pool) {
+            // Apply simulation scaling (Grand draw gets ~70% of pool, weekly gets ~15%)
+            if (d.type === 'grand') pool = sim.pool * 0.7;
+            if (d.type === 'weekly') pool = sim.pool * 0.15;
+            if (d.type === 'daily') pool = sim.pool * 0.05;
+            members = sim.members;
+        }
+
+        return {
+            ...d,
+            prize_pool: pool,
+            member_count: members,
+            countdown_seconds: Math.floor((new Date(d.scheduled_at).getTime() - Date.now()) / 1000)
+        };
+    });
 }
 
 export async function getDrawResult(drawId) {
@@ -189,7 +226,24 @@ export async function joinSyndicate(id) {
 }
 
 export async function getMySyndicate() {
-    return null;
+    // Mocking a high-capacity syndicate that unlocked its own pool
+    return {
+        id: 'syn_1',
+        name: 'Alpha Whales',
+        emoji: '🐋',
+        member_count: 142,
+        combined_entries: 3450000,
+        pool_unlocked: true,
+        dedicated_pool_amount: 15400,
+        time_to_draw: "20 hours",
+        members: [
+            { avatar_emoji: '😎' },
+            { avatar_emoji: '🤑' },
+            { avatar_emoji: '👽' },
+            { avatar_emoji: '🤖' },
+            { avatar_emoji: '🤠' }
+        ]
+    };
 }
 
 export async function listSyndicates() {
@@ -224,7 +278,12 @@ export async function dailyCheckin() {
 }
 
 export async function getPlatformStats() {
-    return { total_members: 84201, pool: 2412800 };
+    const sim = getSimPhase();
+    if (sim.members) {
+        return { total_members: sim.members, pool: sim.pool };
+    }
+    // Baseline if not simulating
+    return { total_members: 312, pool: 9400 };
 }
 
 // ─── Admin ────────────────────────────────────────────────────
@@ -274,4 +333,84 @@ export async function getAdminUsers(secret) {
     const { data, error } = await supabase.from('profiles').select('*').order('created_at', { ascending: false });
     if (error) throw new Error(error.message);
     return data || [];
+}
+
+export async function systemReset(secret) {
+    if (secret !== 'potluck-admin-2026') throw new Error("Invalid Admin Secret");
+
+    const { data, error } = await supabase.rpc('admin_reset_system', {
+        admin_secret: secret
+    });
+
+    if (error) {
+        throw new Error(error.message || "Reset failed. Did you run the SQL RPC script in Supabase?");
+    }
+
+    return data;
+}
+
+// ─── Assets ───────────────────────────────────────────────────
+export async function getAssets() {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return [];
+    const { data, error } = await supabase.from('assets').select('*').eq('user_id', user.id).order('value', { ascending: false });
+    if (error) {
+        console.error("Error fetching assets:", error);
+        return [];
+    }
+    return data || [];
+}
+
+export async function addAsset({ type, name, value, currency, icon, bg_image }) {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) throw new Error("Not logged in");
+    const { data, error } = await supabase.from('assets').insert({
+        user_id: user.id, type, name, value: Number(value), currency: currency || 'USD',
+        icon: icon || '💎', bg_image: bg_image || ''
+    }).select().single();
+    if (error) throw new Error(error.message);
+    return data;
+}
+
+export async function deleteAsset(id) {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) throw new Error("Not logged in");
+    const { error } = await supabase.from('assets').delete().eq('id', id).eq('user_id', user.id);
+    if (error) throw new Error(error.message);
+}
+
+export async function seedMyAssets() {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) throw new Error("Not logged in");
+
+    const outrageousAssets = [
+        { type: 'crypto', name: 'Cold Storage (BTC Vault)', value: 1420500, currency: 'USD', icon: '₿', bg_image: 'https://images.unsplash.com/photo-1549488497-236b28292d8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+        { type: 'crypto', name: 'Ethereum Staking Node', value: 845000, currency: 'USD', icon: 'Ξ', bg_image: 'https://images.unsplash.com/photo-1622630998477-20b41cd74312?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+        { type: 'crypto', name: 'Solana Whale Wallet', value: 320400, currency: 'USD', icon: '◎', bg_image: 'https://images.unsplash.com/photo-1641580529558-a96cf1ee51ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+        { type: 'real_estate', name: 'Malibu Beach House', value: 12500000, currency: 'USD', icon: '🏖️', bg_image: 'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+        { type: 'real_estate', name: 'Dubai Penthouse (Marina)', value: 5800000, currency: 'USD', icon: '🏙️', bg_image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+        { type: 'real_estate', name: 'Swiss Alps Chalet', value: 4200000, currency: 'USD', icon: '🏔️', bg_image: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+        { type: 'real_estate', name: 'Monaco Apartment', value: 8900000, currency: 'USD', icon: '🚤', bg_image: 'https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+        { type: 'vehicle', name: 'Porsche 911 GT3 RS', value: 340000, currency: 'USD', icon: '🏎️', bg_image: 'https://images.unsplash.com/photo-1503376712351-1c43aa4dbb69?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+        { type: 'vehicle', name: 'Ferrari SF90 Stradale', value: 550000, currency: 'USD', icon: '🐎', bg_image: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+        { type: 'vehicle', name: 'Rolls-Royce Cullinan', value: 450000, currency: 'USD', icon: '🚘', bg_image: 'https://images.unsplash.com/photo-1631269300649-e592cf17c767?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+        { type: 'vehicle', name: 'Riva Rivamare Yacht', value: 1200000, currency: 'USD', icon: '🛥️', bg_image: 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+        { type: 'vehicle', name: 'Bombardier Global 7500', value: 72000000, currency: 'USD', icon: '🛩️', bg_image: 'https://images.unsplash.com/photo-1540962351504-03099e0aa7e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+        { type: 'watch', name: 'Patek Philippe Nautilus 5711', value: 145000, currency: 'USD', icon: '⌚', bg_image: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+        { type: 'watch', name: 'Richard Mille RM 11-03', value: 380000, currency: 'USD', icon: '💎', bg_image: 'https://images.unsplash.com/photo-1587836374828-cb438786100f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+        { type: 'watch', name: 'Audemars Piguet Royal Oak', value: 95000, currency: 'USD', icon: '🕰️', bg_image: 'https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+        { type: 'art', name: 'Basquiat Original Painting', value: 4500000, currency: 'USD', icon: '🎨', bg_image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+        { type: 'art', name: 'Banksy "Girl with Balloon"', value: 1400000, currency: 'USD', icon: '🖼️', bg_image: 'https://images.unsplash.com/photo-1561053720-76cd73ff22c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+        { type: 'art', name: 'Bored Ape Yacht Club #7495', value: 120000, currency: 'USD', icon: '🐵', bg_image: 'https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+        { type: 'art', name: 'CryptoPunk #3100', value: 7580000, currency: 'USD', icon: '👾', bg_image: 'https://images.unsplash.com/photo-1644361566696-3d442b5b482a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+    ];
+
+    // Delete existing assets first to prevent duplicates if called multiple times
+    await supabase.from('assets').delete().eq('user_id', user.id);
+
+    const inserts = outrageousAssets.map(a => ({ ...a, user_id: user.id }));
+    const { error } = await supabase.from('assets').insert(inserts);
+    if (error) throw new Error(error.message);
+
+    return outrageousAssets;
 }

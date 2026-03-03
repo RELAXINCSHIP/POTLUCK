@@ -69,7 +69,13 @@ export default function LandingPage({ onGoToApp }) {
             {/* ─── Navbar ─── */}
             <nav className="navbar">
                 <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <div className="nav-logo">🎰 POTLUCK</div>
+                    <div className="nav-logo" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD54F" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M11 2a3 3 0 0 0-3 3v2.83a8.9 8.9 0 0 0-2 1.17H3.17A3 3 0 0 0 2 11c0 1.66 1.34 3 3 3h4.62c.08.7.25 1.38.5 2.03v2.8c0 1.66 1.34 3 3 3 1.66 0 3-1.34 3-3v-2.8a8.9 8.9 0 0 0 2-1.17L20.83 15A3 3 0 0 0 22 12c0-1.66-1.34-3-3-3h-4.62a8.9 8.9 0 0 0-.5-2.03v-2.8A3 3 0 0 0 11 2z" />
+                            <path d="M12 12v10M12 12l8.66-5M12 12L3.34 7" />
+                        </svg>
+                        POTLUCK
+                    </div>
                     <ul className="nav-links">
                         <li><a href="#how" onClick={(e) => { e.preventDefault(); scrollTo('how'); }}>How It Works</a></li>
                         <li><a href="#features" onClick={(e) => { e.preventDefault(); scrollTo('features'); }}>Features</a></li>
@@ -126,12 +132,12 @@ export default function LandingPage({ onGoToApp }) {
                         </div>
                         <div className="counter-divider" />
                         <div className="counter-item">
-                            <div className="counter-value" style={{ color: '#9B6FFF' }}>84,201</div>
+                            <div className="counter-value" style={{ color: '#FFD54F' }}>84,201</div>
                             <div className="counter-label">Members</div>
                         </div>
                         <div className="counter-divider" />
                         <div className="counter-item">
-                            <div className="counter-value" style={{ color: '#4ECDC4' }}>$0 Lost</div>
+                            <div className="counter-value" style={{ color: '#81C784' }}>$0 Lost</div>
                             <div className="counter-label">From Savings</div>
                         </div>
                     </div>
@@ -149,7 +155,7 @@ export default function LandingPage({ onGoToApp }) {
                                 icon: '🏦',
                                 title: 'Deposit & Save',
                                 desc: 'Put money into your FDIC-insured Potluck account. Withdraw anytime — your principal is always 100% yours.',
-                                color: '#9B6FFF',
+                                color: '#FFD54F',
                                 bg: 'rgba(139,92,246,0.12)',
                             },
                             {
@@ -163,7 +169,7 @@ export default function LandingPage({ onGoToApp }) {
                                 icon: '🏆',
                                 title: 'Win Big',
                                 desc: "Every 90 days, one lucky saver wins the Grand Prize. Monthly Mini Draws keep the excitement going.",
-                                color: '#4ECDC4',
+                                color: '#81C784',
                                 bg: 'rgba(78,205,196,0.12)',
                             },
                         ].map((step, i) => (
@@ -216,7 +222,7 @@ export default function LandingPage({ onGoToApp }) {
                                 name: 'Maria K.',
                                 detail: 'Chicago, IL',
                                 avatar: '👩‍💼',
-                                bg: 'linear-gradient(135deg, #7C3AED, #A855F7)',
+                                bg: 'linear-gradient(135deg, #FFB300, #FFD54F)',
                             },
                             {
                                 quote: "My savings account was earning 0.01% interest. Potluck turns that boring interest into a chance at life-changing money.",
@@ -230,7 +236,7 @@ export default function LandingPage({ onGoToApp }) {
                                 name: 'Priya K.',
                                 detail: 'San Francisco, CA',
                                 avatar: '👩‍🔬',
-                                bg: 'linear-gradient(135deg, #4ECDC4, #06B6D4)',
+                                bg: 'linear-gradient(135deg, #81C784, #06B6D4)',
                             },
                         ].map((t, i) => (
                             <div className="testimonial-card" key={i}>

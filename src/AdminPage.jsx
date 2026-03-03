@@ -70,6 +70,27 @@ export default function AdminPage({ onBack }) {
         }
     };
 
+    const handleEmergencyReset = async () => {
+        const confirm1 = window.confirm("⚠️ DANGER ZONE: Are you absolutely sure you want to perform a SYSTEM RESET?");
+        if (!confirm1) return;
+
+        const confirm2 = window.prompt("This will WIPE all balances, entries, deposits, and draw history. Type 'RESET' to confirm:");
+        if (confirm2 !== "RESET") return;
+
+        setLoading(true);
+        setActionMessage(null);
+        setError(null);
+        try {
+            await api.systemReset(secret);
+            setActionMessage("🚨 SYSTEM RESET COMPLETE. All balances and numbers have been cleared.");
+            await refreshData();
+        } catch (err) {
+            setError(err.message || "Reset failed.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
     if (!isAuthenticated) {
         return (
             <div className="admin-login-container">
@@ -127,7 +148,7 @@ export default function AdminPage({ onBack }) {
                     <div className={`stat-card-premium ${view === 'overview' ? 'active' : ''}`} onClick={() => setView('overview')}>
                         <span className="sc-label">Total Deposits (TVL)</span>
                         <span className="sc-value">{formatCurrency(stats?.tvl || 0)}</span>
-                        <div className="sc-bar" style={{ width: '100%', background: '#4ECDC4' }}></div>
+                        <div className="sc-bar" style={{ width: '100%', background: '#81C784' }}></div>
                     </div>
                     <div className={`stat-card-premium ${view === 'members' ? 'active' : ''}`} onClick={() => setView('members')}>
                         <span className="sc-label">Active Users</span>
@@ -136,8 +157,8 @@ export default function AdminPage({ onBack }) {
                     </div>
                     <div className={`stat-card-premium ${view === 'waitlist' ? 'active' : ''}`} onClick={() => setView('waitlist')}>
                         <span className="sc-label">Waitlist Signups</span>
-                        <span className="sc-value" style={{ color: '#A855F7' }}>{stats?.waitlist_count || 0}</span>
-                        <div className="sc-bar" style={{ width: Math.min(100, (stats?.waitlist_count || 0) / 10) + '%', background: '#A855F7' }}></div>
+                        <span className="sc-value" style={{ color: '#FFD54F' }}>{stats?.waitlist_count || 0}</span>
+                        <div className="sc-bar" style={{ width: Math.min(100, (stats?.waitlist_count || 0) / 10) + '%', background: '#FFD54F' }}></div>
                     </div>
                 </section>
 
@@ -172,6 +193,18 @@ export default function AdminPage({ onBack }) {
                                 {!stats?.draws?.filter(d => d.status === 'upcoming').length && (
                                     <div className="empty-state-v3">No draws found in database.</div>
                                 )}
+                            </div>
+
+                            <div className="danger-zone-container">
+                                <h3>⚠️ Danger Zone</h3>
+                                <p>These actions are destructive and cannot be undone. They will immediately alter the live database.</p>
+                                <button
+                                    className="danger-btn"
+                                    onClick={handleEmergencyReset}
+                                    disabled={loading}
+                                >
+                                    {loading ? 'Processing...' : 'NUCLEAR RESET (WIPE ALL NUMBERS)'}
+                                </button>
                             </div>
                         </div>
                     )}

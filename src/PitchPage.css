@@ -3,15 +3,15 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap');
 
 .pitch {
-    --bg: #0D0A1A;
-    --purple: #9B6FFF;
+    --bg: #080808;
+    --gold: #FFD54F;
     --gold: #FFD700;
-    --teal: #4ECDC4;
+    --green: #81C784;
     --red: #EF4444;
     --orange: #F59E0B;
 
     min-height: 100vh;
-    background: linear-gradient(160deg, #080612, #110D26, #0D0A1A);
+    background: linear-gradient(160deg, #080808, #111, #080808);
     font-family: 'DM Sans', -apple-system, sans-serif;
     color: #fff;
     padding: 0;
@@ -43,7 +43,7 @@
     font-family: 'Syne', sans-serif;
     font-size: 36px;
     font-weight: 800;
-    color: var(--purple);
+    color: var(--gold);
     margin-bottom: 8px;
 }
 
@@ -65,7 +65,7 @@
 }
 
 .pitch .pitch-headline .highlight {
-    background: linear-gradient(135deg, var(--purple), var(--gold));
+    background: linear-gradient(135deg, var(--gold), var(--gold));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -82,7 +82,7 @@
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--purple);
+    color: var(--gold);
     margin-bottom: 14px;
 }
 
@@ -319,7 +319,7 @@
 }
 
 .pitch .pitch-footer a {
-    color: var(--purple);
+    color: var(--gold);
     text-decoration: none;
 }
 
@@ -327,7 +327,7 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    color: var(--purple);
+    color: var(--gold);
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;

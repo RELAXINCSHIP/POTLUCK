@@ -46,7 +46,7 @@ export default function PitchPage({ onBack }) {
                             <div className="stat-label">Spent on lottery / year</div>
                         </div>
                         <div className="stat-card">
-                            <div className="stat-value" style={{ color: '#9B6FFF' }}>0.01%</div>
+                            <div className="stat-value" style={{ color: '#FFD54F' }}>0.01%</div>
                             <div className="stat-label">Avg savings APY</div>
                         </div>
                     </div>
@@ -111,7 +111,7 @@ export default function PitchPage({ onBack }) {
                         <div className="market-bar">
                             <div className="market-bar-label">TAM</div>
                             <div className="market-bar-track">
-                                <div className="market-bar-fill" style={{ width: '100%', background: 'linear-gradient(90deg, #7C3AED, #A855F7)' }}>$200B+</div>
+                                <div className="market-bar-fill" style={{ width: '100%', background: 'linear-gradient(90deg, #FFB300, #FFD54F)' }}>$200B+</div>
                             </div>
                         </div>
                         <div className="market-bar">
@@ -123,7 +123,7 @@ export default function PitchPage({ onBack }) {
                         <div className="market-bar">
                             <div className="market-bar-label">SOM</div>
                             <div className="market-bar-track">
-                                <div className="market-bar-fill" style={{ width: '20%', background: 'linear-gradient(90deg, #4ECDC4, #06B6D4)' }}>$500M</div>
+                                <div className="market-bar-fill" style={{ width: '20%', background: 'linear-gradient(90deg, #81C784, #06B6D4)' }}>$500M</div>
                             </div>
                         </div>
                     </div>
@@ -159,7 +159,7 @@ export default function PitchPage({ onBack }) {
                     <h2>Momentum is building</h2>
                     <div className="traction-row">
                         <div className="traction-item">
-                            <div className="traction-value" style={{ color: '#9B6FFF' }}>{waitlistCount > 0 ? waitlistCount.toLocaleString() : '—'}</div>
+                            <div className="traction-value" style={{ color: '#FFD54F' }}>{waitlistCount > 0 ? waitlistCount.toLocaleString() : '—'}</div>
                             <div className="traction-label">Waitlist</div>
                         </div>
                         <div className="traction-item">
@@ -167,7 +167,7 @@ export default function PitchPage({ onBack }) {
                             <div className="traction-label">Product Stage</div>
                         </div>
                         <div className="traction-item">
-                            <div className="traction-value" style={{ color: '#4ECDC4' }}>92%</div>
+                            <div className="traction-value" style={{ color: '#81C784' }}>92%</div>
                             <div className="traction-label">Concept Appeal*</div>
                         </div>
                         <div className="traction-item">

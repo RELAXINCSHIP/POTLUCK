@@ -162,3 +162,54 @@ CREATE TABLE IF NOT EXISTS public.whitelisted_emails (
 -- Insert the test profile
 INSERT INTO public.whitelisted_emails (email) VALUES ('kenny6b47@gmail.com') ON CONFLICT DO NOTHING;
 
+-- 9. LINKED ACCOUNTS (Plaid)
+CREATE TABLE IF NOT EXISTS public.linked_accounts (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id uuid NOT NULL REFERENCES public.profiles(id) ON DELETE CASCADE,
+  institution_name text NOT NULL DEFAULT 'Bank',
+  account_name text DEFAULT '',
+  account_mask text DEFAULT '',
+  account_type text DEFAULT 'depository',
+  account_subtype text DEFAULT 'checking',
+  plaid_item_id text NOT NULL,
+  created_at timestamp with time zone DEFAULT now()
+);
+
+ALTER TABLE public.linked_accounts ENABLE ROW LEVEL SECURITY;
+DO $$ BEGIN
+  CREATE POLICY "Users can read own linked accounts" ON public.linked_accounts FOR SELECT USING (auth.uid() = user_id);
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+DO $$ BEGIN
+  CREATE POLICY "Users can insert own linked accounts" ON public.linked_accounts FOR INSERT WITH CHECK (auth.uid() = user_id);
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+DO $$ BEGIN
+  CREATE POLICY "Users can delete own linked accounts" ON public.linked_accounts FOR DELETE USING (auth.uid() = user_id);
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+
+-- 10. ASSETS (Custom User Assets)
+CREATE TABLE IF NOT EXISTS public.assets (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id uuid NOT NULL REFERENCES public.profiles(id) ON DELETE CASCADE,
+  type text NOT NULL, -- e.g. crypto, real_estate, vehicle, watch, art, other
+  name text NOT NULL,
+  value numeric NOT NULL DEFAULT 0,
+  currency text DEFAULT 'USD',
+  icon text DEFAULT '💎',
+  bg_image text,
+  created_at timestamp with time zone DEFAULT now(),
+  updated_at timestamp with time zone DEFAULT now()
+);
+
+ALTER TABLE public.assets ENABLE ROW LEVEL SECURITY;
+DO $$ BEGIN
+  CREATE POLICY "Users can read own assets" ON public.assets FOR SELECT USING (auth.uid() = user_id);
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+DO $$ BEGIN
+  CREATE POLICY "Users can insert own assets" ON public.assets FOR INSERT WITH CHECK (auth.uid() = user_id);
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+DO $$ BEGIN
+  CREATE POLICY "Users can update own assets" ON public.assets FOR UPDATE USING (auth.uid() = user_id);
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+DO $$ BEGIN
+  CREATE POLICY "Users can delete own assets" ON public.assets FOR DELETE USING (auth.uid() = user_id);
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
