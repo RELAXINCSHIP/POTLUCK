@@ -61,7 +61,7 @@ app.use((err, req, res, next) => {
 });
 
 // ─── Start ────────────────────────────────────────────────────
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`\n🎰 Potluck API running on port ${PORT}`);
     console.log(`   Health check: /api/health\n`);
 
