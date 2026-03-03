@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './LandingPage.css';
 
-const API = 'http://localhost:3001';
+import { supabase } from './api';
 
 const FAQS = [
     {
@@ -34,10 +34,9 @@ export default function LandingPage({ onGoToApp }) {
     const [openFaq, setOpenFaq] = useState(null);
 
     useEffect(() => {
-        fetch(`${API}/api/waitlist/count`)
-            .then(r => r.json())
-            .then(d => setWaitlistCount(d.count || 0))
-            .catch(() => { });
+        supabase.from('waitlist').select('*', { count: 'exact', head: true }).then(({ count, error }) => {
+            if (!error && count !== null) setWaitlistCount(count);
+        });
     }, []);
 
     const handleSubmit = async (e) => {
@@ -46,18 +45,14 @@ export default function LandingPage({ onGoToApp }) {
         setLoading(true);
         setStatus(null);
         try {
-            const res = await fetch(`${API}/api/waitlist`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email }),
-            });
-            const data = await res.json();
-            if (data.success) {
-                setStatus({ type: 'success', msg: data.message });
-                setWaitlistCount(data.count);
-                if (!data.duplicate) setEmail('');
+            const { error } = await supabase.from('waitlist').insert({ email });
+            if (error) {
+                if (error.code === '23505') setStatus({ type: 'success', msg: "You're already on the list!" }); // duplicate
+                else setStatus({ type: 'error', msg: error.message });
             } else {
-                setStatus({ type: 'error', msg: data.error });
+                setStatus({ type: 'success', msg: "You're on the list! Keep an eye on your inbox." });
+                setWaitlistCount(c => c + 1);
+                setEmail('');
             }
         } catch {
             setStatus({ type: 'error', msg: 'Could not connect. Please try again.' });
