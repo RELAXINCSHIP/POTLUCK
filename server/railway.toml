@@ -1,9 +1,0 @@
-[build]
-builder = "NIXPACKS"
-watchPath = "/server"
-buildCommand = "cd server && npm install"
-
-[deploy]
-startCommand = "cd server && npm start"
-healthcheckPath = "/api/health"
-restartPolicyType = "ON_FAILURE"

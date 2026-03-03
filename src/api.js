@@ -1,13 +1,9 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+const supabaseUrl = 'https://tjdbkcadycpxxsisaeyo.supabase.co';
+const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqZGJrY2FkeWNweHhzaXNhZXlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI0OTI4MTUsImV4cCI6MjA4ODA2ODgxNX0.S8jnhFCN_-b04tGwksqM9jjyFUg_klhFrP8c0hsOqfA';
 
-// Fallback to placeholder if not set, prevents Vite from crashing before user configure it
-export const supabase = createClient(
-    supabaseUrl || 'https://placeholder.supabase.co',
-    supabaseAnonKey || 'placeholder'
-);
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // ─── Auth ─────────────────────────────────────────────────────
 export async function register(email, password, name, city) {
@@ -195,11 +191,42 @@ export async function getPlatformStats() {
 
 // ─── Admin ────────────────────────────────────────────────────
 export async function getAdminStats(secret) {
-    return { users: 0, deposits: 0, waitlist: 0 };
+    if (secret !== 'potluck-admin-2026') throw new Error("Invalid Admin Secret");
+
+    // TVL
+    const { data: deposits } = await supabase.from('deposits').select('amount, type');
+    let tvl = 0;
+    if (deposits) {
+        deposits.forEach(d => {
+            tvl += d.type === 'withdraw' ? -Number(d.amount) : Number(d.amount);
+        });
+    }
+
+    // Members (approx by checking profiles)
+    const { count: usersCount } = await supabase.from('profiles').select('*', { count: 'exact', head: true });
+
+    // Waitlist
+    // Note: Migrated waitlist table doesn't exist in the supabase schema file provided earlier,
+    // assuming it exists or we catch error gracefully
+    const { count: waitlistCount, error: wlError } = await supabase.from('waitlist').select('*', { count: 'exact', head: true });
+
+    // Draws
+    const { data: draws } = await supabase.from('draws').select('*').order('scheduled_at', { ascending: true });
+
+    return {
+        tvl,
+        users_count: usersCount || 0,
+        waitlist_count: wlError ? 0 : (waitlistCount || 0),
+        draws: draws || []
+    };
 }
 
 export async function getAdminWaitlist(secret) {
-    const { data, error } = await supabase.from('waitlist').select('*');
-    if (error) throw new Error(error.message);
+    if (secret !== 'potluck-admin-2026') throw new Error("Invalid Admin Secret");
+    const { data, error } = await supabase.from('waitlist').select('*').order('created_at', { ascending: false });
+    if (error) {
+        console.warn("Waitlist table missing or error:", error);
+        return [];
+    }
     return data || [];
 }

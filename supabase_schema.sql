@@ -1,7 +1,7 @@
--- Supabase Schema for Potluck
+-- Supabase Schema for Potluck (Safe for Re-runs)
 
--- 1. PROFILES TABLE (Linked to Supabase Auth)
-CREATE TABLE public.profiles (
+-- 1. PROFILES TABLE
+CREATE TABLE IF NOT EXISTS public.profiles (
   id uuid PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
   email text NOT NULL,
   name text NOT NULL,
@@ -13,30 +13,42 @@ CREATE TABLE public.profiles (
 );
 
 ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Public profiles are viewable by everyone." ON public.profiles FOR SELECT USING (true);
-CREATE POLICY "Users can update own profile." ON public.profiles FOR UPDATE USING (auth.uid() = id);
+DO $$ BEGIN
+  CREATE POLICY "Public profiles are viewable by everyone." ON public.profiles FOR SELECT USING (true);
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
 
--- Trigger to create profile on signup
+DO $$ BEGIN
+  CREATE POLICY "Users can update own profile." ON public.profiles FOR UPDATE USING (auth.uid() = id);
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+
+-- Trigger to create profile on signup (with Whitelist)
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS trigger AS $$
 BEGIN
+  -- Check whitelist
+  IF NOT EXISTS (SELECT 1 FROM public.whitelisted_emails WHERE email = new.email) THEN
+    RAISE EXCEPTION 'This email is not whitelisted for the Potluck beta.';
+  END IF;
+
   INSERT INTO public.profiles (id, email, name, city)
   VALUES (
     new.id, 
     new.email, 
     new.raw_user_meta_data->>'name', 
     new.raw_user_meta_data->>'city'
-  );
+  )
+  ON CONFLICT (id) DO NOTHING;
   RETURN new;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
+DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
 CREATE TRIGGER on_auth_user_created
   AFTER INSERT ON auth.users
   FOR EACH ROW EXECUTE PROCEDURE public.handle_new_user();
 
 -- 2. DEPOSITS
-CREATE TABLE public.deposits (
+CREATE TABLE IF NOT EXISTS public.deposits (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id uuid NOT NULL REFERENCES public.profiles(id) DEFAULT auth.uid(),
   amount numeric NOT NULL,
@@ -44,11 +56,15 @@ CREATE TABLE public.deposits (
   created_at timestamp with time zone DEFAULT now()
 );
 ALTER TABLE public.deposits ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Users can read own deposits" ON public.deposits FOR SELECT USING (auth.uid() = user_id);
-CREATE POLICY "Users can insert own deposits" ON public.deposits FOR INSERT WITH CHECK (auth.uid() = user_id);
+DO $$ BEGIN
+  CREATE POLICY "Users can read own deposits" ON public.deposits FOR SELECT USING (auth.uid() = user_id);
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+DO $$ BEGIN
+  CREATE POLICY "Users can insert own deposits" ON public.deposits FOR INSERT WITH CHECK (auth.uid() = user_id);
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
 
 -- 3. DRAWS
-CREATE TABLE public.draws (
+CREATE TABLE IF NOT EXISTS public.draws (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   type text NOT NULL CHECK(type IN ('grand', 'mini')),
   prize_pool numeric DEFAULT 0,
@@ -61,16 +77,21 @@ CREATE TABLE public.draws (
   total_entries integer DEFAULT 0
 );
 ALTER TABLE public.draws ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Draws viewable by everyone" ON public.draws FOR SELECT USING (true);
+DO $$ BEGIN
+  CREATE POLICY "Draws viewable by everyone" ON public.draws FOR SELECT USING (true);
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
 
--- Insert initial draws
+-- Insert initial draws (safely)
 INSERT INTO public.draws (type, prize_pool, status, scheduled_at, member_count, total_entries) 
-VALUES 
-  ('grand', 2412800, 'upcoming', now() + interval '90 days', 84201, 15000000),
-  ('mini', 12400, 'upcoming', now() + interval '30 days', 84201, 15000000);
+SELECT 'grand', 2412800, 'upcoming', now() + interval '90 days', 84201, 15000000
+WHERE NOT EXISTS (SELECT 1 FROM public.draws WHERE type = 'grand');
+
+INSERT INTO public.draws (type, prize_pool, status, scheduled_at, member_count, total_entries) 
+SELECT 'mini', 12400, 'upcoming', now() + interval '30 days', 84201, 15000000
+WHERE NOT EXISTS (SELECT 1 FROM public.draws WHERE type = 'mini');
 
 -- 4. STREAKS
-CREATE TABLE public.streaks (
+CREATE TABLE IF NOT EXISTS public.streaks (
   user_id uuid PRIMARY KEY REFERENCES public.profiles(id) DEFAULT auth.uid(),
   current_streak integer DEFAULT 0,
   best_streak integer DEFAULT 0,
@@ -78,11 +99,15 @@ CREATE TABLE public.streaks (
   last_draw_id uuid REFERENCES public.draws(id)
 );
 ALTER TABLE public.streaks ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Users can read own streaks" ON public.streaks FOR SELECT USING (auth.uid() = user_id);
-CREATE POLICY "Users can update own streaks" ON public.streaks FOR UPDATE USING (auth.uid() = user_id);
+DO $$ BEGIN
+  CREATE POLICY "Users can read own streaks" ON public.streaks FOR SELECT USING (auth.uid() = user_id);
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+DO $$ BEGIN
+  CREATE POLICY "Users can update own streaks" ON public.streaks FOR UPDATE USING (auth.uid() = user_id);
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
 
 -- 5. SYNDICATES
-CREATE TABLE public.syndicates (
+CREATE TABLE IF NOT EXISTS public.syndicates (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   name text NOT NULL,
   emoji text DEFAULT '🍀',
@@ -92,11 +117,15 @@ CREATE TABLE public.syndicates (
   combined_entries integer DEFAULT 0
 );
 ALTER TABLE public.syndicates ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Viewable by all" ON public.syndicates FOR SELECT USING (true);
-CREATE POLICY "Authenticated users can insert" ON public.syndicates FOR INSERT WITH CHECK (auth.uid() IS NOT NULL);
+DO $$ BEGIN
+  CREATE POLICY "Viewable by all" ON public.syndicates FOR SELECT USING (true);
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+DO $$ BEGIN
+  CREATE POLICY "Authenticated users can insert" ON public.syndicates FOR INSERT WITH CHECK (auth.uid() IS NOT NULL);
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
 
 -- 6. FEED EVENTS
-CREATE TABLE public.feed_events (
+CREATE TABLE IF NOT EXISTS public.feed_events (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   type text NOT NULL,
   text text NOT NULL,
@@ -105,21 +134,31 @@ CREATE TABLE public.feed_events (
   created_at timestamp with time zone DEFAULT now()
 );
 ALTER TABLE public.feed_events ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Viewable by all" ON public.feed_events FOR SELECT USING (true);
+DO $$ BEGIN
+  CREATE POLICY "Viewable by all" ON public.feed_events FOR SELECT USING (true);
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
 
 -- 7. WAITLIST
-CREATE TABLE public.waitlist (
+CREATE TABLE IF NOT EXISTS public.waitlist (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   email text UNIQUE NOT NULL,
   referral_source text DEFAULT '',
   created_at timestamp with time zone DEFAULT now()
 );
 ALTER TABLE public.waitlist ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Anyone can insert" ON public.waitlist FOR INSERT WITH CHECK (true);
-CREATE POLICY "Count viewable by all" ON public.waitlist FOR SELECT USING (true);
+DO $$ BEGIN
+  CREATE POLICY "Anyone can insert" ON public.waitlist FOR INSERT WITH CHECK (true);
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
+DO $$ BEGIN
+  CREATE POLICY "Count viewable by all" ON public.waitlist FOR SELECT USING (true);
+EXCEPTION WHEN duplicate_object THEN NULL; END $$;
 
--- Insert demo feed events
-INSERT INTO public.feed_events (type, text, emoji) VALUES
-  ('deposit', 'Sarah M. from Austin added to the pot.', '💰'),
-  ('streak', 'James T. hit a 20-draw streak!', '🔥'),
-  ('syndicate', 'The "Lucky Sevens" syndicate just gained 5 new members.', '👥');
+-- 8. WHITELIST
+CREATE TABLE IF NOT EXISTS public.whitelisted_emails (
+  email text PRIMARY KEY,
+  created_at timestamp with time zone DEFAULT now()
+);
+
+-- Insert the test profile
+INSERT INTO public.whitelisted_emails (email) VALUES ('kenny6b47@gmail.com') ON CONFLICT DO NOTHING;
+

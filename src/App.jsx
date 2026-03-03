@@ -246,7 +246,14 @@ function DepositScreen({ go, onDeposit }) {
     const [loading, setLoading] = useState(false);
     const [step, setStep] = useState("");
 
-    const handleDeposit = async () => {
+    // Fiat/Plaid Additions
+    const [method, setMethod] = useState("crypto"); // "crypto" or "fiat"
+    const [bankLinked, setBankLinked] = useState(false);
+    const [showPlaid, setShowPlaid] = useState(false);
+    const [plaidStep, setPlaidStep] = useState(0);
+    const [selectedBank, setSelectedBank] = useState(null);
+
+    const handleCryptoDeposit = async () => {
         setLoading(true);
         setError("");
         try {
@@ -293,12 +300,71 @@ function DepositScreen({ go, onDeposit }) {
         setStep("");
     };
 
+    const handleFiatDeposit = async () => {
+        setLoading(true);
+        setError("");
+        setStep("Initiating ACH transfer...");
+        try {
+            await new Promise(r => setTimeout(r, 1500));
+            setStep("Clearing funds...");
+            await new Promise(r => setTimeout(r, 1500));
+            setStep("Updating Profile...");
+            await api.makeDeposit(deposit);
+            setResult({ message: `Successfully deposited $${deposit} via Bank Transfer!` });
+            setTimeout(() => { onDeposit(); go("home"); }, 2000);
+        } catch (err) {
+            setResult({ error: err.message || "Transfer failed" });
+        }
+        setLoading(false);
+        setStep("");
+    };
+
+    const handleActionClick = () => {
+        if (method === "crypto") {
+            handleCryptoDeposit();
+        } else {
+            if (!bankLinked) {
+                setShowPlaid(true);
+                setPlaidStep(0);
+            } else {
+                handleFiatDeposit();
+            }
+        }
+    };
+
     return (
-        <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "20px 28px 40px", overflow: "auto" }}>
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "24px 28px 40px", overflow: "auto", position: "relative" }}>
+            {/* Guarantee Skip visibility with absolute pos */}
+            {!loading && (
+                <button onClick={() => go("home")} style={{
+                    position: "absolute", top: 20, right: 24, zIndex: 100,
+                    background: "#7C3AED", border: "none", color: "#fff",
+                    fontSize: 12, fontWeight: 800, cursor: "pointer", padding: "8px 16px", borderRadius: 12,
+                    boxShadow: "0 4px 15px rgba(124,58,237,0.4)"
+                }}>
+                    SKIP
+                </button>
+            )}
+
             <div style={{ marginBottom: 24 }}>
                 <div style={{ fontSize: 26, fontFamily: "'Syne', sans-serif", fontWeight: 800, color: "#fff" }}>Add to the pot</div>
                 <div style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", marginTop: 4 }}>Your principal is always yours to take back.</div>
             </div>
+
+            {/* Method Toggle */}
+            <div style={{ display: "flex", background: "rgba(255,255,255,0.05)", borderRadius: 16, padding: 6, marginBottom: 20 }}>
+                {["crypto", "fiat"].map(m => (
+                    <button key={m} onClick={() => setMethod(m)} style={{
+                        flex: 1, padding: "10px", borderRadius: 12, border: "none", cursor: "pointer",
+                        background: method === m ? "rgba(139,92,246,0.3)" : "transparent",
+                        color: method === m ? "#fff" : "rgba(255,255,255,0.5)",
+                        fontWeight: 700, fontSize: 13, textTransform: "capitalize"
+                    }}>
+                        {m === "crypto" ? "💰 USDC Crypto" : "🏦 Bank (Fiat)"}
+                    </button>
+                ))}
+            </div>
+
             <div style={{
                 background: "linear-gradient(135deg, #1a1035, #2D1B69)",
                 borderRadius: 24, padding: 24, marginBottom: 20,
@@ -313,6 +379,7 @@ function DepositScreen({ go, onDeposit }) {
                     <span>$25</span><span>$2,000</span>
                 </div>
             </div>
+
             <div style={{ display: "flex", gap: 8, marginBottom: 20 }}>
                 {[50, 100, 250, 500].map(v => (
                     <button key={v} onClick={() => setDeposit(v)} style={{
@@ -322,6 +389,17 @@ function DepositScreen({ go, onDeposit }) {
                     }}>${v}</button>
                 ))}
             </div>
+
+            {method === "fiat" && bankLinked && (
+                <div style={{ background: "rgba(78,205,196,0.1)", borderRadius: 16, padding: 14, marginBottom: 20, display: "flex", alignItems: "center", gap: 12 }}>
+                    <div style={{ background: "#059669", width: 32, height: 32, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16 }}>🏦</div>
+                    <div>
+                        <div style={{ fontSize: 13, color: "#4ECDC4", fontWeight: 700 }}>Chase Checking</div>
+                        <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)" }}>Account ending in •••• 4209</div>
+                    </div>
+                </div>
+            )}
+
             <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 16, padding: 16, marginBottom: 20 }}>
                 {[
                     { label: "Your entries this draw", value: `${Math.floor(deposit / 10)} tickets` },
@@ -345,13 +423,83 @@ function DepositScreen({ go, onDeposit }) {
                 </div>
             )}
 
-            <button className="btn-glow" onClick={handleDeposit} disabled={loading} style={{
+            <button className="btn-glow" onClick={handleActionClick} disabled={loading} style={{
                 padding: "18px", borderRadius: 18, border: "none",
                 background: "linear-gradient(135deg, #7C3AED, #A855F7)",
                 color: "#fff", fontSize: 16, fontWeight: 700,
                 boxShadow: "0 8px 30px rgba(139,92,246,0.4)",
                 opacity: loading ? 0.7 : 1,
-            }}>{loading ? (step || "Processing...") : "Join the Pot 🎰"}</button>
+            }}>
+                {loading ? (step || "Processing...") :
+                    (method === "fiat" && !bankLinked ? "Link Bank Account 🏦" : "Join the Pot 🎰")}
+            </button>
+
+            {/* Plaid Mock Overlay */}
+            {showPlaid && (
+                <div style={{
+                    position: "absolute", top: 0, left: 0, right: 0, bottom: 0,
+                    background: "rgba(0,0,0,0.8)", backdropFilter: "blur(10px)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    zIndex: 100, padding: 20
+                }}>
+                    <div style={{
+                        background: "#fff", width: "100%", borderRadius: 24, padding: 24,
+                        color: "#111", fontFamily: "sans-serif", position: "relative"
+                    }}>
+                        <button onClick={() => setShowPlaid(false)} style={{
+                            position: "absolute", top: 16, right: 16, background: "none", border: "none",
+                            fontSize: 24, cursor: "pointer", color: "#666"
+                        }}>×</button>
+
+                        <div style={{ textAlign: "center", marginBottom: 20 }}>
+                            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: 1, color: "#666", marginBottom: 8 }}>SECURE CONNECTION</div>
+                            <div style={{ fontSize: 22, fontWeight: 800 }}>Connect your bank</div>
+                            <div style={{ fontSize: 14, color: "#666", marginTop: 4 }}>Potluck uses encrypted links. We never see or store your bank credentials.</div>
+                        </div>
+
+                        {plaidStep === 0 && (
+                            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                                {["Chase", "Bank of America", "Wells Fargo", "Capital One"].map(b => (
+                                    <button key={b} onClick={() => { setSelectedBank(b); setPlaidStep(1); }} style={{
+                                        padding: "16px", borderRadius: 12, border: "1px solid #e0e0e0",
+                                        background: "#f9f9f9", fontSize: 16, fontWeight: 600, textAlign: "left", cursor: "pointer"
+                                    }}>🏦 {b}</button>
+                                ))}
+                            </div>
+                        )}
+
+                        {plaidStep === 1 && (
+                            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                                <div style={{ fontSize: 16, fontWeight: 700, textAlign: "center", marginBottom: 16 }}>Logging securely into {selectedBank}</div>
+                                <input type="text" placeholder="User ID" style={{ padding: 14, borderRadius: 8, border: "1px solid #ccc", fontSize: 16 }} />
+                                <input type="password" placeholder="Password" style={{ padding: 14, borderRadius: 8, border: "1px solid #ccc", fontSize: 16 }} />
+                                <button onClick={() => {
+                                    setPlaidStep(2);
+                                    setTimeout(() => {
+                                        setBankLinked(true);
+                                        setShowPlaid(false);
+                                    }, 2000);
+                                }} style={{
+                                    background: "#111", color: "#fff", padding: 16, borderRadius: 8,
+                                    border: "none", fontSize: 16, fontWeight: 700, marginTop: 12, cursor: "pointer"
+                                }}>Submit</button>
+                            </div>
+                        )}
+
+                        {plaidStep === 2 && (
+                            <div style={{ textAlign: "center", padding: "40px 0" }}>
+                                <div style={{ fontSize: 48, marginBottom: 16, animation: "bounce-in 0.5s ease-out" }}>✅</div>
+                                <div style={{ fontSize: 20, fontWeight: 700 }}>Account Linked!</div>
+                                <div style={{ fontSize: 14, color: "#666", marginTop: 8 }}>Redirecting back to Potluck...</div>
+                            </div>
+                        )}
+
+                        <div style={{ textAlign: "center", marginTop: 24, fontSize: 12, color: "#999", display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
+                            <span>🔒 Secured by Plaid API Mock</span>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
@@ -733,6 +881,10 @@ function SplashScreen() {
    MAIN APP
 ============================================= */
 export default function App() {
+    useEffect(() => {
+        console.log("POTLUCK V3.0 - SUPABASE ACTIVE");
+    }, []);
+
     const [screen, setScreen] = useState("splash");
     const [user, setUser] = useState(null);
     const [draws, setDraws] = useState([]);
@@ -740,6 +892,7 @@ export default function App() {
     const [drawPhase, setDrawPhase] = useState(0);
     const [winner, setWinner] = useState(null);
     const [particles, setParticles] = useState([]);
+    const [step, setStep] = useState("");
 
     // Boot sequence
     useEffect(() => {
@@ -753,6 +906,7 @@ export default function App() {
                     const s = await api.getMyStreak();
                     setStreak(s);
                     setScreen("home");
+                    console.log("BOOT: Redirecting to HOME");
                 } catch {
                     api.logout();
                     setScreen("auth");
@@ -778,7 +932,7 @@ export default function App() {
     const handleAuth = async (userData) => {
         setUser(userData);
         await refreshData();
-        setScreen("deposit");
+        setScreen("home");
     };
 
     const handleLogout = () => {
@@ -817,9 +971,18 @@ export default function App() {
                         await publicClient.waitForTransactionReceipt({ hash: sweepTx });
                     }
 
-                    // Note: In a real app we'd call PrizePool.executeDraw() here
-                    // But we don't have the PrizePool ABI exported yet.
-                    // For now, we simulate the result via the existing Node backend API.
+                    // Now execute the actual draw
+                    const { request: drawReq } = await publicClient.simulateContract({
+                        address: CONTRACTS.PRIZE_POOL,
+                        abi: ABIs.PRIZE_POOL,
+                        functionName: 'executeDraw',
+                        account
+                    }).catch(() => ({ request: null }));
+
+                    if (drawReq) {
+                        const drawTx = await walletClient.writeContract(drawReq);
+                        await publicClient.waitForTransactionReceipt({ hash: drawTx });
+                    }
 
                     const grandDraw = draws.find(d => d.type === "grand");
                     if (grandDraw) {

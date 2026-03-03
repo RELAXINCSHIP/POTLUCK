@@ -1,0 +1,35 @@
+# Potluck Variant: The Groundbreaking Concept
+
+The "Variant" UI isn't just a theme; it’s a fundamental shift in how a user perceives their relationship with money and luck. We are moving away from "banking" and towards "**Deterministic Prosperity**."
+
+## 1. Kinetic Liquidity (The Living Pot)
+Instead of a static number on a dashboard, the Pot is a **behavioral entity**.
+- **The Pulse**: The UI's rhythm is tied to real-time yield generation. If the pool is earning, the UI "breathes" faster.
+- **Gravity**: Your deposit isn't just a balance; it exerts "Gravity" on the prize. The UI should reflect how your principal is physically pulling the next win toward you through your streak and deposit weight.
+
+## 2. Probability Sculpting
+We are replacing "Odds" with "**Momentum**."
+- **Streak Multipliers as Power-Ups**: Instead of a percentage, streaks are treated as "Aura" or "Momentum." A 20-draw streak shouldn't just be a 3x multiplier; it should feel like you have a higher "Resonance" with the pool's randomness.
+- **Tactile Deposits**: Depositing should feel like "Fueling" your luck. The animation isn't just a confirmation; it’s an injection of weight into your specific gravity.
+
+## 3. Syndicate Resonance (Orbital Systems)
+Syndicates are no longer just "folders" of users.
+- **Social Mass**: When a syndicate grows, its collective "Mass" increases. This shouldn't just be a list; it’s a visualization of shared risk and shared reward. 
+- **The Echo Effect**: When one member of a syndicate wins, the "Echo" (shared yield/bonus) ripples through the UI of every other member. It’s a group high, not just a solo win.
+
+## 4. Deterministic Randomness
+Trust is the most expensive commodity in Prize-Savings. 
+- **The Invisible Hand**: The UI should expose the "Seed" of randomness. Before a draw, users should see the entropy building—a visualization of the chaotic variables (block hashes, VRF seeds) coming together to pick a winner.
+- **Verification as Gameplay**: Checking if you won shouldn't be a simple "Yes/No." It should be a revelation of how close the "Path of Randomness" came to your specific ID.
+
+## 5. The "No-Friction" Flow (The Skip Philosophy)
+You recently added the "**Skip**" button and moved the landing screen to "**Home**." This is key.
+- **Passive Wealth**: The app shouldn't demand constant attention. It should be a "Set and Forget" machine that rewards you for just *being there*. 
+- **Instant Gratification vs. Slow Burn**: The UI balances the "Slow Burn" of the 90-day Grand Draw with the "Instant Spike" of daily check-ins and community feed updates.
+
+---
+
+### Technical Goal
+We are building a **High-Fidelity Financial Game**. We use professional-grade backend logic (Supabase/Postgres) and decentralized integrity (Viem/Smart Contracts) but wrap it in an interface that feels like the future of spatial computing.
+
+**Next Step**: Should we start building the **Kinetic Dashboard**—where your balance isn't just a number, but a pulsing visualization of your "Gravity" in the pool?

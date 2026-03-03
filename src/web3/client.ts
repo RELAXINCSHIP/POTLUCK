@@ -3,6 +3,7 @@ import { localhost } from 'viem/chains';
 
 import ERC20Mock from './ERC20MockABI.json';
 import PotluckVault from './PotluckVaultABI.json';
+import PrizePool from './PrizePoolABI.json';
 
 // Use the local hardhat node for testing
 export const chain = localhost;
@@ -32,9 +33,11 @@ export const getWalletClient = async () => {
 export const CONTRACTS = {
     VAULT: import.meta.env.VITE_VAULT_ADDRESS as `0x${string}`,
     USDC: import.meta.env.VITE_MOCK_USDC_ADDRESS as `0x${string}`,
+    PRIZE_POOL: import.meta.env.VITE_PRIZE_POOL_ADDRESS as `0x${string}`,
 };
 
 export const ABIs = {
     VAULT: PotluckVault.abi,
     USDC: ERC20Mock.abi,
+    PRIZE_POOL: PrizePool.abi,
 };

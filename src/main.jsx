@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import LandingPage from './LandingPage'
 import PitchPage from './PitchPage'
+import AdminPage from './AdminPage'
 import './index.css'
 
 function Router() {
@@ -24,6 +25,10 @@ function Router() {
 
     if (route === '#/pitch') {
         return <PitchPage onBack={() => navigate('#/')} />
+    }
+
+    if (route === '#/admin') {
+        return <AdminPage onBack={() => navigate('#/')} />
     }
 
     // Default: landing page
