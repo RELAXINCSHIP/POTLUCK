@@ -10,12 +10,19 @@ const ACCOUNT_ICONS = {
     other: '💰',
 };
 
-const LinkedAccounts = ({ userId, refreshKey }) => {
-    const [accounts, setAccounts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [linked, setLinked] = useState(false);
+const LinkedAccounts = ({ userId, refreshKey, accounts: propAccounts = [] }) => {
+    const [accounts, setAccounts] = useState(propAccounts);
+    const [loading, setLoading] = useState(propAccounts.length === 0);
+    const [linked, setLinked] = useState(propAccounts.length > 0);
 
     useEffect(() => {
+        if (propAccounts.length > 0) {
+            setAccounts(propAccounts);
+            setLinked(true);
+            setLoading(false);
+            return;
+        }
+
         let cancelled = false;
         const fetchAccounts = async () => {
             try {
@@ -33,7 +40,7 @@ const LinkedAccounts = ({ userId, refreshKey }) => {
         };
         fetchAccounts();
         return () => { cancelled = true; };
-    }, [userId, refreshKey]);
+    }, [userId, refreshKey, propAccounts]);
 
     if (loading) {
         return (

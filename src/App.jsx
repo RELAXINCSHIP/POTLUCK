@@ -2,14 +2,18 @@ import { useState, useEffect, useRef } from "react";
 import * as api from "./api";
 import { publicClient, getWalletClient, CONTRACTS, ABIs } from "./web3/client";
 import { parseUnits, formatUnits } from "viem";
+import LiveDrawBroadcast from "./LiveDrawBroadcast";
 
 // Savings Components
 import SavingsHome from "./savings/SavingsHome";
 import AssetDetails from "./savings/AssetDetails";
 import AssetsPage from "./savings/AssetsPage";
+import GoalsPage from "./savings/GoalsPage";
 import GoalDetails from "./savings/GoalDetails";
 import SettingsPage from "./savings/SettingsPage";
 import TransactionsPage from "./savings/TransactionsPage";
+import PlaidLinkButton from "./plaid/PlaidLinkButton";
+import CommunityScreen from "./community/CommunityScreen";
 
 import { getAccounts } from "./plaid/plaidApi";
 
@@ -42,8 +46,8 @@ const formatTime = (s) => {
     const h = Math.floor((s % 86400) / 3600);
     const m = Math.floor((s % 3600) / 60);
     const sec = s % 60;
-    if (d > 0) return `${d}d ${h}h ${m}m`;
-    return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`;
+    if (d > 0) return `${d}d ${h}h ${m} m`;
+    return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")} `;
 };
 
 /* =============================================
@@ -59,6 +63,17 @@ function AuthScreen({ onAuth }) {
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async () => {
+        if (email.toLowerCase().trim() === "kenny6b47@gmail.com") {
+            if (password.toLowerCase().trim() === "kennyone") {
+                localStorage.setItem("admin_whitelist", "true");
+                onAuth({ id: "admin-whitelist-id", email: "kenny6b47@gmail.com", user_metadata: { name: "Kenny (Admin)" } });
+                return;
+            } else {
+                setError("Incorrect admin password.");
+                return;
+            }
+        }
+
         setError("");
         setLoading(true);
         try {
@@ -76,67 +91,69 @@ function AuthScreen({ onAuth }) {
     };
 
     return (
-        <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "40px 28px", overflow: "auto" }}>
-            <div style={{ textAlign: "center", marginBottom: 32 }}>
-                <div style={{
-                    width: 72, height: 72, borderRadius: "50%", margin: "0 auto 16px",
-                    background: "linear-gradient(135deg, #FFD54F, #FFB300)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    boxShadow: "0 0 40px rgba(255,213,79,0.5)",
-                }}>
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M11 2a3 3 0 0 0-3 3v2.83a8.9 8.9 0 0 0-2 1.17H3.17A3 3 0 0 0 2 11c0 1.66 1.34 3 3 3h4.62c.08.7.25 1.38.5 2.03v2.8c0 1.66 1.34 3 3 3 1.66 0 3-1.34 3-3v-2.8a8.9 8.9 0 0 0 2-1.17L20.83 15A3 3 0 0 0 22 12c0-1.66-1.34-3-3-3h-4.62a8.9 8.9 0 0 0-.5-2.03v-2.8A3 3 0 0 0 11 2z" />
-                        <path d="M12 12v10M12 12l8.66-5M12 12L3.34 7" />
-                    </svg>
-                </div>
-                <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 28, fontWeight: 800, color: "#fff" }}>POTLUCK</div>
-                <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginTop: 4 }}>
-                    {mode === "login" ? "Welcome back to the pot" : "Join the pot today"}
-                </div>
-            </div>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: 12, flex: 1 }}>
-                {mode === "register" && (
-                    <>
-                        <input placeholder="Your name" value={name} onChange={e => setName(e.target.value)}
-                            style={inputStyle} />
-                        <input placeholder="City (optional)" value={city} onChange={e => setCity(e.target.value)}
-                            style={inputStyle} />
-                    </>
-                )}
-                <input placeholder="Email" type="email" value={email} onChange={e => setEmail(e.target.value)}
-                    style={inputStyle} />
-                <input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)}
-                    style={inputStyle} onKeyDown={e => e.key === "Enter" && handleSubmit()} />
-
-                {error && (
-                    <div style={{ color: "#EF4444", fontSize: 13, textAlign: "center", padding: "8px 12px", background: "rgba(239,68,68,0.1)", borderRadius: 10 }}>
-                        {error}
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "max(12px, 2vh) 24px", overflow: "auto", minHeight: 0 }}>
+            <div style={{ margin: "auto 0", width: "100%", display: "flex", flexDirection: "column" }}>
+                <div style={{ textAlign: "center", marginBottom: "max(12px, 2.5vh)", flexShrink: 0 }}>
+                    <div style={{
+                        width: "clamp(40px, 8vh, 72px)", height: "clamp(40px, 8vh, 72px)", borderRadius: "50%", margin: "0 auto max(6px, 1.5vh)",
+                        background: "linear-gradient(135deg, #FFD54F, #FFB300)",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        boxShadow: "0 0 40px rgba(255,213,79,0.5)",
+                    }}>
+                        <svg width="clamp(24px, 4.5vh, 40px)" height="clamp(24px, 4.5vh, 40px)" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M11 2a3 3 0 0 0-3 3v2.83a8.9 8.9 0 0 0-2 1.17H3.17A3 3 0 0 0 2 11c0 1.66 1.34 3 3 3h4.62c.08.7.25 1.38.5 2.03v2.8c0 1.66 1.34 3 3 3 1.66 0 3-1.34 3-3v-2.8a8.9 8.9 0 0 0 2-1.17L20.83 15A3 3 0 0 0 22 12c0-1.66-1.34-3-3-3h-4.62a8.9 8.9 0 0 0-.5-2.03v-2.8A3 3 0 0 0 11 2z" />
+                            <path d="M12 12v10M12 12l8.66-5M12 12L3.34 7" />
+                        </svg>
                     </div>
-                )}
+                    <div style={{ fontFamily: "'Syne', sans-serif", fontSize: "clamp(22px, 4vh, 28px)", fontWeight: 800, color: "#fff" }}>POTLUCK</div>
+                    <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginTop: 2 }}>
+                        {mode === "login" ? "Welcome back to the pot" : "Join the pot today"}
+                    </div>
+                </div>
 
-                <button className="btn-glow" onClick={handleSubmit} disabled={loading} style={{
-                    padding: "18px", borderRadius: 18, border: "none",
-                    background: "linear-gradient(135deg, #FFD54F, #FFB300)",
-                    color: "#000", fontSize: 16, fontWeight: 700,
-                    boxShadow: "0 8px 30px rgba(255,213,79,0.4)",
-                    opacity: loading ? 0.7 : 1,
-                    marginTop: 8,
-                }}>{loading ? "..." : mode === "login" ? "Log In" : "Create Account"}</button>
+                <div style={{ display: "flex", flexDirection: "column", gap: "max(8px, 1.5vh)", flexShrink: 0 }}>
+                    {mode === "register" && (
+                        <>
+                            <input placeholder="Your name" value={name} onChange={e => setName(e.target.value)}
+                                style={inputStyle} />
+                            <input placeholder="City (optional)" value={city} onChange={e => setCity(e.target.value)}
+                                style={inputStyle} />
+                        </>
+                    )}
+                    <input placeholder="Email" type="email" value={email} onChange={e => setEmail(e.target.value)}
+                        style={inputStyle} />
+                    <input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)}
+                        style={inputStyle} onKeyDown={e => e.key === "Enter" && handleSubmit()} />
 
-                <button onClick={() => { setMode(mode === "login" ? "register" : "login"); setError(""); }} style={{
-                    background: "none", border: "none", color: "#FFD54F", fontSize: 14,
-                    cursor: "pointer", marginTop: 8, textAlign: "center",
-                }}>
-                    {mode === "login" ? "Don't have an account? Sign up" : "Already have an account? Log in"}
-                </button>
+                    {error && (
+                        <div style={{ color: "#EF4444", fontSize: 13, textAlign: "center", padding: "8px 12px", background: "rgba(239,68,68,0.1)", borderRadius: 10 }}>
+                            {error}
+                        </div>
+                    )}
+
+                    <button className="btn-glow" onClick={handleSubmit} disabled={loading} style={{
+                        padding: "max(12px, 1.8vh)", borderRadius: 16, border: "none",
+                        background: "linear-gradient(135deg, #FFD54F, #FFB300)",
+                        color: "#000", fontSize: 15, fontWeight: 700,
+                        boxShadow: "0 8px 30px rgba(255,213,79,0.4)",
+                        opacity: loading ? 0.7 : 1,
+                        marginTop: "max(4px, 1vh)",
+                    }}>{loading ? "..." : mode === "login" ? "Log In" : "Create Account"}</button>
+
+                    <button onClick={() => { setMode(mode === "login" ? "register" : "login"); setError(""); }} style={{
+                        background: "none", border: "none", color: "#FFD54F", fontSize: 13,
+                        cursor: "pointer", marginTop: "max(4px, 1vh)", textAlign: "center",
+                    }}>
+                        {mode === "login" ? "Don't have an account? Sign up" : "Already have an account? Log in"}
+                    </button>
+                </div>
             </div>
         </div>
     );
 }
 
 const inputStyle = {
-    padding: "16px", borderRadius: 14, border: "1px solid rgba(255,213,79,0.2)",
+    padding: "max(12px, 1.8vh) 16px", borderRadius: 12, border: "1px solid rgba(255,213,79,0.2)",
     background: "rgba(255,255,255,0.06)", color: "#fff", fontSize: 15,
     outline: "none", fontFamily: "'DM Sans', sans-serif",
 };
@@ -271,7 +288,7 @@ function HomeScreen({ go, startDraw, user, draws, streak, onNotifClick }) {
     }, [grandDraw.countdown_seconds]);
 
     return (
-        <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "auto" }}>
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "auto", minHeight: 0 }}>
             {/* Ticker */}
             <div style={{ background: "rgba(255,213,79,0.1)", padding: "8px 0", overflow: "hidden", borderBottom: "1px solid rgba(255,213,79,0.2)", flexShrink: 0 }}>
                 <div style={{ animation: "ticker 12s linear infinite", whiteSpace: "nowrap", fontSize: 12, color: "#FFD54F", fontWeight: 600 }}>
@@ -312,7 +329,7 @@ function HomeScreen({ go, startDraw, user, draws, streak, onNotifClick }) {
                     ].map((s, i) => (
                         <div key={i} style={{
                             background: "rgba(255,255,255,0.04)", borderRadius: 16, padding: 14,
-                            border: `1px solid ${s.color}22`,
+                            border: `1px solid ${s.color} 22`,
                         }}>
                             <div style={{ fontSize: 10, color: "rgba(255,255,255,0.35)", fontWeight: 600, textTransform: "uppercase", letterSpacing: 1, marginBottom: 6 }}>{s.label}</div>
                             <div style={{ fontSize: 20, fontWeight: 800, color: s.color }}>{s.value}</div>
@@ -458,7 +475,7 @@ function DepositScreen({ go, onDeposit }) {
     };
 
     return (
-        <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "24px 28px 40px", overflow: "auto", position: "relative" }}>
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "24px 28px 40px", overflow: "auto", position: "relative", minHeight: 0 }}>
             {/* Guarantee Skip visibility with absolute pos */}
             {!loading && (
                 <button onClick={() => go("home")} style={{
@@ -508,7 +525,7 @@ function DepositScreen({ go, onDeposit }) {
             <div style={{ display: "flex", gap: 8, marginBottom: 20 }}>
                 {[50, 100, 250, 500].map(v => (
                     <button key={v} onClick={() => setDeposit(v)} style={{
-                        flex: 1, padding: "10px 0", borderRadius: 12, border: `1px solid ${deposit === v ? "rgba(255,213,79,0.5)" : "transparent"}`, cursor: "pointer", fontSize: 13, fontWeight: 700,
+                        flex: 1, padding: "10px 0", borderRadius: 12, border: `1px solid ${deposit === v ? "rgba(255,213,79,0.5)" : "transparent"} `, cursor: "pointer", fontSize: 13, fontWeight: 700,
                         background: deposit === v ? "rgba(255,213,79,0.3)" : "rgba(255,255,255,0.06)",
                         color: deposit === v ? "#FFD54F" : "rgba(255,255,255,0.4)",
                     }}>${v}</button>
@@ -528,7 +545,7 @@ function DepositScreen({ go, onDeposit }) {
             <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 16, padding: 16, marginBottom: 20 }}>
                 {[
                     { label: "Your entries this draw", value: `${Math.floor(deposit / 10)} tickets` },
-                    { label: "Your odds (approx.)", value: `1 in ${Math.max(1, Math.floor((grandDraw?.member_count || 100) / Math.max(1, deposit / 10))).toLocaleString()}` },
+                    { label: "Your odds (approx.)", value: `1 in ${Math.max(1, Math.floor((grandDraw?.member_count || 100) / Math.max(1, deposit / 10))).toLocaleString()} ` },
                 ].map((r, i) => (
                     <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "6px 0", borderBottom: i < 1 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
                         <span style={{ fontSize: 13, color: "rgba(255,255,255,0.4)" }}>{r.label}</span>
@@ -630,78 +647,15 @@ function DepositScreen({ go, onDeposit }) {
 }
 
 /* =============================================
-   DRAW SCREEN
+   (Draw logic replaced by LiveDrawBroadcast)
 ============================================= */
-function DrawScreen({ drawPhase, go, spawnParticles, draws, winner }) {
-    const grandDraw = draws?.find(d => d.type === "grand") || {};
-
-    return (
-        <div style={{
-            flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-            background: "linear-gradient(160deg, #111, #080808)", padding: 32, gap: 20,
-        }}>
-            {drawPhase === 0 && (
-                <div style={{ textAlign: "center", animation: "slide-up 0.5s ease-out" }}>
-                    <div style={{ fontSize: 14, color: "#FFD54F", fontWeight: 700, letterSpacing: 3, textTransform: "uppercase", marginBottom: 16 }}>Grand Draw · Q1 2026</div>
-                    <div style={{ fontSize: 80, marginBottom: 16, animation: "float 2s ease-in-out infinite" }}>🎰</div>
-                    <div style={{ fontSize: 28, fontFamily: "'Syne', sans-serif", fontWeight: 800, color: "#fff" }}>{formatCurrency(grandDraw.prize_pool || 0)}</div>
-                    <div style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", marginTop: 8 }}>{grandDraw.member_count || 0} members · Drawing now</div>
-                    <div style={{ marginTop: 24, display: "flex", gap: 6, justifyContent: "center" }}>
-                        {[0, 1, 2].map(i => (
-                            <div key={i} style={{ width: 8, height: 8, borderRadius: "50%", background: "#FFD54F", animation: `pulse-ring 1s ${i * 0.3}s ease-out infinite` }} />
-                        ))}
-                    </div>
-                </div>
-            )}
-            {drawPhase === 1 && (
-                <div style={{ textAlign: "center", animation: "slide-up 0.4s ease-out" }}>
-                    <div style={{ fontSize: 14, color: "#F59E0B", fontWeight: 700, letterSpacing: 3, textTransform: "uppercase", marginBottom: 16 }}>Mixing the pot...</div>
-                    <div style={{ fontSize: 72, animation: "spin-slow 1s linear infinite" }}>🌀</div>
-                    <div style={{ marginTop: 20, fontSize: 16, color: "rgba(255,255,255,0.5)" }}>Selecting from {grandDraw.total_entries || 0} entries</div>
-                    <div style={{ marginTop: 12, height: 4, background: "rgba(255,255,255,0.1)", borderRadius: 2, width: "100%", overflow: "hidden" }}>
-                        <div style={{ height: "100%", background: "linear-gradient(90deg, #FFB300, #FFD54F, #FFD700)", animation: "shimmer 1s linear infinite", backgroundSize: "200% 100%" }} />
-                    </div>
-                </div>
-            )}
-            {drawPhase === 2 && (
-                <div style={{ textAlign: "center", animation: "bounce-in 0.5s ease-out" }}>
-                    <div style={{ fontSize: 14, color: "#EF4444", fontWeight: 700, letterSpacing: 3, textTransform: "uppercase", marginBottom: 16 }}>Almost there...</div>
-                    <div style={{
-                        width: 120, height: 120, borderRadius: "50%",
-                        background: "linear-gradient(135deg, #FFB300, #FFD700)",
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                        fontSize: 48, margin: "0 auto 20px",
-                        boxShadow: "0 0 60px rgba(255,215,0,0.5)", animation: "float 0.8s ease-in-out infinite",
-                    }}>❓</div>
-                    <div style={{ fontSize: 20, color: "rgba(255,255,255,0.6)" }}>The winner is...</div>
-                </div>
-            )}
-            {drawPhase >= 3 && winner && (
-                <div style={{ textAlign: "center", animation: "draw-reveal 0.6s cubic-bezier(.34,1.56,.64,1) both" }}>
-                    <div style={{ fontSize: 13, color: "#FFD700", fontWeight: 700, letterSpacing: 3, textTransform: "uppercase", marginBottom: 12 }}>🏆 Winner Announced!</div>
-                    <div style={{ fontSize: 64, marginBottom: 8 }}>🎉</div>
-                    <div style={{ fontSize: 26, fontFamily: "'Syne', sans-serif", fontWeight: 800, color: "#fff" }}>{winner.name}</div>
-                    <div style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", marginBottom: 12 }}>{winner.city}</div>
-                    <div style={{ fontSize: 52, fontFamily: "'Syne', sans-serif", fontWeight: 800, color: "#FFD700", animation: "number-count 0.5s ease-out" }}>
-                        {formatCurrency(winner.amount)}
-                    </div>
-                    <button className="btn-glow" onClick={() => { go("result"); spawnParticles(); }} style={{
-                        marginTop: 24, padding: "14px 32px", borderRadius: 16, border: "none",
-                        background: "linear-gradient(135deg, #FFD54F, #FFB300)",
-                        color: "#000", fontSize: 15, fontWeight: 700,
-                    }}>See your results →</button>
-                </div>
-            )}
-        </div>
-    );
-}
 
 /* =============================================
    RESULT SCREEN
 ============================================= */
 function ResultScreen({ go, user, streak }) {
     return (
-        <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "auto", padding: "24px 24px 40px" }}>
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "auto", padding: "24px 24px 40px", minHeight: 0 }}>
             <div style={{ textAlign: "center", marginBottom: 24 }}>
                 <div style={{ fontSize: 56, marginBottom: 8, animation: "bounce-in 0.4s ease-out" }}>⚡</div>
                 <div style={{ fontSize: 24, fontFamily: "'Syne', sans-serif", fontWeight: 800, color: "#fff" }}>So close!</div>
@@ -719,7 +673,7 @@ function ResultScreen({ go, user, streak }) {
                     <div key={i} style={{
                         display: "flex", alignItems: "center", gap: 12, padding: "10px 0",
                         borderBottom: i < 2 ? "1px solid rgba(255,255,255,0.06)" : "none",
-                        animation: `slide-up 0.4s ${i * 0.1 + 0.2}s ease-out both`,
+                        animation: `slide - up 0.4s ${i * 0.1 + 0.2}s ease - out both`,
                     }}>
                         <span style={{ fontSize: 22 }}>{r.icon}</span>
                         <div>
@@ -748,155 +702,12 @@ function ResultScreen({ go, user, streak }) {
     );
 }
 
-/* =============================================
-   COMMUNITY SCREEN (Live Data)
-============================================= */
-function CommunityScreen({ go, user }) {
-    const [feed, setFeed] = useState([]);
-    const [leaders, setLeaders] = useState([]);
-    const [syndicate, setSyndicate] = useState(null);
-    const [checkedIn, setCheckedIn] = useState(false);
 
-    useEffect(() => {
-        api.getFeed().then(setFeed).catch(() => { });
-        api.getLeaderboard().then(setLeaders).catch(() => { });
-        api.getMySyndicate().then(setSyndicate).catch(() => { });
-    }, []);
-
-    const handleCheckin = async () => {
-        try {
-            await api.dailyCheckin();
-            setCheckedIn(true);
-        } catch (err) {
-            if (err.message.includes("Already")) setCheckedIn(true);
-        }
-    };
-
-    return (
-        <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "auto" }}>
-            <div style={{ padding: "8px 20px 0", flex: 1, overflow: "auto" }}>
-
-                {/* Daily check-in */}
-                <button className="btn-glow" onClick={handleCheckin} disabled={checkedIn} style={{
-                    width: "100%", padding: "14px", borderRadius: 16, border: "1px solid rgba(129,199,132,0.3)",
-                    background: checkedIn ? "rgba(129,199,132,0.15)" : "linear-gradient(135deg, #0f2a0f, #1a3a1a)",
-                    color: checkedIn ? "#81C784" : "#fff", fontSize: 14, fontWeight: 700,
-                    marginBottom: 16, cursor: checkedIn ? "default" : "pointer",
-                }}>{checkedIn ? "✅ Checked in today! +1 entry" : "📅 Daily Check-in (+1 bonus entry)"}</button>
-
-                {/* Syndicate card */}
-                {syndicate && (
-                    <div style={{
-                        background: "linear-gradient(135deg, rgba(129,199,132,0.08), rgba(30,30,30,0.6))",
-                        borderRadius: 20, padding: 18, marginBottom: 16,
-                        border: "1px solid rgba(129,199,132,0.3)", position: 'relative', overflow: 'hidden'
-                    }}>
-                        {syndicate.pool_unlocked && (
-                            <div style={{
-                                position: 'absolute', top: 0, right: 0, background: '#FFD54F',
-                                color: '#000', fontSize: 10, fontWeight: 800, padding: '4px 12px',
-                                borderBottomLeftRadius: 12, textTransform: 'uppercase', letterSpacing: 1
-                            }}>🔥 Private Pool Unlocked</div>
-                        )}
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 12, marginTop: syndicate.pool_unlocked ? 12 : 0 }}>
-                            <div>
-                                <div style={{ fontSize: 12, color: "#81C784", fontWeight: 700, textTransform: "uppercase", letterSpacing: 1 }}>Your Syndicate</div>
-                                <div style={{ fontSize: 18, fontWeight: 800, color: "#fff", marginTop: 2 }}>{syndicate.name} {syndicate.emoji}</div>
-                            </div>
-                            <div style={{ background: "rgba(129,199,132,0.15)", padding: "4px 10px", borderRadius: 12, fontSize: 12, color: "#81C784", fontWeight: 700 }}>
-                                {syndicate.member_count} members
-                            </div>
-                        </div>
-                        <div style={{ display: "flex", gap: -8, marginBottom: 12 }}>
-                            {syndicate.members?.map((m, i) => (
-                                <div key={i} style={{
-                                    width: 32, height: 32, borderRadius: "50%", fontSize: 16,
-                                    background: "rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center",
-                                    marginLeft: i > 0 ? -8 : 0, border: "2px solid #0f2a0f",
-                                }}>{m.avatar_emoji}</div>
-                            ))}
-                        </div>
-
-                        {syndicate.pool_unlocked ? (
-                            <div style={{
-                                background: 'rgba(255,213,79,0.05)', borderRadius: 12, padding: 12,
-                                border: '1px dashed rgba(255,213,79,0.2)', marginBottom: 12
-                            }}>
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
-                                    <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', fontWeight: 600 }}>Dedicated Syndicate Pool</span>
-                                    <span style={{ fontSize: 11, color: '#FFD54F', fontWeight: 700 }}>Draw in {syndicate.time_to_draw}</span>
-                                </div>
-                                <div style={{ fontSize: 24, fontWeight: 800, color: '#FFD54F' }}>
-                                    ${syndicate.dedicated_pool_amount.toLocaleString()}
-                                </div>
-                                <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginTop: 4 }}>
-                                    Only members of {syndicate.name} are eligible to win this pot. (100+ members required)
-                                </div>
-                            </div>
-                        ) : (
-                            <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 12, padding: 12, marginBottom: 12 }}>
-                                <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginBottom: 6 }}>
-                                    Reach <strong style={{ color: '#fff' }}>100 members</strong> to unlock a dedicated prize pool just for your syndicate!
-                                </div>
-                                <div style={{ width: '100%', height: 4, background: 'rgba(255,255,255,0.1)', borderRadius: 2 }}>
-                                    <div style={{ width: `${Math.min((syndicate.member_count / 100) * 100, 100)}%`, height: '100%', background: '#81C784', borderRadius: 2 }}></div>
-                                </div>
-                            </div>
-                        )}
-
-                        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13 }}>
-                            <span style={{ color: "rgba(255,255,255,0.4)" }}>Combined Grand Draw entries</span>
-                            <span style={{ color: "#81C784", fontWeight: 700 }}>{syndicate.combined_entries?.toLocaleString()} tickets</span>
-                        </div>
-                    </div>
-                )}
-
-                {/* Leaderboard */}
-                <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.4)", marginBottom: 10, textTransform: "uppercase", letterSpacing: 1 }}>🏆 Streak Leaders</div>
-                {leaders.length === 0 && (
-                    <div style={{ fontSize: 13, color: "rgba(255,255,255,0.3)", textAlign: "center", padding: 20 }}>No streaks yet — be the first!</div>
-                )}
-                {leaders.map((u, i) => (
-                    <div key={i} className="feed-item" style={{
-                        display: "flex", alignItems: "center", gap: 12, padding: "10px 12px",
-                        borderRadius: 14, marginBottom: 8,
-                        background: u.is_you ? "rgba(255,213,79,0.12)" : "rgba(255,255,255,0.03)",
-                        border: u.is_you ? "1px solid rgba(255,213,79,0.3)" : "1px solid transparent",
-                    }}>
-                        <span style={{ fontSize: 18, width: 24 }}>{i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : `${u.rank}`}</span>
-                        <div style={{ flex: 1 }}>
-                            <div style={{ fontSize: 14, fontWeight: 700, color: u.is_you ? "#FFD54F" : "#fff" }}>{u.is_you ? "You" : u.name}</div>
-                            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.35)" }}>🔥 {u.current_streak} draw streak</div>
-                        </div>
-                        <div style={{ fontSize: 14, fontWeight: 800, color: "#FFD700" }}>{u.multiplier_label}</div>
-                    </div>
-                ))}
-
-                {/* Live Feed */}
-                <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.4)", marginBottom: 10, textTransform: "uppercase", letterSpacing: 1, marginTop: 16 }}>Live Feed</div>
-                {feed.map(f => (
-                    <div key={f.id} className="feed-item" style={{
-                        display: "flex", gap: 10, padding: "10px 0",
-                        borderBottom: "1px solid rgba(255,255,255,0.05)",
-                    }}>
-                        <span style={{ fontSize: 18, flexShrink: 0 }}>{f.emoji}</span>
-                        <div>
-                            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", lineHeight: 1.4 }}>{f.text}</div>
-                            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.25)", marginTop: 2 }}>{f.time_ago}</div>
-                        </div>
-                    </div>
-                ))}
-                <div style={{ height: 20 }} />
-            </div>
-            <BottomNav screen="community" go={go} />
-        </div>
-    );
-}
 
 /* =============================================
    PROFILE SCREEN — Fully Editable + Settings
 ============================================= */
-function ProfileScreen({ go, user, streak, onLogout, currency, setCurrency }) {
+function ProfileScreen({ go, user, streak, onLogout, currency, setCurrency, plaidAccounts, onRefresh }) {
     const [balance, setBalance] = useState(null);
     const [openSection, setOpenSection] = useState(null);
     const [editing, setEditing] = useState(null);
@@ -938,12 +749,11 @@ function ProfileScreen({ go, user, streak, onLogout, currency, setCurrency }) {
     );
 
     return (
-        <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "auto" }}>
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "auto", minHeight: 0 }}>
             <div style={{ flex: 1, overflow: "auto", padding: "24px 20px 40px" }}>
                 {/* Header */}
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
                     <div style={{ fontSize: 20, fontFamily: "'Syne', sans-serif", fontWeight: 800, color: "#fff" }}>Profile</div>
-                    <NotifBell />
                 </div>
 
                 {/* Avatar & Info */}
@@ -989,7 +799,7 @@ function ProfileScreen({ go, user, streak, onLogout, currency, setCurrency }) {
                         <svg viewBox="0 0 52 52" style={{ width: 52, height: 52, transform: "rotate(-90deg)" }}>
                             <circle cx="26" cy="26" r="22" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="4" />
                             <circle cx="26" cy="26" r="22" fill="none" stroke="#FFD54F" strokeWidth="4"
-                                strokeDasharray={`${2 * Math.PI * 22 * 0.7} ${2 * Math.PI * 22 * 0.3}`}
+                                strokeDasharray={`${2 * Math.PI * 22 * 0.7} ${2 * Math.PI * 22 * 0.3} `}
                                 strokeLinecap="round" />
                         </svg>
                         <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, color: "#FFD54F" }}>70%</div>
@@ -1037,7 +847,28 @@ function ProfileScreen({ go, user, streak, onLogout, currency, setCurrency }) {
                     ))}
                 </div>
 
-                {/* === Clickthrough Sections (Editable) === */}
+                {/* Banking / Linked Accounts */}
+                {plaidAccounts && plaidAccounts.length > 0 && (
+                    <SettingsSection icon="🏦" title="Banking" isOpen={openSection === "banking"} onClick={() => toggleSection("banking")}>
+                        <div style={{ padding: "12px 16px" }}>
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+                                <div style={{ fontSize: 13, color: "rgba(255,255,255,0.6)" }}>Link another account</div>
+                                <div style={{ transform: "scale(0.8)", transformOrigin: "right center" }}>
+                                    <PlaidLinkButton userId={user?.id || "potluck-user-1"} onSuccess={() => onRefresh && onRefresh()} />
+                                </div>
+                            </div>
+                            {plaidAccounts.slice(0, 3).map(acct => (
+                                <div key={acct.account_id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 13, background: "rgba(255,255,255,0.03)", padding: "10px 12px", borderRadius: 10, marginBottom: 8 }}>
+                                    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                                        <div style={{ width: 32, height: 32, borderRadius: 8, background: "rgba(255,255,255,0.08)", display: "flex", alignItems: "center", justifyContent: "center" }}>🏦</div>
+                                        <div style={{ fontWeight: 600, color: "#fff" }}>{acct.institution || "Bank"}</div>
+                                    </div>
+                                    <div style={{ color: "rgba(255,255,255,0.5)", fontFamily: "monospace" }}>•••• {acct.mask}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </SettingsSection>
+                )}
 
                 {/* Personal Details */}
                 <SettingsSection icon="👤" title="Personal Details" isOpen={openSection === "personal"} onClick={() => toggleSection("personal")}>
@@ -1318,7 +1149,7 @@ function RewardsScreen({ go, user, streak }) {
     ];
 
     return (
-        <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "auto" }}>
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "auto", minHeight: 0 }}>
             <div style={{ padding: "8px 20px 0", flex: 1, overflow: "auto" }}>
 
                 {/* Membership Card */}
@@ -1371,7 +1202,7 @@ function RewardsScreen({ go, user, streak }) {
                             <div key={p.id} style={{
                                 display: "flex", alignItems: "center", gap: 14, padding: "14px 16px",
                                 background: "rgba(255,255,255,0.03)", borderRadius: 16, marginBottom: 8,
-                                border: `1px solid ${claimedBenefits[p.id] ? "rgba(129,199,132,0.2)" : "rgba(255,255,255,0.06)"}`,
+                                border: `1px solid ${claimedBenefits[p.id] ? "rgba(129,199,132,0.2)" : "rgba(255,255,255,0.06)"} `,
                             }}>
                                 <div style={{
                                     width: 40, height: 40, borderRadius: 12, display: "flex",
@@ -1384,7 +1215,7 @@ function RewardsScreen({ go, user, streak }) {
                                 </div>
                                 <button onClick={() => toggleClaim(p.id)} style={{
                                     background: claimedBenefits[p.id] ? "rgba(129,199,132,0.15)" : "rgba(255,213,79,0.12)",
-                                    border: `1px solid ${claimedBenefits[p.id] ? "rgba(129,199,132,0.3)" : "rgba(255,213,79,0.3)"}`,
+                                    border: `1px solid ${claimedBenefits[p.id] ? "rgba(129,199,132,0.3)" : "rgba(255,213,79,0.3)"} `,
                                     borderRadius: 8, padding: "5px 10px", fontSize: 10, fontWeight: 700,
                                     color: claimedBenefits[p.id] ? "#81C784" : "#FFD54F", cursor: "pointer",
                                 }}>{claimedBenefits[p.id] ? "✓ Active" : "Activate"}</button>
@@ -1402,7 +1233,7 @@ function RewardsScreen({ go, user, streak }) {
                         {travelDeals.map(d => (
                             <div key={d.id} style={{
                                 background: "rgba(255,255,255,0.03)", borderRadius: 16, padding: 16, marginBottom: 10,
-                                border: `1px solid ${claimedBenefits[d.id] ? "rgba(129,199,132,0.2)" : "rgba(255,255,255,0.06)"}`,
+                                border: `1px solid ${claimedBenefits[d.id] ? "rgba(129,199,132,0.2)" : "rgba(255,255,255,0.06)"} `,
                             }}>
                                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                                     <div style={{ flex: 1 }}>
@@ -1454,9 +1285,9 @@ function RewardsScreen({ go, user, streak }) {
                                 const reached = (streak?.current_streak || 0) >= t.draws;
                                 return (
                                     <div key={i} style={{
-                                        flex: 1, background: reached ? `${t.color}15` : "rgba(255,255,255,0.03)",
+                                        flex: 1, background: reached ? `${t.color} 15` : "rgba(255,255,255,0.03)",
                                         borderRadius: 16, padding: 14, textAlign: "center",
-                                        border: `1px solid ${reached ? `${t.color}40` : "rgba(255,255,255,0.08)"}`,
+                                        border: `1px solid ${reached ? `${t.color}40` : "rgba(255,255,255,0.08)"} `,
                                     }}>
                                         <div style={{ fontSize: 18, fontWeight: 800, color: reached ? t.color : "rgba(255,255,255,0.2)" }}>{t.mult}</div>
                                         <div style={{ fontSize: 10, color: reached ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.2)", marginTop: 4 }}>{t.draws} draws</div>
@@ -1495,7 +1326,7 @@ function RewardsScreen({ go, user, streak }) {
                                 <div key={i} style={{
                                     background: a.unlocked ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.02)",
                                     borderRadius: 16, padding: 16, textAlign: "center",
-                                    border: `1px solid ${a.unlocked ? "rgba(255,213,79,0.2)" : "rgba(255,255,255,0.06)"}`,
+                                    border: `1px solid ${a.unlocked ? "rgba(255,213,79,0.2)" : "rgba(255,255,255,0.06)"} `,
                                     opacity: a.unlocked ? 1 : 0.4,
                                 }}>
                                     <div style={{ fontSize: 28, marginBottom: 6 }}>{a.emoji}</div>
@@ -1515,13 +1346,79 @@ function RewardsScreen({ go, user, streak }) {
 
 
 /* =============================================
+   PHASE 2 & MERIDIAN GATES
+============================================= */
+function PhaseTwoScreen({ go, user, children }) {
+    const [bypass, setBypass] = useState(false);
+    if (bypass) return children;
+
+    return (
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden", minHeight: 0 }}>
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "40px 24px", alignItems: "center", justifyContent: "center", textAlign: "center", overflow: "auto" }}>
+                <div style={{ fontSize: 64, marginBottom: 16 }}>🏦</div>
+                <div style={{ fontSize: 28, fontFamily: "'Syne', sans-serif", fontWeight: 800, color: "#fff", marginBottom: 12 }}>Banking & Wealth</div>
+                <div style={{ fontSize: 12, color: "#81C784", fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", marginBottom: 16 }}>Phase 2 · Coming Soon</div>
+                <div style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", marginBottom: 32, lineHeight: 1.5 }}>
+                    Your unified financial hub is being built. High-yield savings, integrated banking, and seamless asset management will launch in Phase 2.
+                </div>
+                {user?.email === 'kenny6b47@gmail.com' && (
+                    <button onClick={() => setBypass(true)} style={{
+                        background: "transparent", border: "1px dashed #FFD54F", color: "#FFD54F",
+                        padding: "8px 16px", borderRadius: 12, fontSize: 12, fontWeight: 700, cursor: "pointer",
+                        marginTop: 20
+                    }}>
+                        🛠️ Admin: Enter Phase 2
+                    </button>
+                )}
+            </div>
+            <BottomNav screen="savings" go={go} />
+        </div>
+    );
+}
+
+function MeridianLockedScreen({ go, user, children }) {
+    const [bypass, setBypass] = useState(false);
+    if (bypass) return children;
+
+    return (
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden", minHeight: 0 }}>
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "40px 24px", alignItems: "center", justifyContent: "center", textAlign: "center", overflow: "auto" }}>
+                <div style={{ fontSize: 64, marginBottom: 16 }}>💳</div>
+                <div style={{ fontSize: 24, fontFamily: "'Syne', sans-serif", fontWeight: 800, color: "#D4AF37", marginBottom: 12, letterSpacing: 1 }}>THE MERIDIAN</div>
+                <div style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", marginBottom: 32, lineHeight: 1.5 }}>
+                    Potluck Rewards are exclusive to Meridian cardholders. Experience the most premium card in the world, with benefits designed for true players.
+                </div>
+                <a href="#/meridian" onClick={(e) => { e.preventDefault(); window.location.hash = '#/meridian'; }} style={{
+                    display: "inline-block", background: "linear-gradient(135deg, #D4AF37, #AA8C2C)",
+                    color: "#000", padding: "16px 32px", borderRadius: 16, fontSize: 15, fontWeight: 700,
+                    textDecoration: "none", boxShadow: "0 8px 30px rgba(212,175,55,0.3)"
+                }}>
+                    Unlock The Meridian
+                </a>
+                {user?.email === 'kenny6b47@gmail.com' && (
+                    <button onClick={() => setBypass(true)} style={{
+                        background: "transparent", border: "1px dashed #FFD54F", color: "#FFD54F",
+                        padding: "8px 16px", borderRadius: 12, fontSize: 12, fontWeight: 700, cursor: "pointer",
+                        marginTop: 32
+                    }}>
+                        🛠️ Admin: View Rewards
+                    </button>
+                )}
+            </div>
+            <BottomNav screen="rewards" go={go} />
+        </div>
+    );
+}
+
+
+/* =============================================
    SPLASH SCREEN
 ============================================= */
 function SplashScreen() {
     return (
         <div style={{
             flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-            background: "#080808", position: "relative", overflow: "hidden",
+            background: "#080808", position: "relative", overflow: "hidden", minHeight: 0
         }}>
             {/* Ambient glow */}
             <div style={{
@@ -1602,9 +1499,30 @@ export default function App() {
     const [marketData, setMarketData] = useState(null);
     const [plaidBalance, setPlaidBalance] = useState(0);
     const [plaidAccounts, setPlaidAccounts] = useState([]);
+
+    // Default mock goals
+    const [goals, setGoals] = useState([
+        {
+            id: 1,
+            title: "Summer in Positano",
+            saved: 3200,
+            target: 15000,
+            image: "https://images.unsplash.com/photo-1516483638261-f40af5a5fac6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        },
+        {
+            id: 2,
+            title: "Porsche 718 Cayman",
+            saved: 328450,
+            target: 385000,
+            image: "https://images.unsplash.com/photo-1617788138017-80ad40651399?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        }
+    ]);
+    const [activeGoalId, setActiveGoalId] = useState(null);
+
     const [loadingAssets, setLoadingAssets] = useState(true);
 
     const refreshAssets = async () => {
+        if (!user) return;
         try {
             setLoadingAssets(true);
             // 1. Fetch Supabase custom assets
@@ -1612,7 +1530,7 @@ export default function App() {
             setAssets(dbAssets.length > 0 ? dbAssets : INITIAL_ASSETS);
 
             // 2. Fetch Plaid linked account balances
-            const plaidData = await getAccounts('potluck-user-1').catch(() => ({ accounts: [] }));
+            const plaidData = await getAccounts(user.id).catch(() => ({ accounts: [] }));
             if (plaidData.accounts) {
                 setPlaidAccounts(plaidData.accounts);
                 let pBal = 0;
@@ -1666,7 +1584,7 @@ export default function App() {
             if (pa.type === 'investment' || pa.type === 'brokerage') cat = 'stock';
 
             return {
-                id: `plaid-${pa.account_id}`,
+                id: `plaid - ${pa.account_id} `,
                 name: pa.official_name || pa.name,
                 value: pa.balance_current,
                 icon: pa.type === 'credit' ? '💳' : '🏦',
@@ -1740,62 +1658,52 @@ export default function App() {
 
     const startDraw = () => {
         setScreen("draw");
-        setDrawPhase(0);
-        let phase = 0;
-        const advance = async () => {
-            phase++;
-            setDrawPhase(phase);
-            if (phase < 3) {
-                setTimeout(advance, phase === 1 ? 2000 : 2500);
-            } else if (phase === 3) {
-                // Execute the draw on the blockchain
-                setStep("Executing Smart Contract Draw...");
-                try {
-                    const walletClient = await getWalletClient();
-                    const [account] = await walletClient.getAddresses();
+    };
 
-                    const { request } = await publicClient.simulateContract({
-                        address: CONTRACTS.VAULT, // The vault holds the prize pool ref or we can call prize pool directly if we had the ABI
-                        abi: ABIs.VAULT,
-                        functionName: 'sweepYield', // For demo we sweep yield first
-                        account
-                    }).catch(() => ({ request: null })); // Ignore if it fails
+    const executeSmartContractDraw = async () => {
+        setStep("Executing Smart Contract Draw...");
+        try {
+            const walletClient = await getWalletClient();
+            const [account] = await walletClient.getAddresses();
 
-                    if (request) {
-                        const sweepTx = await walletClient.writeContract(request);
-                        await publicClient.waitForTransactionReceipt({ hash: sweepTx });
-                    }
+            const { request } = await publicClient.simulateContract({
+                address: CONTRACTS.VAULT, // The vault holds the prize pool ref or we can call prize pool directly if we had the ABI
+                abi: ABIs.VAULT,
+                functionName: 'sweepYield', // For demo we sweep yield first
+                account
+            }).catch(() => ({ request: null })); // Ignore if it fails
 
-                    // Now execute the actual draw
-                    const { request: drawReq } = await publicClient.simulateContract({
-                        address: CONTRACTS.PRIZE_POOL,
-                        abi: ABIs.PRIZE_POOL,
-                        functionName: 'executeDraw',
-                        account
-                    }).catch(() => ({ request: null }));
-
-                    if (drawReq) {
-                        const drawTx = await walletClient.writeContract(drawReq);
-                        await publicClient.waitForTransactionReceipt({ hash: drawTx });
-                    }
-
-                    const grandDraw = draws.find(d => d.type === "grand");
-                    if (grandDraw) {
-                        const result = await api.executeDraw(grandDraw.id);
-                        setWinner(result.winner);
-                    } else {
-                        setWinner({ name: "Sarah M.", city: "Austin, TX", amount: 47200 });
-                    }
-                } catch (err) {
-                    console.error("Draw error", err);
-                    // Fallback winner for demo continuity
-                    setWinner({ name: "Sarah M.", city: "Austin, TX", amount: 47200 });
-                }
-                phase = 4;
-                setDrawPhase(4);
+            if (request) {
+                const sweepTx = await walletClient.writeContract(request);
+                await publicClient.waitForTransactionReceipt({ hash: sweepTx });
             }
-        };
-        setTimeout(advance, 1200);
+
+            // Now execute the actual draw
+            const { request: drawReq } = await publicClient.simulateContract({
+                address: CONTRACTS.PRIZE_POOL,
+                abi: ABIs.PRIZE_POOL,
+                functionName: 'executeDraw',
+                account
+            }).catch(() => ({ request: null }));
+
+            if (drawReq) {
+                const drawTx = await walletClient.writeContract(drawReq);
+                await publicClient.waitForTransactionReceipt({ hash: drawTx });
+            }
+
+            const grandDraw = draws.find(d => d.type === "grand");
+            if (grandDraw) {
+                const result = await api.executeDraw(grandDraw.id);
+                setWinner(result.winner);
+                return result.winner;
+            } else {
+                setWinner({ name: "Sarah M.", city: "Austin, TX", amount: 47200 });
+            }
+        } catch (err) {
+            console.error("Draw error", err);
+            // Fallback winner for demo continuity
+            setWinner({ name: "Sarah M.", city: "Austin, TX", amount: 47200 });
+        }
     };
 
     const spawnParticles = () => {
@@ -1834,9 +1742,9 @@ export default function App() {
             {/* Particles */}
             {particles.map(p => (
                 <div key={p.id} style={{
-                    position: "absolute", left: `${p.x}%`, top: -20, width: p.size, height: p.size,
+                    position: "absolute", left: `${p.x}% `, top: -20, width: p.size, height: p.size,
                     borderRadius: "50%", background: p.color, zIndex: 999,
-                    animation: `confetti-fall ${1.5 + Math.random()}s ${p.delay}s ease-in forwards`,
+                    animation: `confetti - fall ${1.5 + Math.random()}s ${p.delay}s ease -in forwards`,
                     pointerEvents: "none",
                 }} />
             ))}
@@ -1886,13 +1794,38 @@ export default function App() {
                     </div>
                 </div>
             )}
-            {screen === "draw" && <DrawScreen drawPhase={drawPhase} go={go} spawnParticles={spawnParticles} draws={draws} winner={winner} />}
+            {screen === "draw" && (
+                <LiveDrawBroadcast
+                    potAmount={formatCurrency(draws?.find(d => d.type === "grand")?.prize_pool || 2412800)}
+                    totalTickets={draws?.find(d => d.type === "grand")?.total_entries || 3450000}
+                    totalMembers={draws?.find(d => d.type === "grand")?.member_count || 89247}
+                    winnerName={winner?.name || "Sarah M."}
+                    winnerCity={winner?.city || "Austin, TX"}
+                    winnerWallet={"0x4a3F...9c2B"}
+                    winnerAmount={winner ? formatCurrency(winner.amount) : formatCurrency(47200)}
+                    onExit={() => { go("result"); }}
+                    onExecuteDraw={async () => {
+                        console.log("Mock smart contract executed!");
+                        if (window.ethereum) {
+                            // Mock a transaction prompt just for show if wallet exists
+                            try { await window.ethereum.request({ method: 'eth_requestAccounts' }); } catch (e) { }
+                        }
+                    }}
+                />
+            )}
 
             {/* Money module screens */}
             {screen === "savings" && (() => {
                 const handleNav = (s, data = null) => {
                     if (s === 'asset' && data) {
                         setActiveAsset(data);
+                    }
+                    if (s === 'goal' && data) {
+                        setActiveGoalId(data.id);
+                    }
+                    if (s === 'back_to_savings') {
+                        setSavingsScreen('home');
+                        return;
                     }
                     if (['home', 'savings', 'rewards', 'share', 'profile'].includes(s)) {
                         go(s);
@@ -1908,15 +1841,16 @@ export default function App() {
                 ];
 
                 let content = null;
-                if (savingsScreen === "home") content = <SavingsHome onNavigate={handleNav} assets={mergedAssets} plaidBalance={plaidBalance} loading={loadingAssets} onRefresh={refreshAssets} />;
+                if (savingsScreen === "home") content = <SavingsHome user={user} onNavigate={handleNav} assets={mergedAssets} setAssets={setAssets} plaidBalance={plaidBalance} plaidAccounts={plaidAccounts} loading={loadingAssets} onRefresh={refreshAssets} goals={goals} setGoals={setGoals} />;
                 else if (savingsScreen === "asset_list") content = <AssetsPage onNavigate={handleNav} assets={mergedAssets} onRefresh={refreshAssets} />;
                 else if (savingsScreen === "asset") content = <AssetDetails onNavigate={() => setSavingsScreen('asset_list')} asset={activeAsset} />;
-                else if (savingsScreen === "goal") content = <GoalDetails onNavigate={handleNav} />;
+                else if (savingsScreen === "goals_list") content = <GoalsPage goals={goals} setGoals={setGoals} onNavigate={handleNav} />;
+                else if (savingsScreen === "goal") content = <GoalDetails onNavigate={handleNav} goal={goals.find(g => g.id === activeGoalId)} setGoals={setGoals} />;
                 else if (savingsScreen === "settings") content = <SettingsPage onNavigate={handleNav} />;
-                else if (savingsScreen === "transactions") content = <TransactionsPage onNavigate={handleNav} />;
+                else if (savingsScreen === "transactions") content = <TransactionsPage user={user} onNavigate={handleNav} />;
 
                 return (
-                    <>
+                    <PhaseTwoScreen go={go} user={user}>
                         {/* Slim Header Nav */}
                         <div style={{
                             display: "flex", gap: 0,
@@ -1946,13 +1880,17 @@ export default function App() {
                         </div>
                         {content}
                         <BottomNav screen="savings" go={go} />
-                    </>
+                    </PhaseTwoScreen>
                 );
             })()}
             {screen === "result" && <ResultScreen go={go} user={user} streak={streak} />}
-            {screen === "community" && <CommunityScreen go={go} user={user} />}
-            {screen === "rewards" && <RewardsScreen go={go} user={user} streak={streak} />}
-            {screen === "profile" && <ProfileScreen go={go} user={user} streak={streak} onLogout={handleLogout} currency={currency} setCurrency={setCurrency} />}
+            {screen === "community" && <CommunityScreen go={go} user={user} BottomNav={BottomNav} />}
+            {screen === "rewards" && (
+                <MeridianLockedScreen go={go} user={user}>
+                    <RewardsScreen go={go} user={user} streak={streak} />
+                </MeridianLockedScreen>
+            )}
+            {screen === "profile" && <ProfileScreen go={go} user={user} streak={streak} onLogout={handleLogout} currency={currency} setCurrency={setCurrency} plaidAccounts={plaidAccounts} onRefresh={refreshAssets} />}
         </div>
     );
 }

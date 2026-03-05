@@ -27,7 +27,12 @@ const AssetsPage = ({ onNavigate, assets = [] }) => {
 
         // Filter
         if (filter !== 'all') {
-            list = list.filter(a => a.category === filter);
+            if (filter === 'other') {
+                const knownCategories = ['crypto', 'stock', 'cash', 'credit', 'savings'];
+                list = list.filter(a => !knownCategories.includes(a.category) && !knownCategories.includes(a.type));
+            } else {
+                list = list.filter(a => a.category === filter || a.type === filter);
+            }
         }
 
         // Sort
@@ -194,7 +199,7 @@ const AssetsPage = ({ onNavigate, assets = [] }) => {
                                     <div style={{ fontSize: 16, fontWeight: 800, color: asset.category === 'credit' ? '#EF4444' : '#fff' }}>
                                         {formatCurrency(asset.value)}
                                     </div>
-                                    {asset.change !== 0 && (
+                                    {typeof asset.change === 'number' && asset.change !== 0 && (
                                         <div style={{
                                             fontSize: 11,
                                             fontWeight: 700,

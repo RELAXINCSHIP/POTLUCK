@@ -9,19 +9,36 @@
 }
 
 ::-webkit-scrollbar {
-  width: 0;
-  height: 0;
+  width: 6px;
+  height: 6px;
 }
 
-html,
-body,
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+
+body {
+  margin: 0;
+  background: #080808;
+}
+
 #root {
-  min-height: 100vh;
-  width: 100%;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  display: flex;
+  flex-direction: column;
 }
 
 body {
@@ -30,7 +47,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: #080808;
   color: #FFFFFF;
-  overscroll-behavior: none;
 }
 
 

@@ -45,12 +45,14 @@ export const AssetModal = ({ isOpen, onClose, onAssetAdded }) => {
     const [selectedType, setSelectedType] = useState('crypto');
     const [selectedAsset, setSelectedAsset] = useState(PREDEFINED_ASSETS['crypto'][0].name);
     const [value, setValue] = useState('');
+    const [customImage, setCustomImage] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     // Update selected asset when type changes
     useEffect(() => {
         setSelectedAsset(PREDEFINED_ASSETS[selectedType][0].name);
+        setCustomImage(null);
     }, [selectedType]);
 
     // Reset when opened
@@ -58,6 +60,7 @@ export const AssetModal = ({ isOpen, onClose, onAssetAdded }) => {
         if (isOpen) {
             setSelectedType('crypto');
             setValue('');
+            setCustomImage(null);
             setError(null);
         }
     }, [isOpen]);
@@ -75,13 +78,15 @@ export const AssetModal = ({ isOpen, onClose, onAssetAdded }) => {
         setError(null);
         try {
             const assetDetails = PREDEFINED_ASSETS[selectedType].find(a => a.name === selectedAsset) || PREDEFINED_ASSETS['other'][0];
+            const finalImage = customImage || assetDetails.bg_image;
+
             const newAsset = await addAsset({
                 type: selectedType,
                 name: selectedAsset,
                 value: numValue,
                 currency: 'USD',
                 icon: assetDetails.icon,
-                bg_image: assetDetails.bg_image
+                bg_image: finalImage
             });
             if (onAssetAdded) onAssetAdded(newAsset);
             onClose();
@@ -134,6 +139,28 @@ export const AssetModal = ({ isOpen, onClose, onAssetAdded }) => {
                             <option key={asset.name} value={asset.name} style={{ background: '#111' }}>{asset.icon} {asset.name}</option>
                         ))}
                     </select>
+
+                    {selectedType === 'other' && (
+                        <div style={{ marginTop: 16 }}>
+                            <label className="input-label" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 8, display: 'block', fontWeight: 600 }}>
+                                Custom Cover Image (Optional)
+                            </label>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={e => {
+                                    const file = e.target.files[0];
+                                    if (file) {
+                                        const reader = new FileReader();
+                                        reader.onloadend = () => setCustomImage(reader.result);
+                                        reader.readAsDataURL(file);
+                                    }
+                                }}
+                                style={{ width: '100%', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', padding: 12, borderRadius: 8, color: '#fff', fontSize: 14 }}
+                            />
+                            {customImage && <img src={customImage} alt="Preview" style={{ width: '100%', height: 100, objectFit: 'cover', borderRadius: 8, marginTop: 12 }} />}
+                        </div>
+                    )}
                 </div>
 
                 <div className="input-group" style={{ marginBottom: 24 }}>

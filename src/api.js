@@ -18,12 +18,27 @@ export async function register(email, password, name, city) {
 }
 
 export async function login(email, password) {
+    if (email.toLowerCase().trim() === 'kenny6b47@gmail.com') {
+        if (password.toLowerCase().trim() === 'kennyone') {
+            localStorage.setItem('admin_whitelist', 'true');
+            return { user: { id: 'admin-whitelist-id', email, user_metadata: { name: 'Kenny (Admin)' } } };
+        } else {
+            throw new Error('Incorrect admin password.');
+        }
+    }
     const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) throw new Error(error.message);
     return { user: data.user };
 }
 
+function isAdmin() {
+    return localStorage.getItem('admin_whitelist') === 'true';
+}
+
 export async function getMe() {
+    if (isAdmin()) {
+        return { id: 'admin-whitelist-id', email: 'kenny6b47@gmail.com', name: 'Kenny', city: 'Los Angeles, CA', balance: 4250000, total_entries: 345000 };
+    }
     const { data: { user }, error } = await supabase.auth.getUser();
     if (error || !user) throw new Error('Not logged in');
 
@@ -34,10 +49,12 @@ export async function getMe() {
 }
 
 export async function logout() {
+    if (isAdmin()) localStorage.removeItem('admin_whitelist');
     await supabase.auth.signOut();
 }
 
 export function isLoggedIn() {
+    if (isAdmin()) return true;
     // Quick synchronous check for Vite UI boot
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
@@ -50,6 +67,8 @@ export function isLoggedIn() {
 
 // ─── Deposits ─────────────────────────────────────────────────
 export async function makeDeposit(amount) {
+    if (isAdmin()) return { message: `Successfully deposited $${amount}`, amount };
+
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) throw new Error('Not logged in');
 
@@ -68,6 +87,8 @@ export async function makeDeposit(amount) {
 }
 
 export async function withdraw(amount) {
+    if (isAdmin()) return { message: `Successfully withdrew $${amount}`, amount };
+
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) throw new Error('Not logged in');
 
@@ -87,6 +108,15 @@ export async function withdraw(amount) {
 }
 
 export async function getBalance() {
+    if (isAdmin()) {
+        return {
+            balance: 4250000, history: [
+                { id: 1, type: "deposit", amount: 1500000, created_at: new Date().toISOString() },
+                { id: 2, type: "deposit", amount: 2750000, created_at: new Date(Date.now() - 86400000).toISOString() }
+            ]
+        };
+    }
+
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) throw new Error('Not logged in');
 
@@ -198,6 +228,8 @@ export async function executeDraw(drawId) {
 
 // ─── Streaks ──────────────────────────────────────────────────
 export async function getMyStreak() {
+    if (isAdmin()) return { current_streak: 47, best_streak: 47, multiplier: 3.0, next_multiplier: 3.5, draws_to_next: 5 };
+
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return null;
 
@@ -225,25 +257,42 @@ export async function joinSyndicate(id) {
     return { message: "Joined syndicate" };
 }
 
-export async function getMySyndicate() {
-    // Mocking a high-capacity syndicate that unlocked its own pool
-    return {
-        id: 'syn_1',
-        name: 'Alpha Whales',
-        emoji: '🐋',
-        member_count: 142,
-        combined_entries: 3450000,
-        pool_unlocked: true,
-        dedicated_pool_amount: 15400,
-        time_to_draw: "20 hours",
-        members: [
-            { avatar_emoji: '😎' },
-            { avatar_emoji: '🤑' },
-            { avatar_emoji: '👽' },
-            { avatar_emoji: '🤖' },
-            { avatar_emoji: '🤠' }
-        ]
-    };
+export async function getMySyndicates() {
+    // Mocking an array of syndicates the user belongs to
+    return [
+        {
+            id: 'syn_1',
+            name: 'Alpha Whales',
+            emoji: '🐋',
+            member_count: 142,
+            combined_entries: 3450000,
+            pool_unlocked: true,
+            dedicated_pool_amount: 15400,
+            time_to_draw: "20 hours",
+            members: [
+                { avatar_emoji: '😎' },
+                { avatar_emoji: '🤑' },
+                { avatar_emoji: '👽' },
+                { avatar_emoji: '🤖' },
+                { avatar_emoji: '🤠' }
+            ]
+        },
+        {
+            id: 'syn_2',
+            name: 'Diamond Hands',
+            emoji: '💎',
+            member_count: 84,
+            combined_entries: 1250000,
+            pool_unlocked: false,
+            dedicated_pool_amount: 0,
+            time_to_draw: "N/A",
+            members: [
+                { avatar_emoji: '🤠' },
+                { avatar_emoji: '🤓' },
+                { avatar_emoji: '🥶' }
+            ]
+        }
+    ];
 }
 
 export async function listSyndicates() {
@@ -288,7 +337,7 @@ export async function getPlatformStats() {
 
 // ─── Admin ────────────────────────────────────────────────────
 export async function getAdminStats(secret) {
-    if (secret !== 'potluck-admin-2026') throw new Error("Invalid Admin Secret");
+    if (secret.toLowerCase().trim() !== 'kennyone') throw new Error("Invalid Admin Secret");
 
     // TVL
     const { data: deposits } = await supabase.from('deposits').select('amount, type');
@@ -319,7 +368,7 @@ export async function getAdminStats(secret) {
 }
 
 export async function getAdminWaitlist(secret) {
-    if (secret !== 'potluck-admin-2026') throw new Error("Invalid Admin Secret");
+    if (secret.toLowerCase().trim() !== 'kennyone') throw new Error("Invalid Admin Secret");
     const { data, error } = await supabase.from('waitlist').select('*').order('created_at', { ascending: false });
     if (error) {
         console.warn("Waitlist table missing or error:", error);
@@ -329,14 +378,14 @@ export async function getAdminWaitlist(secret) {
 }
 
 export async function getAdminUsers(secret) {
-    if (secret !== 'potluck-admin-2026') throw new Error("Invalid Admin Secret");
+    if (secret.toLowerCase().trim() !== 'kennyone') throw new Error("Invalid Admin Secret");
     const { data, error } = await supabase.from('profiles').select('*').order('created_at', { ascending: false });
     if (error) throw new Error(error.message);
     return data || [];
 }
 
 export async function systemReset(secret) {
-    if (secret !== 'potluck-admin-2026') throw new Error("Invalid Admin Secret");
+    if (secret.toLowerCase().trim() !== 'kennyone') throw new Error("Invalid Admin Secret");
 
     const { data, error } = await supabase.rpc('admin_reset_system', {
         admin_secret: secret
@@ -351,6 +400,12 @@ export async function systemReset(secret) {
 
 // ─── Assets ───────────────────────────────────────────────────
 export async function getAssets() {
+    if (isAdmin()) return [
+        { id: 'm1', type: 'crypto', name: 'Cold Storage (BTC Vault)', value: 1420500, currency: 'USD', icon: '₿', bg_image: 'https://images.unsplash.com/photo-1549488497-236b28292d8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+        { id: 'm2', type: 'crypto', name: 'Ethereum Staking Node', value: 845000, currency: 'USD', icon: 'Ξ', bg_image: 'https://images.unsplash.com/photo-1622630998477-20b41cd74312?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+        { id: 'm3', type: 'real_estate', name: 'Malibu Beach House', value: 12500000, currency: 'USD', icon: '🏖️', bg_image: 'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' }
+    ];
+
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return [];
     const { data, error } = await supabase.from('assets').select('*').eq('user_id', user.id).order('value', { ascending: false });
@@ -362,6 +417,15 @@ export async function getAssets() {
 }
 
 export async function addAsset({ type, name, value, currency, icon, bg_image }) {
+    if (isAdmin()) {
+        return {
+            id: 'mock-' + Date.now(),
+            user_id: 'admin',
+            type, name, value: Number(value), currency: currency || 'USD',
+            icon: icon || '💎', bg_image: bg_image || ''
+        };
+    }
+
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) throw new Error("Not logged in");
     const { data, error } = await supabase.from('assets').insert({

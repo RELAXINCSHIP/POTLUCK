@@ -80,6 +80,8 @@ export default function LandingPage({ onGoToApp }) {
                         <li><a href="#how" onClick={(e) => { e.preventDefault(); scrollTo('how'); }}>How It Works</a></li>
                         <li><a href="#features" onClick={(e) => { e.preventDefault(); scrollTo('features'); }}>Features</a></li>
                         <li><a href="#faq" onClick={(e) => { e.preventDefault(); scrollTo('faq'); }}>FAQ</a></li>
+                        <li><a href="#/meridian" onClick={(e) => { e.preventDefault(); window.location.hash = '#/meridian'; }}>Meridian Card</a></li>
+                        <li><a href="#/pitch" onClick={(e) => { e.preventDefault(); window.location.hash = '#/pitch'; }}>Pitch Deck</a></li>
                         <li><a href="#/app" onClick={(e) => { e.preventDefault(); onGoToApp?.(); }} style={{ color: '#fff', fontWeight: 600 }}>Sign In</a></li>
                     </ul>
                     <button className="nav-cta" onClick={() => scrollTo('join')}>Join the Waitlist</button>
@@ -112,6 +114,10 @@ export default function LandingPage({ onGoToApp }) {
                             {loading ? 'Joining...' : 'Join the Potluck 🎰'}
                         </button>
                     </form>
+
+                    <div className="fade-in fade-in-delay-4" style={{ textAlign: "center", marginTop: "12px", fontSize: "14px", color: "rgba(255,255,255,0.6)" }}>
+                        Already in the pot? <a href="#/app" onClick={(e) => { e.preventDefault(); onGoToApp?.(); }} style={{ color: "#FFD54F", textDecoration: "none", fontWeight: 700 }}>Sign In</a>
+                    </div>
 
                     {status && (
                         <div className={`hero-message ${status.type}`}>{status.msg}</div>
@@ -307,9 +313,11 @@ export default function LandingPage({ onGoToApp }) {
                 <div className="container">
                     <p>© 2026 Potluck · Prize-Linked Savings</p>
                     <div className="footer-links">
+                        <a href="#/meridian" onClick={e => { e.preventDefault(); window.location.hash = '#/meridian'; }}>Meridian Card</a>
+                        <a href="#/pitch" onClick={e => { e.preventDefault(); window.location.hash = '#/pitch'; }}>Pitch Deck</a>
+                        <a href="#" onClick={e => { e.preventDefault(); onGoToApp?.(); }}>App Preview</a>
                         <a href="#" onClick={e => e.preventDefault()}>Privacy</a>
                         <a href="#" onClick={e => e.preventDefault()}>Terms</a>
-                        <a href="#" onClick={e => { e.preventDefault(); onGoToApp?.(); }}>App Preview</a>
                     </div>
                 </div>
             </footer>

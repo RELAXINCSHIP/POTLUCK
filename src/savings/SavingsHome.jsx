@@ -14,19 +14,19 @@ const INITIAL_TXS = [
     { id: 5, icon: "🍽️", title: "Restaurant", subtitle: "Nobu Malibu", amount: -342.00, time: "3d ago" },
 ];
 
-const SavingsHome = ({ onNavigate, assets = [], plaidBalance = 0, loading = false }) => {
+const SavingsHome = ({ user, onNavigate, assets = [], setAssets, plaidBalance = 0, plaidAccounts = [], loading = false, onRefresh, goals = [], setGoals }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [txs] = useState(INITIAL_TXS); // Transactions still mock for now
 
     // Dedicated fund states
-    const [goalSaved, setGoalSaved] = useState(328450);
     const [cardBalance, setCardBalance] = useState(41109.30); // Assuming this is a liability
 
     const [showTransfer, setShowTransfer] = useState(false);
     const [transferAmount, setTransferAmount] = useState('');
     const [transferTarget, setTransferTarget] = useState('');
 
-    const totalBalance = assets.reduce((s, a) => s + (a.value || 0), 0) + plaidBalance + goalSaved - cardBalance;
+    const totalGoalSaved = goals ? goals.reduce((s, g) => s + (g.saved || 0), 0) : 0;
+    const totalBalance = assets.reduce((s, a) => s + (a.value || 0), 0) + plaidBalance + totalGoalSaved - cardBalance;
 
     const handleTransfer = () => {
         const amt = parseFloat(transferAmount);
@@ -141,7 +141,7 @@ const SavingsHome = ({ onNavigate, assets = [], plaidBalance = 0, loading = fals
                                     <div style={{ fontSize: 20, marginBottom: 4 }}>{asset.icon}</div>
                                     <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.6)', fontWeight: 600 }}>{asset.name}</div>
                                     <div style={{ fontSize: 16, fontWeight: 700, color: '#fff' }}>${fmt(asset.value)}</div>
-                                    {asset.change !== 0 && (
+                                    {typeof asset.change === 'number' && asset.change !== 0 && (
                                         <div style={{
                                             position: 'absolute', top: 12, right: 12,
                                             background: asset.change > 0 ? 'rgba(129,199,132,0.15)' : 'rgba(239,68,68,0.15)',
@@ -167,47 +167,51 @@ const SavingsHome = ({ onNavigate, assets = [], plaidBalance = 0, loading = fals
                             textTransform: 'uppercase', letterSpacing: 1,
                         }}>Powered by Plaid</span>
                     </div>
-                    <PlaidLinkButton
-                        userId="potluck-user-1"
-                        onSuccess={() => onRefresh && onRefresh()}
-                    />
-                    <LinkedAccounts userId="potluck-user-1" />
+                    {plaidAccounts.length === 0 && (
+                        <PlaidLinkButton
+                            userId={user?.id || "potluck-user-1"}
+                            onSuccess={() => onRefresh && onRefresh()}
+                        />
+                    )}
+                    <LinkedAccounts userId={user?.id || "potluck-user-1"} accounts={plaidAccounts} />
                 </section>
 
-                {/* Travel Fund (Savings Goal) */}
+                {/* Financial Goals */}
                 <section style={{ marginTop: '24px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-                        <span style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>Travel Fund</span>
-                        <span style={{
-                            background: 'rgba(129,199,132,0.15)', color: '#81C784',
-                            padding: '3px 8px', borderRadius: 6, fontSize: 10, fontWeight: 700, textTransform: 'uppercase'
-                        }}>Savings Bucket</span>
+                        <span style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>Goals</span>
+                        <span onClick={() => onNavigate('goals_list')} style={{
+                            fontSize: 12, color: '#FFD54F', cursor: 'pointer', fontWeight: 600
+                        }}>View All</span>
                     </div>
-                    <div onClick={() => onNavigate('goal')} style={{
-                        borderRadius: 16, overflow: 'hidden', cursor: 'pointer',
-                        background: 'linear-gradient(135deg, rgba(129,199,132,0.08), rgba(129,199,132,0.02))',
-                        border: '1px solid rgba(129,199,132,0.15)', padding: 16,
-                    }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-                            <div>
-                                <div style={{ fontSize: 14, fontWeight: 700, color: '#fff' }}>Summer in Positano</div>
-                                <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)', marginTop: 2 }}>
-                                    ${fmt(goalSaved)} / $15,000
+
+                    <div style={{ display: 'flex', gap: 12, overflowX: 'auto', paddingBottom: 8, scrollbarWidth: 'none' }}>
+                        {goals.map(goal => (
+                            <div key={goal.id} onClick={() => onNavigate('goal', goal)} style={{
+                                minWidth: 240, borderRadius: 16, overflow: 'hidden', cursor: 'pointer', flexShrink: 0,
+                                background: `linear-gradient(135deg, rgba(8,8,8,0.4), rgba(8,8,8,0.8)), url(${goal.image}) center/cover`,
+                                border: '1px solid rgba(255,255,255,0.08)', padding: 16,
+                                display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', minHeight: 120,
+                            }}>
+                                <div style={{ marginBottom: 'auto' }}>
+                                    <span style={{
+                                        background: 'rgba(129,199,132,0.8)', color: '#000', backdropFilter: 'blur(10px)',
+                                        padding: '3px 8px', borderRadius: 6, fontSize: 10, fontWeight: 800, textTransform: 'uppercase'
+                                    }}>Bucket</span>
+                                </div>
+                                <div style={{ fontSize: 16, fontWeight: 700, color: '#fff', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>{goal.title}</div>
+                                <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)', marginTop: 2, textShadow: '0 1px 2px rgba(0,0,0,0.8)' }}>
+                                    ${fmt(goal.saved)} / ${fmt(goal.target)}
+                                </div>
+                                <div style={{ height: 6, background: 'rgba(255,255,255,0.2)', borderRadius: 3, overflow: 'hidden', marginTop: 10 }}>
+                                    <div style={{
+                                        height: '100%', borderRadius: 3, transition: 'width 0.5s ease',
+                                        background: 'linear-gradient(90deg, #4CAF50, #81C784)',
+                                        width: `${Math.min(100, (goal.saved / goal.target) * 100)}%`,
+                                    }} />
                                 </div>
                             </div>
-                            <button onClick={(e) => { e.stopPropagation(); setGoalSaved(prev => Math.min(prev + 1000, 15000)); }} style={{
-                                background: 'rgba(129,199,132,0.15)', border: '1px solid rgba(129,199,132,0.3)',
-                                borderRadius: 10, padding: '6px 12px', fontSize: 11, fontWeight: 700,
-                                color: '#81C784', cursor: 'pointer',
-                            }}>+ $1k</button>
-                        </div>
-                        <div style={{ height: 6, background: 'rgba(255,255,255,0.08)', borderRadius: 3, overflow: 'hidden' }}>
-                            <div style={{
-                                height: '100%', borderRadius: 3, transition: 'width 0.5s ease',
-                                background: 'linear-gradient(90deg, #4CAF50, #81C784)',
-                                width: `${(goalSaved / 15000) * 100}%`,
-                            }} />
-                        </div>
+                        ))}
                     </div>
                 </section>
 
@@ -280,7 +284,9 @@ const SavingsHome = ({ onNavigate, assets = [], plaidBalance = 0, loading = fals
             <AssetModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                onAssetAdded={(newAsset) => onRefresh && onRefresh()}
+                onAssetAdded={(newAsset) => {
+                    if (setAssets) setAssets(prev => [newAsset, ...prev]);
+                }}
             />
         </div>
     );

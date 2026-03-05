@@ -153,6 +153,50 @@ export default function PitchPage({ onBack }) {
                     </div>
                 </div>
 
+                {/* Precedent */}
+                <div className="pitch-section">
+                    <div className="pitch-section-label">Precedent</div>
+                    <h2>70 Years of Proof</h2>
+                    <p>
+                        This concept has already won. In Britain, since 1956, HM Treasury has operated Premium Bonds.
+                        They have ruled for 70 consecutive years that it is <strong>not gambling</strong> because no principal is lost.
+                    </p>
+                    <div className="revenue-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
+                        <div className="revenue-card" style={{ background: 'rgba(255,255,255,0.03)' }}>
+                            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: 1, marginBottom: 8 }}>The Original (UK)</div>
+                            <h4 style={{ color: "#fff", marginBottom: 12 }}>NS&I Premium Bonds</h4>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, fontSize: 13 }}>
+                                <span style={{ color: 'rgba(255,255,255,0.6)' }}>Bonds outstanding</span>
+                                <strong style={{ color: '#fff' }}>£122B</strong>
+                            </div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, fontSize: 13 }}>
+                                <span style={{ color: 'rgba(255,255,255,0.6)' }}>Holders</span>
+                                <strong style={{ color: '#fff' }}>22 Million (1 in 3)</strong>
+                            </div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13 }}>
+                                <span style={{ color: 'rgba(255,255,255,0.6)' }}>Principal</span>
+                                <strong style={{ color: '#fff' }}>100% Guaranteed</strong>
+                            </div>
+                        </div>
+                        <div className="revenue-card" style={{ background: 'linear-gradient(135deg, rgba(255,213,79,0.1), rgba(255,179,0,0.05))', borderColor: 'rgba(255,213,79,0.3)' }}>
+                            <div style={{ fontSize: 11, color: "#FFD54F", textTransform: "uppercase", letterSpacing: 1, marginBottom: 8 }}>The On-Chain Version (US)</div>
+                            <h4 style={{ color: "#FFD54F", marginBottom: 12 }}>Potluck</h4>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, fontSize: 13 }}>
+                                <span style={{ color: 'rgba(255,255,255,0.8)' }}>Setup</span>
+                                <strong style={{ color: '#fff' }}>Non-custodial (L2)</strong>
+                            </div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, fontSize: 13 }}>
+                                <span style={{ color: 'rgba(255,255,255,0.8)' }}>Yield Source</span>
+                                <strong style={{ color: '#fff' }}>DeFi (Aave)</strong>
+                            </div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13 }}>
+                                <span style={{ color: 'rgba(255,255,255,0.8)' }}>Draw Engine</span>
+                                <strong style={{ color: '#fff' }}>Chainlink VRF</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 {/* Traction */}
                 <div className="pitch-section">
                     <div className="pitch-section-label">Early Traction</div>
@@ -189,6 +233,11 @@ export default function PitchPage({ onBack }) {
                         To build out banking partnerships, obtain necessary licenses,
                         scale the engineering team, and acquire our first 50,000 users.
                     </p>
+                    <div style={{ marginTop: 24, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                        <a href="/potluck_v3.pptx" download className="nav-cta" style={{ display: 'inline-block', textDecoration: 'none', background: '#FFD54F', color: '#000', padding: '12px 24px', borderRadius: '8px', fontWeight: 'bold', border: '1px solid #FFD54F' }}>Download V3 Pitch Deck (.pptx)</a>
+                        <a href="/potluck_legal_brief.docx" download style={{ display: 'inline-block', textDecoration: 'none', background: '#000', color: '#81C784', padding: '12px 24px', borderRadius: '8px', fontWeight: 'bold', border: '1px solid #81C784' }}>Counsel Brief (.docx)</a>
+                        <a href="#/meridian" style={{ display: 'inline-block', textDecoration: 'none', background: '#000', color: '#D4AF37', padding: '12px 24px', borderRadius: '8px', fontWeight: 'bold', border: '1px solid #D4AF37' }}>View The Meridian Card</a>
+                    </div>
                 </div>
 
                 {/* Footer */}

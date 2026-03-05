@@ -59,7 +59,7 @@ const fmt = (n) => {
     return abs.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 };
 
-const TransactionsPage = ({ onNavigate }) => {
+const TransactionsPage = ({ user, onNavigate }) => {
     const [activeFilter, setActiveFilter] = useState('All');
     const [search, setSearch] = useState('');
     const [dataSource, setDataSource] = useState('mock'); // 'mock' or 'plaid'
@@ -75,7 +75,7 @@ const TransactionsPage = ({ onNavigate }) => {
             try {
                 setPlaidLoading(true);
                 setPlaidError(null);
-                const data = await getTransactions('potluck-user-1');
+                const data = await getTransactions(user?.id || 'potluck-user-1');
                 if (!cancelled) {
                     if (!data.linked) {
                         setPlaidError('No bank account linked. Link one from the Dashboard first.');

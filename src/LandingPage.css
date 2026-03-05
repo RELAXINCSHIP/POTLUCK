@@ -21,7 +21,6 @@
     background: linear-gradient(160deg, #080612 0%, var(--bg-secondary) 40%, var(--bg-primary) 100%);
     font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     color: var(--text-primary);
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
 }
 

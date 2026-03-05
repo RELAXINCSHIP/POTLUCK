@@ -1,0 +1,6703 @@
+﻿{
+  "type": "pptx",
+  "metadata": {
+    "title": "Potluck ΓÇö Investor Deck v3",
+    "author": "PptxGenJS",
+    "lastModifiedBy": "PptxGenJS",
+    "created": "2026-03-05T00:02:43.000Z",
+    "modified": "2026-03-05T00:02:43.000Z"
+  },
+  "content": [
+    {
+      "type": "slide",
+      "children": [
+        {
+          "type": "paragraph",
+          "text": "INVESTOR DECK  ┬╖  2026  ┬╖  CONFIDENTIAL",
+          "children": [
+            {
+              "type": "text",
+              "text": "INVESTOR DECK  ┬╖  2026  ┬╖  CONFIDENTIAL",
+              "formatting": {
+                "size": "9pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "POTLUCK",
+          "children": [
+            {
+              "type": "text",
+              "text": "POTLUCK",
+              "formatting": {
+                "bold": true,
+                "size": "100pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "A savings account that could make you a millionaire.",
+          "children": [
+            {
+              "type": "text",
+              "text": "A savings account ",
+              "formatting": {
+                "size": "22pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "that could make you a millionaire.",
+              "formatting": {
+                "bold": true,
+                "size": "22pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Your money stays safe. Your interest builds the pot. Someone wins big every 90 days.",
+          "children": [
+            {
+              "type": "text",
+              "text": "Your money stays safe. Your interest builds the pot. Someone wins big every 90 days.",
+              "formatting": {
+                "italic": true,
+                "size": "13pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-1-1.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "THE POT",
+          "children": [
+            {
+              "type": "text",
+              "text": "THE POT",
+              "formatting": {
+                "bold": true,
+                "size": "12pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "LIVE ON ABSTRACT L2",
+          "children": [
+            {
+              "type": "text",
+              "text": "LIVE ON ABSTRACT L2",
+              "formatting": {
+                "bold": true,
+                "size": "7pt",
+                "color": "#22C55E",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "DeFi yield ΓåÆ prize draw",
+          "children": [
+            {
+              "type": "text",
+              "text": "DeFi yield ΓåÆ prize draw",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-1-2.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "THE MERIDIAN",
+          "children": [
+            {
+              "type": "text",
+              "text": "THE MERIDIAN",
+              "formatting": {
+                "bold": true,
+                "size": "12pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "PHASE 2",
+          "children": [
+            {
+              "type": "text",
+              "text": "PHASE 2",
+              "formatting": {
+                "bold": true,
+                "size": "7pt",
+                "color": "#8A7020",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Ultra-premium metal card",
+          "children": [
+            {
+              "type": "text",
+              "text": "Ultra-premium metal card",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-1-3.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "THE SUPER-APP",
+          "children": [
+            {
+              "type": "text",
+              "text": "THE SUPER-APP",
+              "formatting": {
+                "bold": true,
+                "size": "12pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "PHASE 3",
+          "children": [
+            {
+              "type": "text",
+              "text": "PHASE 3",
+              "formatting": {
+                "bold": true,
+                "size": "7pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Banking ┬╖ Wealth ┬╖ Rewards",
+          "children": [
+            {
+              "type": "text",
+              "text": "Banking ┬╖ Wealth ┬╖ Rewards",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "slideNumber": 1
+      }
+    },
+    {
+      "type": "slide",
+      "children": [
+        {
+          "type": "paragraph",
+          "text": "THE PROBLEM",
+          "children": [
+            {
+              "type": "text",
+              "text": "THE PROBLEM",
+              "formatting": {
+                "size": "9pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Three broken products. Nobody fixed them.",
+          "children": [
+            {
+              "type": "text",
+              "text": "Three broken products. Nobody fixed them.",
+              "formatting": {
+                "bold": true,
+                "size": "28pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Until now.",
+          "children": [
+            {
+              "type": "text",
+              "text": "Until now.",
+              "formatting": {
+                "italic": true,
+                "size": "13pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-2-1.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Savings Accounts",
+          "children": [
+            {
+              "type": "text",
+              "text": "Savings Accounts",
+              "formatting": {
+                "bold": true,
+                "size": "13pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "BORING & BROKEN",
+          "children": [
+            {
+              "type": "text",
+              "text": "BORING & BROKEN",
+              "formatting": {
+                "bold": true,
+                "size": "7pt",
+                "color": "#4A4030",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "ΓÇö  0.5% APY ΓÇö inflation eats your money",
+          "children": [
+            {
+              "type": "text",
+              "text": "ΓÇö  ",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "0.5% APY ΓÇö inflation eats your money",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "ΓÇö  Zero engagement, nobody opens their bank app",
+          "children": [
+            {
+              "type": "text",
+              "text": "ΓÇö  ",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Zero engagement, nobody opens their bank app",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "ΓÇö  Yotta & Synapse showed BaaS infrastructure fails",
+          "children": [
+            {
+              "type": "text",
+              "text": "ΓÇö  ",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Yotta & Synapse showed BaaS infrastructure fails",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "ΓÇö  No upside. No excitement. No reason to stay.",
+          "children": [
+            {
+              "type": "text",
+              "text": "ΓÇö  ",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "No upside. No excitement. No reason to stay.",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-2-2.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "The Lottery",
+          "children": [
+            {
+              "type": "text",
+              "text": "The Lottery",
+              "formatting": {
+                "bold": true,
+                "size": "13pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "PURE LOSS",
+          "children": [
+            {
+              "type": "text",
+              "text": "PURE LOSS",
+              "formatting": {
+                "bold": true,
+                "size": "7pt",
+                "color": "#991B1B",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "ΓÇö  $100B/yr spent ΓÇö 0% returned to players",
+          "children": [
+            {
+              "type": "text",
+              "text": "ΓÇö  ",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "$100B/yr spent ΓÇö 0% returned to players",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "ΓÇö  Psychologically engineered addiction",
+          "children": [
+            {
+              "type": "text",
+              "text": "ΓÇö  ",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Psychologically engineered addiction",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "ΓÇö  No transparency ΓÇö draws happen in a black box",
+          "children": [
+            {
+              "type": "text",
+              "text": "ΓÇö  ",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "No transparency ΓÇö draws happen in a black box",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "ΓÇö  Every ticket is money you'll never see again.",
+          "children": [
+            {
+              "type": "text",
+              "text": "ΓÇö  ",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Every ticket is money you'll never see again.",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-2-3.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Premium Cards",
+          "children": [
+            {
+              "type": "text",
+              "text": "Premium Cards",
+              "formatting": {
+                "bold": true,
+                "size": "13pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "WALLED GARDEN",
+          "children": [
+            {
+              "type": "text",
+              "text": "WALLED GARDEN",
+              "formatting": {
+                "bold": true,
+                "size": "7pt",
+                "color": "#5A3A00",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "ΓÇö  Amex Black: $5,000/yr just to hold it",
+          "children": [
+            {
+              "type": "text",
+              "text": "ΓÇö  ",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Amex Black: $5,000/yr just to hold it",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "ΓÇö  Benefits locked behind opaque, arbitrary tiers",
+          "children": [
+            {
+              "type": "text",
+              "text": "ΓÇö  ",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Benefits locked behind opaque, arbitrary tiers",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "ΓÇö  No community, no luck, no upside",
+          "children": [
+            {
+              "type": "text",
+              "text": "ΓÇö  ",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "No community, no luck, no upside",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "ΓÇö  Interchange profits go to the bank ΓÇö not you.",
+          "children": [
+            {
+              "type": "text",
+              "text": "ΓÇö  ",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Interchange profits go to the bank ΓÇö not you.",
+              "formatting": {
+                "size": "10.5pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Potluck solves all three simultaneously ΓÇö for the first time, with no trade-offs.",
+          "children": [
+            {
+              "type": "text",
+              "text": "Potluck solves all three simultaneously ΓÇö for the first time, with no trade-offs.",
+              "formatting": {
+                "italic": true,
+                "size": "11.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        }
+      ],
+      "metadata": {
+        "slideNumber": 2
+      }
+    },
+    {
+      "type": "slide",
+      "children": [
+        {
+          "type": "paragraph",
+          "text": "THE SOLUTION ┬╖ PHASE 1",
+          "children": [
+            {
+              "type": "text",
+              "text": "THE SOLUTION ┬╖ PHASE 1",
+              "formatting": {
+                "size": "9pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "The Pot.",
+          "children": [
+            {
+              "type": "text",
+              "text": "The Pot.",
+              "formatting": {
+                "bold": true,
+                "size": "38pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Save normally. Win life-changing money. Never lose a dollar.",
+          "children": [
+            {
+              "type": "text",
+              "text": "Save normally. Win life-changing money. Never lose a dollar.",
+              "formatting": {
+                "italic": true,
+                "size": "13pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-3-1.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "You Deposit",
+          "children": [
+            {
+              "type": "text",
+              "text": "You Deposit",
+              "formatting": {
+                "bold": true,
+                "size": "13pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "USDC into",
+          "children": [
+            {
+              "type": "text",
+              "text": "USDC into",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "ERC-4626 Vault",
+          "children": [
+            {
+              "type": "text",
+              "text": "ERC-4626 Vault",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "ΓåÆ",
+          "children": [
+            {
+              "type": "text",
+              "text": "ΓåÆ",
+              "formatting": {
+                "bold": true,
+                "size": "18pt",
+                "color": "#5A5540",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-3-2.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Yield Accrues",
+          "children": [
+            {
+              "type": "text",
+              "text": "Yield Accrues",
+              "formatting": {
+                "bold": true,
+                "size": "13pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Aave generates",
+          "children": [
+            {
+              "type": "text",
+              "text": "Aave generates",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "4-5% APY",
+          "children": [
+            {
+              "type": "text",
+              "text": "4-5% APY",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "ΓåÆ",
+          "children": [
+            {
+              "type": "text",
+              "text": "ΓåÆ",
+              "formatting": {
+                "bold": true,
+                "size": "18pt",
+                "color": "#5A5540",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-3-3.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Prize Pool",
+          "children": [
+            {
+              "type": "text",
+              "text": "Prize Pool",
+              "formatting": {
+                "bold": true,
+                "size": "13pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "60-70% of yield",
+          "children": [
+            {
+              "type": "text",
+              "text": "60-70% of yield",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "builds the pot",
+          "children": [
+            {
+              "type": "text",
+              "text": "builds the pot",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "ΓåÆ",
+          "children": [
+            {
+              "type": "text",
+              "text": "ΓåÆ",
+              "formatting": {
+                "bold": true,
+                "size": "18pt",
+                "color": "#5A5540",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-3-4.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Draw Event",
+          "children": [
+            {
+              "type": "text",
+              "text": "Draw Event",
+              "formatting": {
+                "bold": true,
+                "size": "13pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Live on-chain",
+          "children": [
+            {
+              "type": "text",
+              "text": "Live on-chain",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "every 90 days",
+          "children": [
+            {
+              "type": "text",
+              "text": "every 90 days",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-3-5.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "100% Principal Safe",
+          "children": [
+            {
+              "type": "text",
+              "text": "100% Principal Safe",
+              "formatting": {
+                "bold": true,
+                "size": "12pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "FDIC-equivalent protection via USDC + Abstract L2. Your deposit is always yours ΓÇö withdraw anytime.",
+          "children": [
+            {
+              "type": "text",
+              "text": "FDIC-equivalent protection via USDC + Abstract L2. Your deposit is always yours ΓÇö withdraw anytime.",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-3-6.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Deeply Social",
+          "children": [
+            {
+              "type": "text",
+              "text": "Deeply Social",
+              "formatting": {
+                "bold": true,
+                "size": "12pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Syndicates pool entries. Streaks multiply odds up to 3├ù. Live draw events the whole community watches.",
+          "children": [
+            {
+              "type": "text",
+              "text": "Syndicates pool entries. Streaks multiply odds up to 3├ù. Live draw events the whole community watches.",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-3-7.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Provably Fair",
+          "children": [
+            {
+              "type": "text",
+              "text": "Provably Fair",
+              "formatting": {
+                "bold": true,
+                "size": "12pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Chainlink VRF generates the winning hash on-chain, live. Anyone can verify the result independently.",
+          "children": [
+            {
+              "type": "text",
+              "text": "Chainlink VRF generates the winning hash on-chain, live. Anyone can verify the result independently.",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "slideNumber": 3
+      }
+    },
+    {
+      "type": "slide",
+      "children": [
+        {
+          "type": "paragraph",
+          "text": "TECHNOLOGY ┬╖ WHY ABSTRACT L2",
+          "children": [
+            {
+              "type": "text",
+              "text": "TECHNOLOGY ┬╖ WHY ABSTRACT L2",
+              "formatting": {
+                "size": "9pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "We solved the Yotta problem.",
+          "children": [
+            {
+              "type": "text",
+              "text": "We solved the Yotta problem.",
+              "formatting": {
+                "bold": true,
+                "size": "36pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "No bank partner risk. No Synapse. Mathematically transparent ΓÇö and invisible to the user.",
+          "children": [
+            {
+              "type": "text",
+              "text": "No bank partner risk. No Synapse. Mathematically transparent ΓÇö and invisible to the user.",
+              "formatting": {
+                "italic": true,
+                "size": "13pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "The BaaS Graveyard",
+          "children": [
+            {
+              "type": "text",
+              "text": "The BaaS Graveyard",
+              "formatting": {
+                "bold": true,
+                "size": "14pt",
+                "color": "#EF4444",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Γ£ò  Synapse Financial ΓÇö Bankrupt 2024 ΓÇö froze customer funds",
+          "children": [
+            {
+              "type": "text",
+              "text": "Γ£ò  ",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#EF4444",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Synapse Financial ΓÇö ",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Bankrupt 2024 ΓÇö froze customer funds",
+              "formatting": {
+                "size": "10pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Γ£ò  Yotta ΓÇö Forced shutdown ΓÇö users lost access",
+          "children": [
+            {
+              "type": "text",
+              "text": "Γ£ò  ",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#EF4444",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Yotta ΓÇö ",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Forced shutdown ΓÇö users lost access",
+              "formatting": {
+                "size": "10pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Γ£ò  PrizePool.com ΓÇö Collapsed ΓÇö no path back",
+          "children": [
+            {
+              "type": "text",
+              "text": "Γ£ò  ",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#EF4444",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "PrizePool.com ΓÇö ",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Collapsed ΓÇö no path back",
+              "formatting": {
+                "size": "10pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Γ£ò  Every PLSA ΓÇö Required a fragile banking middleman",
+          "children": [
+            {
+              "type": "text",
+              "text": "Γ£ò  ",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#EF4444",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Every PLSA ΓÇö ",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Required a fragile banking middleman",
+              "formatting": {
+                "size": "10pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "ΓåÆ",
+          "children": [
+            {
+              "type": "text",
+              "text": "ΓåÆ",
+              "formatting": {
+                "bold": true,
+                "size": "26pt",
+                "color": "#D4AF37",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Abstract L2 ΓÇö The Right Foundation",
+          "children": [
+            {
+              "type": "text",
+              "text": "Abstract L2 ΓÇö The Right Foundation",
+              "formatting": {
+                "bold": true,
+                "size": "13pt",
+                "color": "#D4AF37",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Γ£ô  FaceID / Email login ΓÇö Native account abstraction ΓÇö no seed phrases",
+          "children": [
+            {
+              "type": "text",
+              "text": "Γ£ô  ",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "FaceID / Email login ΓÇö ",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Native account abstraction ΓÇö no seed phrases",
+              "formatting": {
+                "size": "10pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Γ£ô  No gas fees ΓÇö Invisible to the user ΓÇö feels like a normal app",
+          "children": [
+            {
+              "type": "text",
+              "text": "Γ£ô  ",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "No gas fees ΓÇö ",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Invisible to the user ΓÇö feels like a normal app",
+              "formatting": {
+                "size": "10pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Γ£ô  On-chain proof ΓÇö Every draw verifiable by anyone, forever",
+          "children": [
+            {
+              "type": "text",
+              "text": "Γ£ô  ",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "On-chain proof ΓÇö ",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Every draw verifiable by anyone, forever",
+              "formatting": {
+                "size": "10pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Γ£ô  Day 1 co-marketing ΓÇö Direct line to Abstract founders at launch",
+          "children": [
+            {
+              "type": "text",
+              "text": "Γ£ô  ",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Day 1 co-marketing ΓÇö ",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Direct line to Abstract founders at launch",
+              "formatting": {
+                "size": "10pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "The Smart Contract Stack",
+          "children": [
+            {
+              "type": "text",
+              "text": "The Smart Contract Stack",
+              "formatting": {
+                "bold": true,
+                "size": "13pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-4-1.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "PotluckVault.sol",
+          "children": [
+            {
+              "type": "text",
+              "text": "PotluckVault.sol",
+              "formatting": {
+                "bold": true,
+                "size": "10.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "ERC-4626",
+          "children": [
+            {
+              "type": "text",
+              "text": "ERC-4626",
+              "formatting": {
+                "bold": true,
+                "size": "7pt",
+                "color": "#A78BFA",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Accepts USDC deposits. Routes to Aave for yield. Principal always withdrawable.",
+          "children": [
+            {
+              "type": "text",
+              "text": "Accepts USDC deposits. Routes to Aave for yield. Principal always withdrawable.",
+              "formatting": {
+                "size": "9pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-4-2.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "PotluckTickets.sol",
+          "children": [
+            {
+              "type": "text",
+              "text": "PotluckTickets.sol",
+              "formatting": {
+                "bold": true,
+                "size": "10.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Non-transferable",
+          "children": [
+            {
+              "type": "text",
+              "text": "Non-transferable",
+              "formatting": {
+                "bold": true,
+                "size": "7pt",
+                "color": "#A78BFA",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Time-weighted entry tracking. Prevents manipulation. Assigns tickets fairly.",
+          "children": [
+            {
+              "type": "text",
+              "text": "Time-weighted entry tracking. Prevents manipulation. Assigns tickets fairly.",
+              "formatting": {
+                "size": "9pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-4-3.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "PrizePool.sol",
+          "children": [
+            {
+              "type": "text",
+              "text": "PrizePool.sol",
+              "formatting": {
+                "bold": true,
+                "size": "10.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Chainlink VRF",
+          "children": [
+            {
+              "type": "text",
+              "text": "Chainlink VRF",
+              "formatting": {
+                "bold": true,
+                "size": "7pt",
+                "color": "#A78BFA",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Sweeps yield. Runs provably fair draw. Distributes prize on-chain instantly.",
+          "children": [
+            {
+              "type": "text",
+              "text": "Sweeps yield. Runs provably fair draw. Distributes prize on-chain instantly.",
+              "formatting": {
+                "size": "9pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "slideNumber": 4
+      }
+    },
+    {
+      "type": "slide",
+      "children": [
+        {
+          "type": "paragraph",
+          "text": "MARKET OPPORTUNITY",
+          "children": [
+            {
+              "type": "text",
+              "text": "MARKET OPPORTUNITY",
+              "formatting": {
+                "size": "9pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Three giant markets. One product.",
+          "children": [
+            {
+              "type": "text",
+              "text": "Three giant markets. One product.",
+              "formatting": {
+                "bold": true,
+                "size": "30pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "We're not competing with any single incumbent. We're eating a piece of all of them.",
+          "children": [
+            {
+              "type": "text",
+              "text": "We're not competing with any single incumbent. We're eating a piece of all of them.",
+              "formatting": {
+                "italic": true,
+                "size": "13pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "$100B",
+          "children": [
+            {
+              "type": "text",
+              "text": "$100B",
+              "formatting": {
+                "bold": true,
+                "size": "48pt",
+                "color": "#991B1B",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "US Lottery Market",
+          "children": [
+            {
+              "type": "text",
+              "text": "US Lottery Market",
+              "formatting": {
+                "bold": true,
+                "size": "12pt",
+                "color": "#FFFFFF",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "76% of Americans play the lottery annually",
+          "children": [
+            {
+              "type": "text",
+              "text": "76% of Americans play the lottery annually",
+              "formatting": {
+                "italic": true,
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "$1.2T",
+          "children": [
+            {
+              "type": "text",
+              "text": "$1.2T",
+              "formatting": {
+                "bold": true,
+                "size": "48pt",
+                "color": "#D4AF37",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "US Savings Market",
+          "children": [
+            {
+              "type": "text",
+              "text": "US Savings Market",
+              "formatting": {
+                "bold": true,
+                "size": "12pt",
+                "color": "#FFFFFF",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Average APY: 0.5% ΓÇö users are starved for yield",
+          "children": [
+            {
+              "type": "text",
+              "text": "Average APY: 0.5% ΓÇö users are starved for yield",
+              "formatting": {
+                "italic": true,
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "$585B",
+          "children": [
+            {
+              "type": "text",
+              "text": "$585B",
+              "formatting": {
+                "bold": true,
+                "size": "48pt",
+                "color": "#A78BFA",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Premium Card Spend",
+          "children": [
+            {
+              "type": "text",
+              "text": "Premium Card Spend",
+              "formatting": {
+                "bold": true,
+                "size": "12pt",
+                "color": "#FFFFFF",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Amex alone processes $200B+ per year",
+          "children": [
+            {
+              "type": "text",
+              "text": "Amex alone processes $200B+ per year",
+              "formatting": {
+                "italic": true,
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Beachhead",
+          "children": [
+            {
+              "type": "text",
+              "text": "Beachhead",
+              "formatting": {
+                "bold": true,
+                "size": "13pt",
+                "color": "#D4AF37",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "ΓåÆ  Convert 1% of lottery spend ΓåÆ $1B+ opportunity",
+          "children": [
+            {
+              "type": "text",
+              "text": "ΓåÆ  ",
+              "formatting": {
+                "size": "10pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Convert 1% of lottery spend ΓåÆ $1B+ opportunity",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "ΓåÆ  Abstract ecosystem launch ΓåÆ Day 1 crypto-native users",
+          "children": [
+            {
+              "type": "text",
+              "text": "ΓåÆ  ",
+              "formatting": {
+                "size": "10pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Abstract ecosystem launch ΓåÆ Day 1 crypto-native users",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "ΓåÆ  Mainstream crossover ΓåÆ lottery replacement narrative",
+          "children": [
+            {
+              "type": "text",
+              "text": "ΓåÆ  ",
+              "formatting": {
+                "size": "10pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Mainstream crossover ΓåÆ lottery replacement narrative",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "ΓåÆ  Premium tier ΓåÆ Meridian card captures HNW segment",
+          "children": [
+            {
+              "type": "text",
+              "text": "ΓåÆ  ",
+              "formatting": {
+                "size": "10pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Premium tier ΓåÆ Meridian card captures HNW segment",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "table",
+          "children": [
+            {
+              "type": "row",
+              "children": [
+                {
+                  "type": "cell",
+                  "text": "",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "",
+                      "children": [],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 0,
+                    "col": 0
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Savings",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Savings",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Savings",
+                          "formatting": {
+                            "bold": true,
+                            "size": "9pt",
+                            "color": "#D4AF37",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 0,
+                    "col": 1
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Prize Draw",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Prize Draw",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Prize Draw",
+                          "formatting": {
+                            "bold": true,
+                            "size": "9pt",
+                            "color": "#D4AF37",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 0,
+                    "col": 2
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Card",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Card",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Card",
+                          "formatting": {
+                            "bold": true,
+                            "size": "9pt",
+                            "color": "#D4AF37",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 0,
+                    "col": 3
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "DeFi",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "DeFi",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "DeFi",
+                          "formatting": {
+                            "bold": true,
+                            "size": "9pt",
+                            "color": "#D4AF37",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 0,
+                    "col": 4
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Social",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Social",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Social",
+                          "formatting": {
+                            "bold": true,
+                            "size": "9pt",
+                            "color": "#D4AF37",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 0,
+                    "col": 5
+                  }
+                }
+              ]
+            },
+            {
+              "type": "row",
+              "children": [
+                {
+                  "type": "cell",
+                  "text": "Amex Platinum",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Amex Platinum",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Amex Platinum",
+                          "formatting": {
+                            "size": "10pt",
+                            "color": "#5A5540",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 1,
+                    "col": 0
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Γ£ù",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Γ£ù",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Γ£ù",
+                          "formatting": {
+                            "size": "12pt",
+                            "color": "#3A1A1A",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 1,
+                    "col": 1
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Γ£ù",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Γ£ù",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Γ£ù",
+                          "formatting": {
+                            "size": "12pt",
+                            "color": "#3A1A1A",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 1,
+                    "col": 2
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Γ£ô",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Γ£ô",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Γ£ô",
+                          "formatting": {
+                            "size": "12pt",
+                            "color": "#22C55E",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 1,
+                    "col": 3
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Γ£ù",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Γ£ù",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Γ£ù",
+                          "formatting": {
+                            "size": "12pt",
+                            "color": "#3A1A1A",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 1,
+                    "col": 4
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Γ£ù",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Γ£ù",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Γ£ù",
+                          "formatting": {
+                            "size": "12pt",
+                            "color": "#3A1A1A",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 1,
+                    "col": 5
+                  }
+                }
+              ]
+            },
+            {
+              "type": "row",
+              "children": [
+                {
+                  "type": "cell",
+                  "text": "Yotta (defunct)",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Yotta (defunct)",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Yotta (defunct)",
+                          "formatting": {
+                            "size": "10pt",
+                            "color": "#5A5540",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 2,
+                    "col": 0
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Γ£ô",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Γ£ô",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Γ£ô",
+                          "formatting": {
+                            "size": "12pt",
+                            "color": "#22C55E",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 2,
+                    "col": 1
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Γ£ô",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Γ£ô",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Γ£ô",
+                          "formatting": {
+                            "size": "12pt",
+                            "color": "#22C55E",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 2,
+                    "col": 2
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Γ£ô",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Γ£ô",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Γ£ô",
+                          "formatting": {
+                            "size": "12pt",
+                            "color": "#22C55E",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 2,
+                    "col": 3
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Γ£ù",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Γ£ù",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Γ£ù",
+                          "formatting": {
+                            "size": "12pt",
+                            "color": "#3A1A1A",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 2,
+                    "col": 4
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Γ£ù",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Γ£ù",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Γ£ù",
+                          "formatting": {
+                            "size": "12pt",
+                            "color": "#3A1A1A",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 2,
+                    "col": 5
+                  }
+                }
+              ]
+            },
+            {
+              "type": "row",
+              "children": [
+                {
+                  "type": "cell",
+                  "text": "Revolut",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Revolut",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Revolut",
+                          "formatting": {
+                            "size": "10pt",
+                            "color": "#5A5540",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 3,
+                    "col": 0
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Γ£ô",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Γ£ô",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Γ£ô",
+                          "formatting": {
+                            "size": "12pt",
+                            "color": "#22C55E",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 3,
+                    "col": 1
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Γ£ù",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Γ£ù",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Γ£ù",
+                          "formatting": {
+                            "size": "12pt",
+                            "color": "#3A1A1A",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 3,
+                    "col": 2
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Γ£ô",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Γ£ô",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Γ£ô",
+                          "formatting": {
+                            "size": "12pt",
+                            "color": "#22C55E",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 3,
+                    "col": 3
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "~",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "~",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "~",
+                          "formatting": {
+                            "size": "12pt",
+                            "color": "#5A5540",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 3,
+                    "col": 4
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Γ£ù",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Γ£ù",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Γ£ù",
+                          "formatting": {
+                            "size": "12pt",
+                            "color": "#3A1A1A",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 3,
+                    "col": 5
+                  }
+                }
+              ]
+            },
+            {
+              "type": "row",
+              "children": [
+                {
+                  "type": "cell",
+                  "text": "POTLUCK Γ£ª",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "POTLUCK Γ£ª",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "POTLUCK Γ£ª",
+                          "formatting": {
+                            "bold": true,
+                            "size": "10pt",
+                            "color": "#D4AF37",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 4,
+                    "col": 0
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Γ£ô",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Γ£ô",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Γ£ô",
+                          "formatting": {
+                            "size": "12pt",
+                            "color": "#D4AF37",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 4,
+                    "col": 1
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Γ£ô",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Γ£ô",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Γ£ô",
+                          "formatting": {
+                            "size": "12pt",
+                            "color": "#D4AF37",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 4,
+                    "col": 2
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Γ£ô",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Γ£ô",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Γ£ô",
+                          "formatting": {
+                            "size": "12pt",
+                            "color": "#D4AF37",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 4,
+                    "col": 3
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Γ£ô",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Γ£ô",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Γ£ô",
+                          "formatting": {
+                            "size": "12pt",
+                            "color": "#D4AF37",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 4,
+                    "col": 4
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Γ£ô",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Γ£ô",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Γ£ô",
+                          "formatting": {
+                            "size": "12pt",
+                            "color": "#D4AF37",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 4,
+                    "col": 5
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "metadata": {
+        "slideNumber": 5
+      }
+    },
+    {
+      "type": "slide",
+      "children": [
+        {
+          "type": "paragraph",
+          "text": "GO-TO-MARKET ┬╖ PHASE 1",
+          "children": [
+            {
+              "type": "text",
+              "text": "GO-TO-MARKET ┬╖ PHASE 1",
+              "formatting": {
+                "size": "9pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Two audiences. One product. Different front doors.",
+          "children": [
+            {
+              "type": "text",
+              "text": "Two audiences. One product. Different front doors.",
+              "formatting": {
+                "bold": true,
+                "size": "28pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "The DeFi is the engine. The lottery replacement is the hook. Both lead to the same Pot.",
+          "children": [
+            {
+              "type": "text",
+              "text": "The DeFi is the engine. The lottery replacement is the hook. Both lead to the same Pot.",
+              "formatting": {
+                "italic": true,
+                "size": "13pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "CRYPTO-NATIVE",
+          "children": [
+            {
+              "type": "text",
+              "text": "CRYPTO-NATIVE",
+              "formatting": {
+                "bold": true,
+                "size": "8pt",
+                "color": "#A78BFA",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Abstract Ecosystem Users",
+          "children": [
+            {
+              "type": "text",
+              "text": "Abstract Ecosystem Users",
+              "formatting": {
+                "bold": true,
+                "size": "15pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Message:",
+          "children": [
+            {
+              "type": "text",
+              "text": "Message:",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "\"On-chain prize-linked savings. Chainlink VRF draw. ERC-4626 vault on Abstract L2. Your yield. Your pot. Provably fair.\"",
+          "children": [
+            {
+              "type": "text",
+              "text": "\"On-chain prize-linked savings. Chainlink VRF draw. ERC-4626 vault on Abstract L2. Your yield. Your pot. Provably fair.\"",
+              "formatting": {
+                "italic": true,
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Channels:",
+          "children": [
+            {
+              "type": "text",
+              "text": "Channels:",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  Abstract ecosystem launch (Day 1 co-marketing)",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "10pt",
+                "color": "#A78BFA",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Abstract ecosystem launch (Day 1 co-marketing)",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  DeFi Twitter / Farcaster / Warpcast",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "10pt",
+                "color": "#A78BFA",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "DeFi Twitter / Farcaster / Warpcast",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  Abstract grants + ecosystem fund",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "10pt",
+                "color": "#A78BFA",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Abstract grants + ecosystem fund",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  Crypto influencer seeding (yield + prizes)",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "10pt",
+                "color": "#A78BFA",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Crypto influencer seeding (yield + prizes)",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "MAINSTREAM",
+          "children": [
+            {
+              "type": "text",
+              "text": "MAINSTREAM",
+              "formatting": {
+                "bold": true,
+                "size": "8pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Lottery & Fintech Users",
+          "children": [
+            {
+              "type": "text",
+              "text": "Lottery & Fintech Users",
+              "formatting": {
+                "bold": true,
+                "size": "15pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Message:",
+          "children": [
+            {
+              "type": "text",
+              "text": "Message:",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "\"Stop playing the lottery. Save your way to a jackpot. Your money stays safe ΓÇö your interest builds a $2.4M prize pool.\"",
+          "children": [
+            {
+              "type": "text",
+              "text": "\"Stop playing the lottery. Save your way to a jackpot. Your money stays safe ΓÇö your interest builds a $2.4M prize pool.\"",
+              "formatting": {
+                "italic": true,
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Channels:",
+          "children": [
+            {
+              "type": "text",
+              "text": "Channels:",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  Referral waitlist (live ΓÇö potluck-kappa.vercel.app)",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "10pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Referral waitlist (live ΓÇö potluck-kappa.vercel.app)",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  TikTok / Instagram ΓÇö draw event clips go viral",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "10pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "TikTok / Instagram ΓÇö draw event clips go viral",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  Paid social targeting lottery & scratch ticket buyers",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "10pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Paid social targeting lottery & scratch ticket buyers",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  YouTube finance creators (lottery replacement angle)",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "10pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "YouTube finance creators (lottery replacement angle)",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Both audiences land in the same product. The abstraction layer makes the DeFi invisible to those who don't care.",
+          "children": [
+            {
+              "type": "text",
+              "text": "Both audiences land in the same product. The abstraction layer makes the DeFi invisible to those who don't care.",
+              "formatting": {
+                "italic": true,
+                "size": "10.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        }
+      ],
+      "metadata": {
+        "slideNumber": 6
+      }
+    },
+    {
+      "type": "slide",
+      "children": [
+        {
+          "type": "paragraph",
+          "text": "ROADMAP",
+          "children": [
+            {
+              "type": "text",
+              "text": "ROADMAP",
+              "formatting": {
+                "size": "9pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Four phases. One clear path.",
+          "children": [
+            {
+              "type": "text",
+              "text": "Four phases. One clear path.",
+              "formatting": {
+                "bold": true,
+                "size": "36pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Each phase funds the next. The Pot pays for The Meridian. The Meridian pays for everything.",
+          "children": [
+            {
+              "type": "text",
+              "text": "Each phase funds the next. The Pot pays for The Meridian. The Meridian pays for everything.",
+              "formatting": {
+                "italic": true,
+                "size": "13pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "01",
+          "children": [
+            {
+              "type": "text",
+              "text": "01",
+              "formatting": {
+                "bold": true,
+                "size": "24pt",
+                "color": "#D4AF37",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "NOW",
+          "children": [
+            {
+              "type": "text",
+              "text": "NOW",
+              "formatting": {
+                "bold": true,
+                "size": "7.5pt",
+                "color": "#22C55E",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-7-1.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "THE POT",
+          "children": [
+            {
+              "type": "text",
+              "text": "THE POT",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Months 1ΓÇô6",
+          "children": [
+            {
+              "type": "text",
+              "text": "Months 1ΓÇô6",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Launch & Validate",
+          "children": [
+            {
+              "type": "text",
+              "text": "Launch & Validate",
+              "formatting": {
+                "bold": true,
+                "size": "11.5pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  Abstract Testnet ΓåÆ Mainnet",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Abstract Testnet ΓåÆ Mainnet",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  Referral waitlist ΓåÆ 10K signups",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Referral waitlist ΓåÆ 10K signups",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  Live Grand Draw event (streamed)",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Live Grand Draw event (streamed)",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  1,000 depositing members",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "1,000 depositing members",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  $500K AUM ┬╖ First $50K prize",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "$500K AUM ┬╖ First $50K prize",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "KPI",
+          "children": [
+            {
+              "type": "text",
+              "text": "KPI",
+              "formatting": {
+                "size": "7.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "$500K AUM",
+          "children": [
+            {
+              "type": "text",
+              "text": "$500K AUM",
+              "formatting": {
+                "bold": true,
+                "size": "14pt",
+                "color": "#D4AF37",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "02",
+          "children": [
+            {
+              "type": "text",
+              "text": "02",
+              "formatting": {
+                "bold": true,
+                "size": "24pt",
+                "color": "#5A5540",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "NEXT",
+          "children": [
+            {
+              "type": "text",
+              "text": "NEXT",
+              "formatting": {
+                "bold": true,
+                "size": "7.5pt",
+                "color": "#8A7020",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-7-2.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "MERIDIAN BETA",
+          "children": [
+            {
+              "type": "text",
+              "text": "MERIDIAN BETA",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Months 6ΓÇô12",
+          "children": [
+            {
+              "type": "text",
+              "text": "Months 6ΓÇô12",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Card + Social Layer",
+          "children": [
+            {
+              "type": "text",
+              "text": "Card + Social Layer",
+              "formatting": {
+                "bold": true,
+                "size": "11.5pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  Meridian card pilot (500 members)",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Meridian card pilot (500 members)",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  Syndicates + streak features live",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Syndicates + streak features live",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  10,000 depositing members",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "10,000 depositing members",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  $5M AUM ┬╖ $240K prize pools",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "$5M AUM ┬╖ $240K prize pools",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  Meridian waitlist opens",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Meridian waitlist opens",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "KPI",
+          "children": [
+            {
+              "type": "text",
+              "text": "KPI",
+              "formatting": {
+                "size": "7.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "$5M AUM",
+          "children": [
+            {
+              "type": "text",
+              "text": "$5M AUM",
+              "formatting": {
+                "bold": true,
+                "size": "14pt",
+                "color": "#5A5540",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "03",
+          "children": [
+            {
+              "type": "text",
+              "text": "03",
+              "formatting": {
+                "bold": true,
+                "size": "24pt",
+                "color": "#5A5540",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "SOON",
+          "children": [
+            {
+              "type": "text",
+              "text": "SOON",
+              "formatting": {
+                "bold": true,
+                "size": "7.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-7-3.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "MERIDIAN PUBLIC",
+          "children": [
+            {
+              "type": "text",
+              "text": "MERIDIAN PUBLIC",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Months 12ΓÇô18",
+          "children": [
+            {
+              "type": "text",
+              "text": "Months 12ΓÇô18",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Scale & Premium",
+          "children": [
+            {
+              "type": "text",
+              "text": "Scale & Premium",
+              "formatting": {
+                "bold": true,
+                "size": "11.5pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  Meridian card public launch",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Meridian card public launch",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  Banking dashboard + Plaid integration",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Banking dashboard + Plaid integration",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  50,000 members ┬╖ $25M AUM",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "50,000 members ┬╖ $25M AUM",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  $1.2M+ annual prize pools",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "$1.2M+ annual prize pools",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  Potluck+ subscription tier",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Potluck+ subscription tier",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "KPI",
+          "children": [
+            {
+              "type": "text",
+              "text": "KPI",
+              "formatting": {
+                "size": "7.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "$25M AUM",
+          "children": [
+            {
+              "type": "text",
+              "text": "$25M AUM",
+              "formatting": {
+                "bold": true,
+                "size": "14pt",
+                "color": "#5A5540",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "04",
+          "children": [
+            {
+              "type": "text",
+              "text": "04",
+              "formatting": {
+                "bold": true,
+                "size": "24pt",
+                "color": "#5A5540",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "FUTURE",
+          "children": [
+            {
+              "type": "text",
+              "text": "FUTURE",
+              "formatting": {
+                "bold": true,
+                "size": "7.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-7-4.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "INTERNATIONAL",
+          "children": [
+            {
+              "type": "text",
+              "text": "INTERNATIONAL",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Year 2+",
+          "children": [
+            {
+              "type": "text",
+              "text": "Year 2+",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Global Expansion",
+          "children": [
+            {
+              "type": "text",
+              "text": "Global Expansion",
+              "formatting": {
+                "bold": true,
+                "size": "11.5pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  EU & LATAM markets",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "EU & LATAM markets",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  Multi-currency prize pools",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Multi-currency prize pools",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  250,000+ members",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "250,000+ members",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  $150M+ AUM",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "$150M+ AUM",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "┬╖  Strategic banking partnerships",
+          "children": [
+            {
+              "type": "text",
+              "text": "┬╖  ",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Strategic banking partnerships",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "KPI",
+          "children": [
+            {
+              "type": "text",
+              "text": "KPI",
+              "formatting": {
+                "size": "7.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "$150M AUM",
+          "children": [
+            {
+              "type": "text",
+              "text": "$150M AUM",
+              "formatting": {
+                "bold": true,
+                "size": "14pt",
+                "color": "#5A5540",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "slideNumber": 7
+      }
+    },
+    {
+      "type": "slide",
+      "children": [
+        {
+          "type": "paragraph",
+          "text": "BUSINESS MODEL & TRACTION",
+          "children": [
+            {
+              "type": "text",
+              "text": "BUSINESS MODEL & TRACTION",
+              "formatting": {
+                "size": "9pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Revenue grows with every deposit.",
+          "children": [
+            {
+              "type": "text",
+              "text": "Revenue grows with every deposit.",
+              "formatting": {
+                "bold": true,
+                "size": "32pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "01",
+          "children": [
+            {
+              "type": "text",
+              "text": "01",
+              "formatting": {
+                "bold": true,
+                "size": "20pt",
+                "color": "#D4AF37",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-8-1.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Yield Spread",
+          "children": [
+            {
+              "type": "text",
+              "text": "Yield Spread",
+              "formatting": {
+                "bold": true,
+                "size": "11.5pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "PRIMARY",
+          "children": [
+            {
+              "type": "text",
+              "text": "PRIMARY",
+              "formatting": {
+                "bold": true,
+                "size": "7pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "35% of all DeFi",
+          "children": [
+            {
+              "type": "text",
+              "text": "35% of all DeFi",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "yield on deposits",
+          "children": [
+            {
+              "type": "text",
+              "text": "yield on deposits",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "02",
+          "children": [
+            {
+              "type": "text",
+              "text": "02",
+              "formatting": {
+                "bold": true,
+                "size": "20pt",
+                "color": "#D4AF37",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-8-2.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Card Interchange",
+          "children": [
+            {
+              "type": "text",
+              "text": "Card Interchange",
+              "formatting": {
+                "bold": true,
+                "size": "11.5pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "PHASE 2",
+          "children": [
+            {
+              "type": "text",
+              "text": "PHASE 2",
+              "formatting": {
+                "bold": true,
+                "size": "7pt",
+                "color": "#8A7020",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "1.5ΓÇô3% on every",
+          "children": [
+            {
+              "type": "text",
+              "text": "1.5ΓÇô3% on every",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Meridian swipe",
+          "children": [
+            {
+              "type": "text",
+              "text": "Meridian swipe",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "03",
+          "children": [
+            {
+              "type": "text",
+              "text": "03",
+              "formatting": {
+                "bold": true,
+                "size": "20pt",
+                "color": "#D4AF37",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-8-3.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Meridian+",
+          "children": [
+            {
+              "type": "text",
+              "text": "Meridian+",
+              "formatting": {
+                "bold": true,
+                "size": "11.5pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "RECURRING",
+          "children": [
+            {
+              "type": "text",
+              "text": "RECURRING",
+              "formatting": {
+                "bold": true,
+                "size": "7pt",
+                "color": "#A78BFA",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "$9.99/mo premium",
+          "children": [
+            {
+              "type": "text",
+              "text": "$9.99/mo premium",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "tier subscription",
+          "children": [
+            {
+              "type": "text",
+              "text": "tier subscription",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "04",
+          "children": [
+            {
+              "type": "text",
+              "text": "04",
+              "formatting": {
+                "bold": true,
+                "size": "20pt",
+                "color": "#D4AF37",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "image",
+          "text": "",
+          "metadata": {
+            "attachmentName": "image-8-4.png",
+            "altText": "preencoded.png"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Sponsored Draws",
+          "children": [
+            {
+              "type": "text",
+              "text": "Sponsored Draws",
+              "formatting": {
+                "bold": true,
+                "size": "11.5pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "ADDITIVE",
+          "children": [
+            {
+              "type": "text",
+              "text": "ADDITIVE",
+              "formatting": {
+                "bold": true,
+                "size": "7pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Brand-funded prize",
+          "children": [
+            {
+              "type": "text",
+              "text": "Brand-funded prize",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "pools at scale",
+          "children": [
+            {
+              "type": "text",
+              "text": "pools at scale",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Illustrative Unit Economics",
+          "children": [
+            {
+              "type": "text",
+              "text": "Illustrative Unit Economics",
+              "formatting": {
+                "bold": true,
+                "size": "12pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "table",
+          "children": [
+            {
+              "type": "row",
+              "children": [
+                {
+                  "type": "cell",
+                  "text": "Metric",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Metric",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Metric",
+                          "formatting": {
+                            "bold": true,
+                            "size": "9pt",
+                            "color": "#D4AF37",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 0,
+                    "col": 0
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Phase 1",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Phase 1",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Phase 1",
+                          "formatting": {
+                            "bold": true,
+                            "size": "9pt",
+                            "color": "#D4AF37",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 0,
+                    "col": 1
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Phase 2",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Phase 2",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Phase 2",
+                          "formatting": {
+                            "bold": true,
+                            "size": "9pt",
+                            "color": "#D4AF37",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 0,
+                    "col": 2
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "Phase 3",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Phase 3",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Phase 3",
+                          "formatting": {
+                            "bold": true,
+                            "size": "9pt",
+                            "color": "#D4AF37",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 0,
+                    "col": 3
+                  }
+                }
+              ]
+            },
+            {
+              "type": "row",
+              "children": [
+                {
+                  "type": "cell",
+                  "text": "Members",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Members",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Members",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#C8C0A8",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 1,
+                    "col": 0
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "1,000",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "1,000",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "1,000",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#FFFFFF",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 1,
+                    "col": 1
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "10,000",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "10,000",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "10,000",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#FFFFFF",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 1,
+                    "col": 2
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "50,000",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "50,000",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "50,000",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#FFFFFF",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 1,
+                    "col": 3
+                  }
+                }
+              ]
+            },
+            {
+              "type": "row",
+              "children": [
+                {
+                  "type": "cell",
+                  "text": "Avg Deposit (USDC)",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Avg Deposit (USDC)",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Avg Deposit (USDC)",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#C8C0A8",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 2,
+                    "col": 0
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "$350",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "$350",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "$350",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#FFFFFF",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 2,
+                    "col": 1
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "$420",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "$420",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "$420",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#FFFFFF",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 2,
+                    "col": 2
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "$500",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "$500",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "$500",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#FFFFFF",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 2,
+                    "col": 3
+                  }
+                }
+              ]
+            },
+            {
+              "type": "row",
+              "children": [
+                {
+                  "type": "cell",
+                  "text": "AUM",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "AUM",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "AUM",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#C8C0A8",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 3,
+                    "col": 0
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "$350K",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "$350K",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "$350K",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#FFFFFF",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 3,
+                    "col": 1
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "$4.2M",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "$4.2M",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "$4.2M",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#FFFFFF",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 3,
+                    "col": 2
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "$25M",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "$25M",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "$25M",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#FFFFFF",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 3,
+                    "col": 3
+                  }
+                }
+              ]
+            },
+            {
+              "type": "row",
+              "children": [
+                {
+                  "type": "cell",
+                  "text": "DeFi Yield (5%)",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "DeFi Yield (5%)",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "DeFi Yield (5%)",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#C8C0A8",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 4,
+                    "col": 0
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "$17.5K",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "$17.5K",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "$17.5K",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#FFFFFF",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 4,
+                    "col": 1
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "$210K",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "$210K",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "$210K",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#FFFFFF",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 4,
+                    "col": 2
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "$1.25M",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "$1.25M",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "$1.25M",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#FFFFFF",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 4,
+                    "col": 3
+                  }
+                }
+              ]
+            },
+            {
+              "type": "row",
+              "children": [
+                {
+                  "type": "cell",
+                  "text": "Potluck Rev (35%)",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Potluck Rev (35%)",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Potluck Rev (35%)",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#C8C0A8",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 5,
+                    "col": 0
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "$6.1K",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "$6.1K",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "$6.1K",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#FFFFFF",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 5,
+                    "col": 1
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "$73.5K",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "$73.5K",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "$73.5K",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#FFFFFF",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 5,
+                    "col": 2
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "$437K",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "$437K",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "$437K",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#FFFFFF",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 5,
+                    "col": 3
+                  }
+                }
+              ]
+            },
+            {
+              "type": "row",
+              "children": [
+                {
+                  "type": "cell",
+                  "text": "Card Rev (est.)",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Card Rev (est.)",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Card Rev (est.)",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#C8C0A8",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 6,
+                    "col": 0
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "ΓÇö",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "ΓÇö",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "ΓÇö",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#FFFFFF",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 6,
+                    "col": 1
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "$42K",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "$42K",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "$42K",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#FFFFFF",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 6,
+                    "col": 2
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "$520K",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "$520K",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "$520K",
+                          "formatting": {
+                            "size": "9.5pt",
+                            "color": "#FFFFFF",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 6,
+                    "col": 3
+                  }
+                }
+              ]
+            },
+            {
+              "type": "row",
+              "children": [
+                {
+                  "type": "cell",
+                  "text": "Total Revenue",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "Total Revenue",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "Total Revenue",
+                          "formatting": {
+                            "bold": true,
+                            "size": "9.5pt",
+                            "color": "#D4AF37",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 7,
+                    "col": 0
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "$6.1K",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "$6.1K",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "$6.1K",
+                          "formatting": {
+                            "bold": true,
+                            "size": "9.5pt",
+                            "color": "#D4AF37",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 7,
+                    "col": 1
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "$115K",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "$115K",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "$115K",
+                          "formatting": {
+                            "bold": true,
+                            "size": "9.5pt",
+                            "color": "#D4AF37",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 7,
+                    "col": 2
+                  }
+                },
+                {
+                  "type": "cell",
+                  "text": "$957K",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "text": "$957K",
+                      "children": [
+                        {
+                          "type": "text",
+                          "text": "$957K",
+                          "formatting": {
+                            "bold": true,
+                            "size": "9.5pt",
+                            "color": "#D4AF37",
+                            "font": "Calibri"
+                          }
+                        }
+                      ],
+                      "metadata": {}
+                    }
+                  ],
+                  "metadata": {
+                    "row": 7,
+                    "col": 3
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Traction",
+          "children": [
+            {
+              "type": "text",
+              "text": "Traction",
+              "formatting": {
+                "bold": true,
+                "size": "12pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Contracts",
+          "children": [
+            {
+              "type": "text",
+              "text": "Contracts",
+              "formatting": {
+                "size": "9pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "All 3 passed unit tests Γ£ô",
+          "children": [
+            {
+              "type": "text",
+              "text": "All 3 passed unit tests Γ£ô",
+              "formatting": {
+                "size": "9pt",
+                "color": "#22C55E",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "dApp",
+          "children": [
+            {
+              "type": "text",
+              "text": "dApp",
+              "formatting": {
+                "size": "9pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Live on Vercel Γ£ô",
+          "children": [
+            {
+              "type": "text",
+              "text": "Live on Vercel Γ£ô",
+              "formatting": {
+                "size": "9pt",
+                "color": "#22C55E",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "UI",
+          "children": [
+            {
+              "type": "text",
+              "text": "UI",
+              "formatting": {
+                "size": "9pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "5-tab app built Γ£ô",
+          "children": [
+            {
+              "type": "text",
+              "text": "5-tab app built Γ£ô",
+              "formatting": {
+                "size": "9pt",
+                "color": "#22C55E",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Draw",
+          "children": [
+            {
+              "type": "text",
+              "text": "Draw",
+              "formatting": {
+                "size": "9pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Live broadcast ready Γ£ô",
+          "children": [
+            {
+              "type": "text",
+              "text": "Live broadcast ready Γ£ô",
+              "formatting": {
+                "size": "9pt",
+                "color": "#22C55E",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Waitlist",
+          "children": [
+            {
+              "type": "text",
+              "text": "Waitlist",
+              "formatting": {
+                "size": "9pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Live & collecting Γ£ô",
+          "children": [
+            {
+              "type": "text",
+              "text": "Live & collecting Γ£ô",
+              "formatting": {
+                "size": "9pt",
+                "color": "#22C55E",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Abstract",
+          "children": [
+            {
+              "type": "text",
+              "text": "Abstract",
+              "formatting": {
+                "size": "9pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Founder relationship Γ£ô",
+          "children": [
+            {
+              "type": "text",
+              "text": "Founder relationship Γ£ô",
+              "formatting": {
+                "size": "9pt",
+                "color": "#22C55E",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "slideNumber": 8
+      }
+    },
+    {
+      "type": "slide",
+      "children": [
+        {
+          "type": "paragraph",
+          "text": "THE ASK",
+          "children": [
+            {
+              "type": "text",
+              "text": "THE ASK",
+              "formatting": {
+                "size": "9pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "$3.5M Seed Round.",
+          "children": [
+            {
+              "type": "text",
+              "text": "$3.5M Seed Round.",
+              "formatting": {
+                "bold": true,
+                "size": "38pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Contracts are written. UI is live. Testnet is next. Capital goes straight to launch.",
+          "children": [
+            {
+              "type": "text",
+              "text": "Contracts are written. UI is live. Testnet is next. Capital goes straight to launch.",
+              "formatting": {
+                "italic": true,
+                "size": "13pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "RAISING",
+          "children": [
+            {
+              "type": "text",
+              "text": "RAISING",
+              "formatting": {
+                "size": "9pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "$3.5M Seed",
+          "children": [
+            {
+              "type": "text",
+              "text": "$3.5M Seed",
+              "formatting": {
+                "bold": true,
+                "size": "44pt",
+                "color": "#D4AF37",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Round",
+          "children": [
+            {
+              "type": "text",
+              "text": "Round",
+              "formatting": {
+                "size": "14pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Use of Funds",
+          "children": [
+            {
+              "type": "text",
+              "text": "Use of Funds",
+              "formatting": {
+                "bold": true,
+                "size": "11pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "40%",
+          "children": [
+            {
+              "type": "text",
+              "text": "40%",
+              "formatting": {
+                "bold": true,
+                "size": "13pt",
+                "color": "#D4AF37",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Abstract deploy + audits",
+          "children": [
+            {
+              "type": "text",
+              "text": "Abstract deploy + audits",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "30%",
+          "children": [
+            {
+              "type": "text",
+              "text": "30%",
+              "formatting": {
+                "bold": true,
+                "size": "13pt",
+                "color": "#8A7020",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Engineering ΓÇö card + app",
+          "children": [
+            {
+              "type": "text",
+              "text": "Engineering ΓÇö card + app",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "20%",
+          "children": [
+            {
+              "type": "text",
+              "text": "20%",
+              "formatting": {
+                "bold": true,
+                "size": "13pt",
+                "color": "#A78BFA",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Growth + co-marketing",
+          "children": [
+            {
+              "type": "text",
+              "text": "Growth + co-marketing",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "10%",
+          "children": [
+            {
+              "type": "text",
+              "text": "10%",
+              "formatting": {
+                "bold": true,
+                "size": "13pt",
+                "color": "#5A5540",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Legal + compliance",
+          "children": [
+            {
+              "type": "text",
+              "text": "Legal + compliance",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "18-Month Milestones",
+          "children": [
+            {
+              "type": "text",
+              "text": "18-Month Milestones",
+              "formatting": {
+                "bold": true,
+                "size": "11pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Γ£ô  Abstract Mainnet launch",
+          "children": [
+            {
+              "type": "text",
+              "text": "Γ£ô  ",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Abstract Mainnet launch",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Γ£ô  10K depositing members",
+          "children": [
+            {
+              "type": "text",
+              "text": "Γ£ô  ",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "10K depositing members",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Γ£ô  Meridian card pilot (500)",
+          "children": [
+            {
+              "type": "text",
+              "text": "Γ£ô  ",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "Meridian card pilot (500)",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Γ£ô  $5M AUM ┬╖ $240K prize pool",
+          "children": [
+            {
+              "type": "text",
+              "text": "Γ£ô  ",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "$5M AUM ┬╖ $240K prize pool",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Γ£ô  $115K projected revenue",
+          "children": [
+            {
+              "type": "text",
+              "text": "Γ£ô  ",
+              "formatting": {
+                "bold": true,
+                "size": "10pt",
+                "color": "#D4AF37",
+                "font": "Calibri"
+              }
+            },
+            {
+              "type": "text",
+              "text": "$115K projected revenue",
+              "formatting": {
+                "size": "10pt",
+                "color": "#C8C0A8",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Why Now",
+          "children": [
+            {
+              "type": "text",
+              "text": "Why Now",
+              "formatting": {
+                "bold": true,
+                "size": "13pt",
+                "color": "#D4AF37",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "01",
+          "children": [
+            {
+              "type": "text",
+              "text": "01",
+              "formatting": {
+                "bold": true,
+                "size": "22pt",
+                "color": "#D4AF37",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "BaaS collapse cleared the field",
+          "children": [
+            {
+              "type": "text",
+              "text": "BaaS collapse cleared the field",
+              "formatting": {
+                "bold": true,
+                "size": "10.5pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Synapse/Yotta are gone. We're the only provably-safe PLSA standing.",
+          "children": [
+            {
+              "type": "text",
+              "text": "Synapse/Yotta are gone. We're the only provably-safe PLSA standing.",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "02",
+          "children": [
+            {
+              "type": "text",
+              "text": "02",
+              "formatting": {
+                "bold": true,
+                "size": "22pt",
+                "color": "#D4AF37",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Abstract L2 launching",
+          "children": [
+            {
+              "type": "text",
+              "text": "Abstract L2 launching",
+              "formatting": {
+                "bold": true,
+                "size": "10.5pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "We're positioned as the flagship consumer app of the entire ecosystem ΓÇö Day 1.",
+          "children": [
+            {
+              "type": "text",
+              "text": "We're positioned as the flagship consumer app of the entire ecosystem ΓÇö Day 1.",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "03",
+          "children": [
+            {
+              "type": "text",
+              "text": "03",
+              "formatting": {
+                "bold": true,
+                "size": "22pt",
+                "color": "#D4AF37",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Premium card market +12% YoY",
+          "children": [
+            {
+              "type": "text",
+              "text": "Premium card market +12% YoY",
+              "formatting": {
+                "bold": true,
+                "size": "10.5pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "No DeFi-native card competitor exists. The Meridian has no direct comp.",
+          "children": [
+            {
+              "type": "text",
+              "text": "No DeFi-native card competitor exists. The Meridian has no direct comp.",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "04",
+          "children": [
+            {
+              "type": "text",
+              "text": "04",
+              "formatting": {
+                "bold": true,
+                "size": "22pt",
+                "color": "#D4AF37",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Product is built",
+          "children": [
+            {
+              "type": "text",
+              "text": "Product is built",
+              "formatting": {
+                "bold": true,
+                "size": "10.5pt",
+                "color": "#FFFFFF",
+                "font": "Georgia"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "Contracts audited. UI live. Draw broadcast ready. Capital goes to users ΓÇö not dev.",
+          "children": [
+            {
+              "type": "text",
+              "text": "Contracts audited. UI live. Draw broadcast ready. Capital goes to users ΓÇö not dev.",
+              "formatting": {
+                "size": "9.5pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {}
+        },
+        {
+          "type": "paragraph",
+          "text": "potluck.app  ┬╖  hello@potluck.app  ┬╖  potluck-kappa.vercel.app  ┬╖  @potluckapp",
+          "children": [
+            {
+              "type": "text",
+              "text": "potluck.app  ┬╖  hello@potluck.app  ┬╖  potluck-kappa.vercel.app  ┬╖  @potluckapp",
+              "formatting": {
+                "size": "9pt",
+                "color": "#5A5540",
+                "font": "Calibri"
+              }
+            }
+          ],
+          "metadata": {
+            "alignment": "center"
+          }
+        }
+      ],
+      "metadata": {
+        "slideNumber": 9
+      }
+    }
+  ],
+  "attachments": []
+}

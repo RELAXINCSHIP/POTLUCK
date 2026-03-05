@@ -1,6 +1,5 @@
 import { plaidClient } from '../_lib/plaid.js';
 import { getSupabase } from '../_lib/supabase.js';
-import { CountryCode } from 'plaid';
 
 export default async function handler(req, res) {
     if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
@@ -8,13 +7,17 @@ export default async function handler(req, res) {
     const supabase = getSupabase(req);
 
     try {
-        const userId = req.query.user_id || 'potluck-user-1';
+        // 1. Get the authenticated user from Supabase
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
+        if (authError || !user) {
+            return res.status(401).json({ error: 'Unauthorized: Please log in' });
+        }
 
-        // Fetch tokens from Supabase
+        // 2. Fetch tokens for this user from Supabase
         const { data: linkedItems, error: dbError } = await supabase
             .from('linked_accounts')
             .select('plaid_access_token, institution_name')
-            .eq('user_id', userId);
+            .eq('user_id', user.id);
 
         if (dbError) throw dbError;
 

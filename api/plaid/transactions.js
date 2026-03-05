@@ -7,13 +7,17 @@ export default async function handler(req, res) {
     const supabase = getSupabase(req);
 
     try {
-        const userId = req.query.user_id || 'potluck-user-1';
+        // 1. Get the authenticated user from Supabase
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
+        if (authError || !user) {
+            return res.status(401).json({ error: 'Unauthorized: Please log in' });
+        }
 
-        // Fetch tokens from Supabase
+        // 2. Fetch tokens from Supabase
         const { data: linkedItems, error: dbError } = await supabase
             .from('linked_accounts')
             .select('plaid_access_token')
-            .eq('user_id', userId);
+            .eq('user_id', user.id);
 
         if (dbError) throw dbError;
 

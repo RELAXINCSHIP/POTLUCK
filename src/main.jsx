@@ -4,6 +4,7 @@ import App from './App'
 import LandingPage from './LandingPage'
 import PitchPage from './PitchPage'
 import AdminPage from './AdminPage'
+import MeridianIdentity from './MeridianIdentity'
 import './index.css'
 
 function Router() {
@@ -29,6 +30,17 @@ function Router() {
 
     if (route === '#/admin') {
         return <AdminPage onBack={() => navigate('#/')} />
+    }
+
+    if (route === '#/meridian') {
+        return (
+            <div style={{ position: 'relative' }}>
+                <div style={{ position: 'absolute', top: 20, left: 40, zIndex: 100 }}>
+                    <button onClick={() => navigate('#/')} style={{ background: 'transparent', border: 'none', color: '#D4AF37', cursor: 'pointer', fontSize: 14, fontFamily: 'Calibri, sans-serif', letterSpacing: 2 }}>← BACK TO SITE</button>
+                </div>
+                <MeridianIdentity />
+            </div>
+        )
     }
 
     // Default: landing page
